@@ -23,14 +23,14 @@
   /* Ink / Text — Light Foundation */
   --color-ink-primary-light: #141312;
   --color-ink-secondary-light: #5A5650;
-  --color-ink-tertiary-light: #8C877E;
-  --color-ink-muted-light: #B4AEA4;
+  --color-ink-tertiary-light: #756F67;
+  --color-ink-muted-light: #908A81;
 
   /* Ink / Text — Dark Foundation */
   --color-ink-primary-dark: #F4F2ED;
   --color-ink-secondary-dark: #9C9890;
-  --color-ink-tertiary-dark: #6E6B65;
-  --color-ink-muted-dark: #4A4742;
+  --color-ink-tertiary-dark: #AAA69E;
+  --color-ink-muted-dark: #858078;
 
   /* Restrained Architectural Accent (Signal Terracotta / Vermilion) */
   /* Strictly reserved for active states, link interactions, indicators */

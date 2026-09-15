@@ -7,6 +7,7 @@ import { StudioButton } from "@/components/ui/StudioButton";
 import { PersonalPortrait } from "@/components/ui/PersonalPortrait";
 import { PersonalIntro } from "@/components/ui/PersonalIntro";
 import { ProjectDossierCard } from "@/components/ui/ProjectDossierCard";
+import { BuildSituationGuide } from "@/components/ui/BuildSituationGuide";
 
 export default function HomePage() {
   return (
@@ -70,6 +71,9 @@ export default function HomePage() {
                   >
                     Let&apos;s Work Together
                   </StudioButton>
+                  <StudioButton href="#build" variant="ghost" size="md">
+                    Find your starting point
+                  </StudioButton>
                 </div>
 
                 {/* 5. Proof Strip (Evidence of real production systems) */}
@@ -101,20 +105,21 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Right Column: Editorial Photograph Framing */}
               <div className={`${styles.heroPortraitCol} ${styles.animateFadeIn} ${styles.delay5}`}>
-                <PersonalPortrait priority />
+                <PersonalPortrait
+                  src="/images/keshav-sandhu-editorial-portrait.png"
+                  caption="KESHAV SANDHU // EDITORIAL PORTRAIT [PRODUCT ENGINEERING PRACTICE]"
+                  objectPosition="center center"
+                  priority
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* ==================================================================
-            PERSONAL INTRODUCTION & ENGINEERING BREADTH
-            ================================================================== */}
-        <section id="about" className={styles.introSection} aria-label="About Keshav Sandhu">
+        <section id="build" className={styles.buildGuideSection} aria-label="Build-path field guide">
           <div className="container">
-            <PersonalIntro />
+            <BuildSituationGuide />
           </div>
         </section>
 
@@ -173,6 +178,12 @@ export default function HomePage() {
               }}
               placeholderLabel="[PROJECT INTERFACE // SOKRATE PMO COMPLIANCE CONSOLE]"
             />
+          </div>
+        </section>
+
+        <section id="about" className={styles.introSection} aria-label="About Keshav Sandhu">
+          <div className="container">
+            <PersonalIntro />
           </div>
         </section>
       </main>

@@ -48,8 +48,8 @@
 
 .heroGrid {
   display: grid;
-  grid-template-columns: 7fr 5fr;
-  gap: var(--space-12);
+  grid-template-columns: minmax(0, 7fr) minmax(300px, 5fr);
+  gap: clamp(var(--space-8), 6vw, var(--space-16));
   align-items: center;
 }
 
@@ -143,18 +143,17 @@
   line-height: 1.4;
 }
 
-/* 6. Portrait Column */
 .heroPortraitCol {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
 /* ==========================================================================
-   PERSONAL INTRODUCTION SECTION
+   BUILD-PATH FIELD GUIDE
    ========================================================================== */
-.introSection {
-  padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
+.buildGuideSection {
+  padding: clamp(var(--space-20), 10vw, var(--space-32)) 0;
   border-bottom: 1px solid var(--border-hairline);
   background-color: var(--bg-canvas-subtle);
 }
@@ -165,6 +164,16 @@
 .dossierSection {
   padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
   background-color: var(--bg-canvas);
+}
+
+/* ==========================================================================
+   PERSONAL INTRODUCTION & ENGINEERING BREADTH
+   ========================================================================== */
+.introSection {
+  padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas-subtle);
 }
 
 .sectionHeader {
@@ -195,10 +204,10 @@
   .heroGrid {
     grid-template-columns: 1fr;
     gap: var(--space-10);
+    max-width: 760px;
   }
 
   .heroPortraitCol {
-    order: 2;
     justify-content: flex-start;
   }
 }
@@ -217,6 +226,10 @@
   .heroActionRow a,
   .heroActionRow button {
     width: 100%;
+  }
+
+  .heroPortraitCol {
+    max-width: 400px;
   }
 }
 
