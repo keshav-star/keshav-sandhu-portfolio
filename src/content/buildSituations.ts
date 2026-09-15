@@ -34,8 +34,8 @@ export const buildSituations: BuildSituation[] = [
     contribution:
       "Shape the first useful version, then build the interface and systems it needs to become real.",
     evidence: {
-      label: "PROJECT DOSSIER // TO BE ADDED",
-      detail: "Further product dossiers will be added as they are published.",
+      label: "EARLY-STAGE PRODUCT // FIRST USEFUL VERSION",
+      detail: "Clarify the users, core workflow, and constraints before turning the first version into working software.",
       kind: "placeholder",
     },
   },
@@ -55,9 +55,9 @@ export const buildSituations: BuildSituation[] = [
     contribution:
       "Add useful features, improve the experience, and untangle the system constraints holding the product back.",
     evidence: {
-      label: "SOKRATE PMO // OPERATIONAL WORKFLOWS",
-      detail: "Multi-tenant product work, RBAC, and quotation-to-invoice workflows.",
-      href: "#work",
+      label: "TRYSTYLE // RETAILER ADMIN PLATFORM",
+      detail: "Multi-tenant product operations, RBAC, configuration, and real-time analytics.",
+      href: "#project-trystyle",
       kind: "work",
     },
   },
@@ -77,10 +77,10 @@ export const buildSituations: BuildSituation[] = [
     contribution:
       "Define useful AI moments, connect the right context, and make the experience understandable for the people using it.",
     evidence: {
-      label: "APPLIED AI & RAG // CAPABILITY NOTE",
-      detail: "Contextual querying, vector embeddings, LangChain services, and model switching pipelines.",
-      href: "#about",
-      kind: "capability",
+      label: "TWIN PROTOCOL // AI CHATBOT PLATFORM",
+      detail: "Document conversations, LangChain services, vector context, and contextual PDF responses.",
+      href: "#project-twin-protocol",
+      kind: "work",
     },
   },
   {

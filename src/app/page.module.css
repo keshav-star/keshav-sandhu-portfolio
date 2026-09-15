@@ -176,6 +176,87 @@
   background-color: var(--bg-canvas-subtle);
 }
 
+/* ==========================================================================
+   ENGINEERING LAB & CONTACT
+   ========================================================================== */
+.labSection,
+.contactSection {
+  padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.labSection {
+  background-color: var(--bg-canvas);
+}
+
+.labGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--border-hairline);
+  border-left: 1px solid var(--border-hairline);
+}
+
+.labItem {
+  padding: var(--space-6);
+  border-right: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.labIndex {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--color-accent);
+}
+
+.labTitle {
+  margin-top: var(--space-4);
+  font-family: var(--font-serif);
+  font-size: var(--type-heading-1-size);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.labItem p,
+.contactAction p {
+  margin-top: var(--space-3);
+  font-size: var(--type-body-reg-size);
+  line-height: var(--type-body-reg-lh);
+}
+
+.contactSection {
+  background-color: var(--bg-canvas-subtle);
+}
+
+.contactLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr);
+  gap: clamp(var(--space-8), 7vw, var(--space-20));
+  align-items: end;
+}
+
+.contactTitle {
+  max-width: 720px;
+  margin-top: var(--space-3);
+  font-family: var(--font-serif);
+  font-size: var(--type-display-xl-size);
+  font-weight: 400;
+  line-height: var(--type-display-xl-lh);
+  letter-spacing: var(--type-display-xl-ls);
+}
+
+.contactAction {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+}
+
+.contactAction p {
+  margin-top: 0;
+}
+
 .sectionHeader {
   margin-bottom: var(--space-10);
   max-width: 720px;
@@ -230,6 +311,15 @@
 
   .heroPortraitCol {
     max-width: 400px;
+  }
+
+  .labGrid,
+  .contactLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .labItem {
+    padding: var(--space-5);
   }
 }
 

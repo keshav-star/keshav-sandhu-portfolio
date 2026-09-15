@@ -25,6 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  applicationName: "Keshav Sandhu — Engineering Practice",
   title: "Keshav Sandhu — Editorial Engineering Studio | Full-Stack & AI Systems",
   description:
     "Personal engineering practice of Keshav Sandhu. Full-Stack Engineer specializing in AI integrations, multi-tenant architectures, and high-performance web systems. From idea to working product.",
@@ -40,11 +41,20 @@ export const metadata: Metadata = {
     "Engineering Studio",
   ],
   authors: [{ name: "Keshav Sandhu" }],
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: "Keshav Sandhu — Editorial Engineering Studio",
     description: "From idea to working product. High-craft full-stack and AI engineering.",
     type: "website",
     locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+    title: "Keshav Sandhu — Editorial Engineering Studio",
+    description: "From idea to working product. High-craft full-stack and AI engineering.",
   },
 };
 

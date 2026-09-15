@@ -22,11 +22,18 @@ export interface EngineeringBreakdown {
   frontend?: string;
   backend?: string;
   data?: string;
+  ai?: string;
   infrastructure?: string;
   performance?: string;
 }
 
+export interface ProjectMedia {
+  src: string;
+  alt: string;
+}
+
 export interface ProjectDossierProps {
+  slug: string;
   index: string; // e.g. "01"
   classification: string; // e.g. "COMPLIANCE & OPERATIONS PLATFORM"
   title: string; // e.g. "SOKRATE PMO"
@@ -38,10 +45,12 @@ export interface ProjectDossierProps {
   humanStory?: HumanProductStory;
   engineeringLayers?: EngineeringBreakdown;
   placeholderLabel?: string;
+  media?: ProjectMedia;
   className?: string;
 }
 
 export function ProjectDossierCard({
+  slug,
   index,
   classification,
   title,
@@ -53,12 +62,17 @@ export function ProjectDossierCard({
   humanStory,
   engineeringLayers,
   placeholderLabel,
+  media,
   className = "",
 }: ProjectDossierProps) {
   const [activeLayer, setActiveLayer] = useState<"human" | "engineering">("human");
 
   return (
-    <article className={`${styles.dossier} ${className}`} aria-labelledby={`dossier-title-${index}`}>
+    <article
+      id={`project-${slug}`}
+      className={`${styles.dossier} ${className}`}
+      aria-labelledby={`dossier-title-${index}`}
+    >
       {/* Dossier Header Bar with Signature KS Monogram Stamp */}
       <div className={styles.headerBar}>
         <div className={styles.indexClassification}>
@@ -172,6 +186,12 @@ export function ProjectDossierCard({
                   <span className={styles.engDesc}>{engineeringLayers.data}</span>
                 </div>
               )}
+              {engineeringLayers.ai && (
+                <div className={styles.engRow}>
+                  <span className={styles.engTag}>AI & CONTEXT //</span>
+                  <span className={styles.engDesc}>{engineeringLayers.ai}</span>
+                </div>
+              )}
               {engineeringLayers.performance && (
                 <div className={styles.engRow}>
                   <span className={styles.engTag}>PERFORMANCE //</span>
@@ -206,6 +226,8 @@ export function ProjectDossierCard({
             label={placeholderLabel || `[PROJECT INTERFACE // ${title}]`}
             sublabel={`${classification} — System Overview`}
             aspectRatio="16/10"
+            imageSrc={media?.src}
+            imageAlt={media?.alt}
           />
         </div>
       </div>

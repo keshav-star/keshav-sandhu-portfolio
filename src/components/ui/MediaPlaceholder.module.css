@@ -10,6 +10,10 @@
   user-select: none;
 }
 
+.image {
+  object-fit: cover;
+}
+
 /* Subtle blueprint graph background */
 .canvas::before {
   content: "";

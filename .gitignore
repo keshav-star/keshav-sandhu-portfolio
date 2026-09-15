@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local portfolio-content handoff checklist (contains unpublished asset paths and notes)
+PORTFOLIO_CONTENT_INTAKE.local.md

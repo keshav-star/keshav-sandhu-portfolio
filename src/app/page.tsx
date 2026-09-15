@@ -8,10 +8,14 @@ import { PersonalPortrait } from "@/components/ui/PersonalPortrait";
 import { PersonalIntro } from "@/components/ui/PersonalIntro";
 import { ProjectDossierCard } from "@/components/ui/ProjectDossierCard";
 import { BuildSituationGuide } from "@/components/ui/BuildSituationGuide";
+import { featuredProjects } from "@/content/projects";
 
 export default function HomePage() {
   return (
     <div className={styles.pageWrapper}>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <StudioHeader />
 
       <main id="main-content">
@@ -134,56 +138,92 @@ export default function HomePage() {
                 <span className="datum-crosshair">+</span>
                 <span>SELECTED WORK // PRODUCTION DOSSIER</span>
               </div>
-              <h2 className={styles.sectionTitle}>
-                SOKRATE PMO — Compliance & Operations Platform
-              </h2>
+              <h2 className={styles.sectionTitle}>Selected systems, built in production.</h2>
               <p className={styles.sectionSubtitle}>
                 Every project supports two reading depths: a human/product story for founders
                 and recruiters, and an engineering breakdown for technical leads.
               </p>
             </div>
 
-            {/* SOKRATE PMO Dossier with real resume data and dual layers */}
-            <ProjectDossierCard
-              index="01"
-              classification="COMPLIANCE & OPERATIONS PLATFORM"
-              title="SOKRATE PMO"
-              role="Lead Architecture & Full-Stack Systems"
-              outcomeHeadline="Multi-tenant operations platform supporting 50+ organizations and 100K+ compliance records with ~60% reduction in manual follow-ups."
-              summary="Architected a multi-tenant platform with strict data isolation, granular RBAC across 5 user personas, and automated quotation-to-invoice workflows. Refactored queries and caching to cut latency by ~40%."
-              metrics={[
-                { value: "50+", label: "Organizations" },
-                { value: "100K+", label: "Records Managed" },
-                { value: "~60%", label: "Manual Drop" },
-                { value: "~40%", label: "Latency Reduction" },
-              ]}
-              techStack={["Next.js", "PostgreSQL", "Prisma", "Node.js", "AWS", "Vitest"]}
-              humanStory={{
-                problem:
-                  "Managing compliance across dozens of client organizations required constant manual follow-ups, fragmented spreadsheets, and error-prone quotation-to-invoice handoffs.",
-                product:
-                  "Built a unified, multi-tenant compliance and operations platform where organizations self-manage renewal cycles, audits, medical visits, and invoicing in real time.",
-                contribution:
-                  "Engineered the multi-tenant architecture, designed the 5-persona RBAC model, built automated reminders and renewal workflows, and optimized all database queries.",
-                outcome:
-                  "Now running across 50+ organizations managing 100K+ active records, achieving a ~60% drop in manual operational follow-ups and ~40% faster response times.",
-              }}
-              engineeringLayers={{
-                architecture: "Multi-tenant tenant-isolated schema with workspace provisioning and centralized governance.",
-                frontend: "Next.js App Router with accessible audit dashboards, status trackers, and dynamic quotation pipelines.",
-                backend: "Node.js REST API with granular RBAC authorization middleware spanning 5 distinct user roles.",
-                data: "PostgreSQL with Prisma ORM, refactored indexes for multi-tenant query isolation, and Redis query caching.",
-                performance: "Cut average API response times by ~40% under peak multi-organization load.",
-                infrastructure: "AWS deployment with automated Vitest test coverage for regulatory audit trails.",
-              }}
-              placeholderLabel="[PROJECT INTERFACE // SOKRATE PMO COMPLIANCE CONSOLE]"
-            />
+            {featuredProjects.map((project) => (
+              <ProjectDossierCard key={project.index} {...project} />
+            ))}
           </div>
         </section>
 
         <section id="about" className={styles.introSection} aria-label="About Keshav Sandhu">
           <div className="container">
             <PersonalIntro />
+          </div>
+        </section>
+
+        <section id="lab" className={styles.labSection} aria-labelledby="lab-title">
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <div className="datum-bar">
+                <span className="datum-crosshair">+</span>
+                <span>ENGINEERING LAB // PRACTICE AREAS</span>
+              </div>
+              <h2 id="lab-title" className={styles.sectionTitle}>
+                Useful systems, examined at the seams.
+              </h2>
+              <p className={styles.sectionSubtitle}>
+                The practice combines product interface work with the systems behind it—where
+                context, permissions, performance, and operational workflows need to hold up.
+              </p>
+            </div>
+
+            <div className={styles.labGrid}>
+              <article className={styles.labItem}>
+                <span className={styles.labIndex}>01 // AI & CONTEXT</span>
+                <h3 className={styles.labTitle}>Document-aware conversations</h3>
+                <p>
+                  Conversational interfaces, contextual PDF responses, LangChain services, and
+                  vector-backed retrieval shaped through Twin Protocol work.
+                </p>
+              </article>
+              <article className={styles.labItem}>
+                <span className={styles.labIndex}>02 // OPERATIONS</span>
+                <h3 className={styles.labTitle}>Multi-tenant systems</h3>
+                <p>
+                  Tenant isolation, RBAC, configuration workflows, and operational dashboards
+                  developed across compliance and retailer administration platforms.
+                </p>
+              </article>
+              <article className={styles.labItem}>
+                <span className={styles.labIndex}>03 // PERFORMANCE</span>
+                <h3 className={styles.labTitle}>Clearer paths under load</h3>
+                <p>
+                  Query refactoring, caching, indexing, and API optimization applied where
+                  responsiveness depends on the whole system rather than a single screen.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className={styles.contactSection} aria-labelledby="contact-title">
+          <div className="container">
+            <div className={styles.contactLayout}>
+              <div>
+                <div className="datum-bar">
+                  <span className="datum-crosshair">+</span>
+                  <span>SELECT ENGAGEMENTS</span>
+                </div>
+                <h2 id="contact-title" className={styles.contactTitle}>
+                  Have a product or system that needs a clearer path forward?
+                </h2>
+              </div>
+              <div className={styles.contactAction}>
+                <p>
+                  I work across product interfaces, backend systems, and applied AI—from the
+                  first useful version through the operational details that make it dependable.
+                </p>
+                <StudioButton href="mailto:keshavsandhu.me@gmail.com" variant="primary" size="md">
+                  Start a conversation
+                </StudioButton>
+              </div>
+            </div>
           </div>
         </section>
       </main>

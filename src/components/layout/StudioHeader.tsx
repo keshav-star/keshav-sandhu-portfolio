@@ -56,10 +56,9 @@ export function StudioHeader() {
             <li>
               <a
                 href="#lab"
-                className={`${styles.navLink} ${styles.navLinkMuted}`}
-                title="Engineering Lab & Experiments (In development)"
+                className={styles.navLink}
               >
-                LAB <span className={styles.upcomingPill}>EXP</span>
+                LAB
               </a>
             </li>
             <li>
@@ -69,7 +68,7 @@ export function StudioHeader() {
                 rel="noopener noreferrer"
                 className={styles.navLink}
               >
-                RESUME ↗
+                LINKEDIN ↗
               </a>
             </li>
           </ul>
@@ -152,7 +151,7 @@ export function StudioHeader() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={styles.mobileNavLink}
                   >
-                    LAB (EXPERIMENTS)
+                    LAB
                   </a>
                 </li>
                 <li>
@@ -162,7 +161,7 @@ export function StudioHeader() {
                     rel="noopener noreferrer"
                     className={styles.mobileNavLink}
                   >
-                    RESUME ↗
+                    LINKEDIN ↗
                   </a>
                 </li>
                 <li className={styles.mobileContactItem}>
