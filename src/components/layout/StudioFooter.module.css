@@ -1,0 +1,60 @@
+.footer {
+  border-top: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas);
+  padding: var(--space-16) 0 var(--space-12) 0;
+  margin-top: var(--space-20);
+  transition: background-color var(--duration-normal) var(--ease-mechanical),
+              border-color var(--duration-normal) var(--ease-mechanical);
+}
+
+.footerInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.colophonBlock {
+  max-width: 680px;
+}
+
+.studioName {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.colophonText {
+  font-size: var(--type-body-sm-size);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.metadataGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border-hairline);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metaLabel {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--text-tertiary);
+}
+
+.metaValue {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  color: var(--text-secondary);
+}

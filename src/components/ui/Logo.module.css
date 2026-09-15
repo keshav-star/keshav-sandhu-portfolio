@@ -1,0 +1,112 @@
+.logoContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--text-primary);
+  user-select: none;
+  cursor: pointer;
+  transition: opacity var(--duration-fast) var(--ease-mechanical);
+}
+
+.logoContainer:hover {
+  opacity: 0.92;
+}
+
+/* Monogram Sizing */
+.monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  flex-shrink: 0;
+  transition: transform var(--duration-fast) var(--ease-mechanical);
+}
+
+.monogramSvg {
+  display: block;
+}
+
+.sm .monogramSvg {
+  width: 22px;
+  height: 22px;
+}
+
+.md .monogramSvg {
+  width: 28px;
+  height: 28px;
+}
+
+.lg .monogramSvg {
+  width: 36px;
+  height: 36px;
+}
+
+/* Subtle signature hover interaction */
+.logoContainer:hover .monogram {
+  transform: translateY(-1px);
+}
+
+.wordmarkBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* PRIMARY: Keshav Sandhu */
+.primaryName {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.sm .primaryName {
+  font-size: 0.8125rem;
+}
+
+.lg .primaryName {
+  font-size: 1.125rem;
+}
+
+/* SECONDARY: Product Engineer / Builder */
+.roleSubtitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.sm .roleSubtitle {
+  font-size: 0.5625rem;
+}
+
+.discipline {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.dotSeparator {
+  color: var(--color-accent);
+  opacity: 0.7;
+}
+
+/* SUPPORTING: Studio */
+.studioTag {
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 480px) {
+  .studioTag,
+  .dotSeparator {
+    display: none;
+  }
+}

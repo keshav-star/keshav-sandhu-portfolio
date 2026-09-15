@@ -1,0 +1,300 @@
+.dossier {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--shadow-subtle);
+  margin-bottom: var(--space-8);
+  position: relative;
+}
+
+.headerBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-6);
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+}
+
+.indexClassification {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.signatureStamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-hairline);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-right: 4px;
+}
+
+.index {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.slash {
+  color: var(--text-muted);
+}
+
+.classification {
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-6);
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.contentCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-size: var(--type-heading-1-size);
+  font-weight: 700;
+  line-height: var(--type-heading-1-lh);
+  letter-spacing: var(--type-heading-1-ls);
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.outcomeHeadline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.summary {
+  font-size: var(--type-body-reg-size);
+  color: var(--text-secondary);
+  line-height: var(--type-body-reg-lh);
+  margin-bottom: var(--space-6);
+}
+
+/* Outcome Metrics Ledger */
+.metricsLedger {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: var(--space-6);
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metricValue {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+  font-feature-settings: "tnum" 1;
+}
+
+.metricLabel {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  line-height: 1.3;
+}
+
+/* Dual-Layer Selector */
+.layerSelector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  padding: var(--space-3);
+  background-color: var(--bg-canvas-subtle);
+  border: 1px solid var(--border-hairline);
+}
+
+.selectorLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--text-tertiary);
+}
+
+.selectorButtons {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.layerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  transition: all var(--duration-fast) var(--ease-mechanical);
+}
+
+.layerBtn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+.layerBtnActive {
+  background-color: var(--text-primary);
+  color: var(--bg-canvas);
+  border-color: var(--text-primary);
+}
+
+.btnDot {
+  font-size: 8px;
+  color: var(--color-accent);
+}
+
+.layerBtnActive .btnDot {
+  color: var(--color-accent);
+}
+
+/* Human Story Box */
+.humanStoryBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background-color: var(--bg-canvas-subtle);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: var(--space-6);
+}
+
+.storyStep {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stepTag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--color-accent);
+}
+
+.stepText {
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+
+/* Engineering Box */
+.engineeringBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--bg-canvas-subtle);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: var(--space-6);
+}
+
+.engRow {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--space-2);
+  align-items: baseline;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .engRow {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+
+.engTag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--text-tertiary);
+}
+
+.engDesc {
+  color: var(--text-secondary);
+}
+
+/* Tech Evidence Ledger */
+.techEvidence {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.techLabel {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--text-muted);
+}
+
+.techChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.techChip {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  padding: 2px 6px;
+  background-color: var(--bg-canvas-subtle);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+  border-radius: var(--radius-xs);
+}
+
+.mediaCol {
+  width: 100%;
+}

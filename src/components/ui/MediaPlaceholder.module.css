@@ -1,0 +1,74 @@
+.canvas {
+  position: relative;
+  width: 100%;
+  background-color: var(--bg-canvas-subtle);
+  border: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Subtle blueprint graph background */
+.canvas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, var(--border-hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-hairline) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.4;
+}
+
+.corner {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-accent);
+  line-height: 1;
+  user-select: none;
+  z-index: 2;
+}
+
+.tl { top: 8px; left: 8px; }
+.tr { top: 8px; right: 8px; }
+.bl { bottom: 8px; left: 8px; }
+.br { bottom: 8px; right: 8px; }
+
+.centerBlock {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: var(--space-4);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--shadow-subtle);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-sm-size);
+  font-weight: 500;
+  letter-spacing: var(--type-mono-sm-ls);
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.sublabel {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-sm-size);
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.ratioSpec {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--text-tertiary);
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border-hairline);
+}

@@ -1,0 +1,227 @@
+.pageWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   HERO ENTRANCE MOTION (Quick, subtle, physical)
+   ========================================================================== */
+.animateFadeIn {
+  animation: heroFadeIn 360ms var(--ease-mechanical) backwards;
+}
+
+.delay1 { animation-delay: 50ms; }
+.delay2 { animation-delay: 100ms; }
+.delay3 { animation-delay: 150ms; }
+.delay4 { animation-delay: 200ms; }
+.delay5 { animation-delay: 250ms; }
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animateFadeIn {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.heroSection {
+  padding: clamp(var(--space-12), 7vw, var(--space-20)) 0;
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas);
+  position: relative;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.heroNarrativeCol {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. Identity & Availability Metadata */
+.heroDatumRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.datumDivider {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.availabilityMetadata {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+/* 2. Core Headline */
+.heroStatement {
+  font-family: var(--font-serif);
+  font-size: var(--type-display-2xl-size);
+  line-height: var(--type-display-2xl-lh);
+  letter-spacing: var(--type-display-2xl-ls);
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+/* 3. Human Supporting Statement */
+.heroDescriptor {
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin-bottom: var(--space-8);
+}
+
+/* 4. Action Row */
+.heroActionRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-8);
+}
+
+/* 5. Proof Strip */
+.heroMetricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5) var(--space-6);
+  padding: var(--space-6) 0 0 0;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.heroMetricItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.heroMetricNumber {
+  font-family: var(--font-mono);
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-accent);
+  line-height: 1;
+  font-feature-settings: "tnum" 1;
+}
+
+.heroMetricLabel {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* 6. Portrait Column */
+.heroPortraitCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================================================
+   PERSONAL INTRODUCTION SECTION
+   ========================================================================== */
+.introSection {
+  padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas-subtle);
+}
+
+/* ==========================================================================
+   FEATURED DOSSIER SECTION
+   ========================================================================== */
+.dossierSection {
+  padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
+  background-color: var(--bg-canvas);
+}
+
+.sectionHeader {
+  margin-bottom: var(--space-10);
+  max-width: 720px;
+}
+
+.sectionTitle {
+  font-family: var(--font-sans);
+  font-size: var(--type-display-lg-size);
+  line-height: var(--type-display-lg-lh);
+  letter-spacing: var(--type-display-lg-ls);
+  color: var(--text-primary);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.sectionSubtitle {
+  font-size: var(--type-body-reg-size);
+  color: var(--text-secondary);
+  line-height: var(--type-body-reg-lh);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (1440, 1280, 1024, 768, 430, 390)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .heroPortraitCol {
+    order: 2;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroMetricsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .heroActionRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .heroActionRow a,
+  .heroActionRow button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .availabilityMetadata {
+    display: none;
+  }
+}

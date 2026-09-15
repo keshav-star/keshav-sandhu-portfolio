@@ -1,0 +1,114 @@
+.introContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+.introHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.divider {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.headerRole {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.statement {
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  font-weight: 400;
+  max-width: 900px;
+}
+
+.narrativeBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 760px;
+}
+
+.paragraph {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.3vw, 1.0625rem);
+  line-height: 1.68;
+  color: var(--text-secondary);
+}
+
+/* Breadth Matrix */
+.breadthMatrix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .breadthMatrix {
+    grid-template-columns: 1fr;
+  }
+}
+
+.matrixCard {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: border-color var(--duration-fast) var(--ease-mechanical),
+              background-color var(--duration-fast) var(--ease-mechanical);
+}
+
+.matrixCard:hover {
+  border-color: var(--border-medium);
+  background-color: var(--bg-surface-elevated);
+}
+
+.matrixIndex {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono-xs-size);
+  letter-spacing: var(--type-mono-xs-ls);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.matrixTitle {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.matrixDesc {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  flex-grow: 1;
+}
+
+.techNote {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  padding-top: var(--space-3);
+  margin-top: var(--space-2);
+  border-top: 1px dashed var(--border-hairline);
+  letter-spacing: 0.02em;
+}
