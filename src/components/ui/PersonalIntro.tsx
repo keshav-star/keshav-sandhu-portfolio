@@ -12,7 +12,7 @@ export function PersonalIntro({ className = "" }: PersonalIntroProps) {
       {/* Editorial Datum Header */}
       <div className={styles.introHeader}>
         <DatumLabel prefix="AUTHOR //" label="KESHAV SANDHU" variant="standard" />
-        <span className={styles.divider}>//</span>
+        <span className={styles.divider}>{"//"}</span>
         <span className={styles.headerRole}>PRODUCT ENGINEER & BUILDER</span>
       </div>
 

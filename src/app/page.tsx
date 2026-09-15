@@ -35,12 +35,12 @@ export default function HomePage() {
                     label="KESHAV SANDHU"
                     variant="standard"
                   />
-                  <span className={styles.datumDivider}>//</span>
+                  <span className={styles.datumDivider}>{"//"}</span>
                   <DatumLabel
                     label="PRODUCT ENGINEER"
                     variant="bordered"
                   />
-                  <span className={styles.datumDivider}>//</span>
+                  <span className={styles.datumDivider}>{"//"}</span>
                   <span className={styles.availabilityMetadata}>
                     AVAILABLE FOR SELECT ENGAGEMENTS
                   </span>

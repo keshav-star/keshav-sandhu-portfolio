@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./StudioFooter.module.css";
-import { DatumLabel } from "../ui/DatumLabel";
 
 export function StudioFooter() {
   const currentYear = new Date().getFullYear();

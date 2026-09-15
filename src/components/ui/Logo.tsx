@@ -76,7 +76,7 @@ export function Logo({ variant = "full", size = "md", className = "" }: LogoProp
           {/* SECONDARY: Product Engineer / Builder + SUPPORTING: Studio */}
           <span className={styles.roleSubtitle}>
             <span className={styles.discipline}>PRODUCT ENGINEER / BUILDER</span>
-            <span className={styles.dotSeparator}>//</span>
+            <span className={styles.dotSeparator}>{"//"}</span>
             <span className={styles.studioTag}>STUDIO</span>
           </span>
         </div>

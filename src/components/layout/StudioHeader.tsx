@@ -13,7 +13,7 @@ export function StudioHeader() {
     // Check initial preference or stored theme
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const initialTheme = isDark ? "dark" : "light";
-    setTheme(initialTheme);
+    queueMicrotask(() => setTheme(initialTheme));
     document.documentElement.setAttribute("data-theme", initialTheme);
 
     const handleScroll = () => {

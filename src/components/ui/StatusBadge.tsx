@@ -23,7 +23,7 @@ export function StatusBadge({
       <span className={styles.statusText}>{statusText}</span>
       {location && (
         <>
-          <span className={styles.divider}>//</span>
+          <span className={styles.divider}>{"//"}</span>
           <span className={styles.locationText}>{location}</span>
         </>
       )}
