@@ -8,11 +8,14 @@ import { PersonalPortrait } from "@/components/ui/PersonalPortrait";
 import { PersonalIntro } from "@/components/ui/PersonalIntro";
 import { ProjectDossierCard } from "@/components/ui/ProjectDossierCard";
 import { BuildSituationGuide } from "@/components/ui/BuildSituationGuide";
+import { PortfolioArrival } from "@/components/ui/PortfolioArrival";
+import { CalBookingButton } from "@/components/ui/CalBookingButton";
 import { featuredProjects } from "@/content/projects";
 
 export default function HomePage() {
   return (
     <div className={styles.pageWrapper}>
+      <PortfolioArrival />
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
@@ -222,6 +225,7 @@ export default function HomePage() {
                 <StudioButton href="mailto:keshavsandhu.me@gmail.com" variant="primary" size="md">
                   Start a conversation
                 </StudioButton>
+                <CalBookingButton />
               </div>
             </div>
           </div>

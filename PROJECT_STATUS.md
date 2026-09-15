@@ -40,12 +40,18 @@ Last updated: 2026-09-15
   - [ ] Set up analytics only if desired and privacy-appropriate.
   - [ ] Deploy to the chosen host and complete a production smoke test.
 
+- [ ] Phase 9 — First-visit and booking experience
+  - [x] Add a portfolio-specific first-visit arrival sequence with an accessible skip action and reduced-motion fallback.
+  - [x] Add a Cal.com popup-embed integration that activates when a public event link is configured.
+  - [ ] Supply and verify the public Cal.com event link, availability, and intake settings.
+
 ## Inputs Needed From Keshav
 
 - Approved screenshots for each project that may be shown publicly, with alt text.
 - Confirmed public URLs where disclosure permits.
 - A current resume file or final resume URL.
 - Production domain for canonical metadata and the sitemap.
+- Public Cal.com event link for the booking control.
 - Approval for any non-public metrics, client references, or proprietary interface imagery.
 
 ## Working-Tree Notes
