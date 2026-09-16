@@ -10,8 +10,8 @@ export function StudioFooter() {
         <div className={styles.colophonBlock}>
           <div className={styles.studioName}>KESHAV SANDHU // ENGINEERING PRACTICE</div>
           <p className={styles.colophonText}>
-            Operating at the intersection of full-stack product engineering, backend architectures,
-            and applied AI systems. Designed and implemented with measured architectural restraint.
+            Full-stack product engineer with 2+ years of experience building multi-tenant SaaS,
+            operational workflows, and applied-AI products.
           </p>
         </div>
 
@@ -21,15 +21,19 @@ export function StudioFooter() {
             <span className={styles.metaValue}>NOIDA, INDIA [UTC+5:30]</span>
           </div>
           <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>COORDINATES //</span>
-            <span className={styles.metaValue}>28.5355° N, 77.3910° E</span>
+            <span className={styles.metaLabel}>PROFILE //</span>
+            <a className={styles.metaLink} href="https://linkedin.com/in/keshavsandhu" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a>
           </div>
           <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>TYPOGRAPHY //</span>
-            <span className={styles.metaValue}>INSTRUMENT SERIF + PLUS JAKARTA SANS</span>
+            <span className={styles.metaLabel}>RÉSUMÉ //</span>
+            <a className={styles.metaLink} href="/resume-keshav-sandhu.docx">DOWNLOAD DOCX ↓</a>
           </div>
           <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>COLOPHON //</span>
+            <span className={styles.metaLabel}>CONTACT //</span>
+            <a className={styles.metaLink} href="mailto:keshavsandhu.me@gmail.com">KESHAVSANDHU.ME@GMAIL.COM</a>
+          </div>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>COPYRIGHT //</span>
             <span className={styles.metaValue}>© {currentYear} KESHAV SANDHU. ALL RIGHTS RESERVED.</span>
           </div>
         </div>

@@ -10,9 +10,9 @@ export function StudioHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Check initial preference or stored theme
+    const savedTheme = window.localStorage.getItem("keshav-sandhu-theme");
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = isDark ? "dark" : "light";
+    const initialTheme = savedTheme === "dark" || (savedTheme !== "light" && isDark) ? "dark" : "light";
     queueMicrotask(() => setTheme(initialTheme));
     document.documentElement.setAttribute("data-theme", initialTheme);
 
@@ -28,6 +28,7 @@ export function StudioHeader() {
     const nextTheme = theme === "light" ? "dark" : "light";
     setTheme(nextTheme);
     document.documentElement.setAttribute("data-theme", nextTheme);
+    window.localStorage.setItem("keshav-sandhu-theme", nextTheme);
   };
 
   return (
@@ -51,6 +52,11 @@ export function StudioHeader() {
             <li>
               <a href="#about" className={styles.navLink}>
                 ABOUT
+              </a>
+            </li>
+            <li>
+              <a href="/resume-keshav-sandhu.docx" className={styles.navLink}>
+                RÉSUMÉ ↓
               </a>
             </li>
             <li>
@@ -88,7 +94,7 @@ export function StudioHeader() {
             className={styles.contactBtn}
             aria-label="Send email to Keshav Sandhu"
           >
-            LET&apos;S WORK TOGETHER
+            CONTACT
           </a>
 
           {/* Theme Switcher */}
@@ -127,6 +133,15 @@ export function StudioHeader() {
           <div className={`container ${styles.mobileDrawerInner}`}>
             <nav aria-label="Mobile navigation">
               <ul className={styles.mobileNavList}>
+                <li>
+                  <a
+                    href="/resume-keshav-sandhu.docx"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={styles.mobileNavLink}
+                  >
+                    RÉSUMÉ ↓
+                  </a>
+                </li>
                 <li>
                   <a
                     href="#work"
@@ -169,7 +184,7 @@ export function StudioHeader() {
                     href="mailto:keshavsandhu.me@gmail.com"
                     className={styles.mobileContactBtn}
                   >
-                    LET&apos;S WORK TOGETHER →
+                    CONTACT →
                   </a>
                 </li>
               </ul>

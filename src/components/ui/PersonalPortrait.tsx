@@ -34,11 +34,9 @@ export function PersonalPortrait({
         <span className={`${styles.crosshair} ${styles.br}`}>+</span>
 
         {/* Signature Terracotta Registration Pip with tactile physical interaction */}
-        <button
-          type="button"
+        <span
           className={styles.signaturePip}
-          aria-label="Keshav Sandhu — Signature Registration Pip"
-          title="KS Studio Registration Mark"
+          aria-hidden="true"
         />
 
         {src ? (

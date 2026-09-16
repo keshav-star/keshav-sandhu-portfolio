@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
+import { metadataBase, siteName, siteUrl } from "@/lib/site";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -25,8 +26,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  applicationName: "Keshav Sandhu — Engineering Practice",
-  title: "Keshav Sandhu — Editorial Engineering Studio | Full-Stack & AI Systems",
+  metadataBase,
+  applicationName: siteName,
+  title: "Keshav Sandhu — Full-Stack Product Engineer",
   description:
     "Personal engineering practice of Keshav Sandhu. Full-Stack Engineer specializing in AI integrations, multi-tenant architectures, and high-performance web systems. From idea to working product.",
   keywords: [
@@ -38,23 +40,25 @@ export const metadata: Metadata = {
     "TypeScript",
     "PostgreSQL",
     "LangChain",
-    "Engineering Studio",
+    "Product Engineer",
   ],
   authors: [{ name: "Keshav Sandhu" }],
+  alternates: siteUrl ? { canonical: "/" } : undefined,
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "Keshav Sandhu — Editorial Engineering Studio",
-    description: "From idea to working product. High-craft full-stack and AI engineering.",
+    title: siteName,
+    description: "Multi-tenant SaaS and applied-AI products that hold up in production.",
     type: "website",
     locale: "en_US",
+    url: siteUrl?.toString(),
   },
   twitter: {
     card: "summary",
-    title: "Keshav Sandhu — Editorial Engineering Studio",
-    description: "From idea to working product. High-craft full-stack and AI engineering.",
+    title: siteName,
+    description: "Multi-tenant SaaS and applied-AI products that hold up in production.",
   },
 };
 
@@ -74,7 +78,26 @@ export default function RootLayout({
       lang="en"
       className={`${instrumentSerif.variable} ${plusJakartaSans.variable} ${geistMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfilePage",
+              mainEntity: {
+                "@type": "Person",
+                name: "Keshav Sandhu",
+                jobTitle: "Full-Stack Product Engineer",
+                address: { "@type": "PostalAddress", addressLocality: "Noida", addressCountry: "IN" },
+                sameAs: ["https://linkedin.com/in/keshavsandhu"],
+                url: siteUrl?.toString(),
+              },
+            }),
+          }}
+        />
+      </body>
     </html>
   );
 }

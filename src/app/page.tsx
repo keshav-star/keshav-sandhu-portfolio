@@ -8,14 +8,12 @@ import { PersonalPortrait } from "@/components/ui/PersonalPortrait";
 import { PersonalIntro } from "@/components/ui/PersonalIntro";
 import { ProjectDossierCard } from "@/components/ui/ProjectDossierCard";
 import { BuildSituationGuide } from "@/components/ui/BuildSituationGuide";
-import { PortfolioArrival } from "@/components/ui/PortfolioArrival";
 import { CalBookingButton } from "@/components/ui/CalBookingButton";
 import { featuredProjects } from "@/content/projects";
 
 export default function HomePage() {
   return (
     <div className={styles.pageWrapper}>
-      <PortfolioArrival />
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
@@ -45,7 +43,7 @@ export default function HomePage() {
                   />
                   <span className={styles.datumDivider}>{"//"}</span>
                   <DatumLabel
-                    label="PRODUCT ENGINEER"
+                    label="FULL-STACK PRODUCT ENGINEER"
                     variant="bordered"
                   />
                   <span className={styles.datumDivider}>{"//"}</span>
@@ -61,8 +59,8 @@ export default function HomePage() {
 
                 {/* 3. Human-Readable Supporting Statement */}
                 <p className={`${styles.heroDescriptor} ${styles.animateFadeIn} ${styles.delay2}`}>
-                  I design and build digital products end-to-end — from the interface
-                  people use to the systems that make it run.
+                  I build multi-tenant SaaS and applied-AI products—from the workflows people
+                  use to the data, permissions, and APIs that keep them dependable.
                 </p>
 
                 {/* 4. Primary Actions (Ordered for mobile & desktop) */}
@@ -71,15 +69,12 @@ export default function HomePage() {
                     Explore Selected Work
                   </StudioButton>
                   <StudioButton
-                    href="mailto:keshavsandhu.me@gmail.com"
+                    href="/resume-keshav-sandhu.docx"
                     variant="secondary"
                     size="md"
                     arrow={false}
                   >
-                    Let&apos;s Work Together
-                  </StudioButton>
-                  <StudioButton href="#build" variant="ghost" size="md">
-                    Find your starting point
+                    Download résumé
                   </StudioButton>
                 </div>
 
@@ -143,8 +138,7 @@ export default function HomePage() {
               </div>
               <h2 className={styles.sectionTitle}>Selected systems, built in production.</h2>
               <p className={styles.sectionSubtitle}>
-                Every project supports two reading depths: a human/product story for founders
-                and recruiters, and an engineering breakdown for technical leads.
+              Product context first, followed by the implementation decisions behind the result.
               </p>
             </div>
 

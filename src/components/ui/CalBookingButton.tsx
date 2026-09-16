@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useRef } from "react";
 import { StudioButton } from "./StudioButton";
 
 const CAL_NAMESPACE = "keshav-portfolio";
@@ -76,10 +76,6 @@ export function CalBookingButton() {
     portfolioCal?.("preload", { calLink });
     isReady.current = true;
   }, [calLink]);
-
-  useEffect(() => {
-    configureEmbed();
-  }, [configureEmbed]);
 
   if (!calLink) return null;
 

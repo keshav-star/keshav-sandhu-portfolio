@@ -41,7 +41,7 @@ export const featuredProjects: ProjectDossierProps[] = [
       infrastructure:
         "AWS deployment with automated Vitest test coverage for regulatory audit trails.",
     },
-    placeholderLabel: "[PROJECT INTERFACE // SOKRATE PMO COMPLIANCE CONSOLE]",
+    placeholderLabel: "PRIVATE CLIENT WORK // PRODUCT SCREENSHOTS UNAVAILABLE",
   },
   {
     slug: "twin-protocol",
@@ -77,7 +77,7 @@ export const featuredProjects: ProjectDossierProps[] = [
       ai: "LangChain services with vector database integration for contextual PDF-based query responses.",
       performance: "Caching layers and API optimization reduced response time by 40%.",
     },
-    placeholderLabel: "[PROJECT INTERFACE // TWIN PROTOCOL CONVERSATION WORKSPACE]",
+    placeholderLabel: "PRIVATE CLIENT WORK // PRODUCT SCREENSHOTS UNAVAILABLE",
   },
   {
     slug: "trystyle",
@@ -110,6 +110,6 @@ export const featuredProjects: ProjectDossierProps[] = [
       ai: "Gemini VTO and internal AI pipelines with configurable model switching for flexible deployments.",
       performance: "Backend APIs and database queries reduced response latency by ~35% under peak traffic.",
     },
-    placeholderLabel: "[PROJECT INTERFACE // TRYSTYLE RETAILER ADMIN]",
+    placeholderLabel: "PRIVATE CLIENT WORK // PRODUCT SCREENSHOTS UNAVAILABLE",
   },
 ];
