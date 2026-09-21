@@ -41,6 +41,10 @@ export const featuredProjects: ProjectDossierProps[] = [
       infrastructure:
         "AWS deployment with automated Vitest test coverage for regulatory audit trails.",
     },
+    media:{
+      src: "/images/sokrates.png",
+      alt: "Sokrates.sos"
+    },
     placeholderLabel: "PRIVATE CLIENT WORK // PRODUCT SCREENSHOTS UNAVAILABLE",
   },
   {
