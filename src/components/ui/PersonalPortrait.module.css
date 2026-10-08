@@ -1,74 +1,34 @@
+/* ==========================================================================
+   PERSONAL PORTRAIT PLATE
+   Editorial portrait with contact icons that stay BEHIND the image by default,
+   and on hover pop outside away from the image with a playful hopping & pulse animation.
+   Retreats back behind the image 3 seconds after mouse leaves.
+   ========================================================================== */
+
 .figure {
   margin: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
   position: relative;
 }
 
 /* ==========================================================================
-   INTERACTIVE CONTAINER (Hover & Tap Plate)
+   INTERACTIVE CONTAINER
    ========================================================================== */
 .interactiveContainer {
   position: relative;
   width: 100%;
-  cursor: pointer;
   outline: none;
-  perspective: 1000px;
 }
-
-.interactiveContainer:focus-visible .frame {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
-}
-
-/* ==========================================================================
-   BACKING LAYER: ARCHITECTURAL WIREFRAME BACKPLATE
-   Minimal offset backing plate that shifts on hover
-   ========================================================================== */
-.blueprintBackplate {
-  position: absolute;
-  inset: -1px;
-  background-color: var(--bg-canvas-subtle);
-  border: 1px dashed var(--border-medium);
-  border-radius: var(--radius-xs);
-  z-index: 1;
-  pointer-events: none;
-  transition: 
-    transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-color var(--duration-fast) var(--ease-mechanical),
-    opacity var(--duration-fast) var(--ease-mechanical);
-  transform: translate(0, 0) rotate(0deg);
-  opacity: 0.5;
-}
-
-.containerActive .blueprintBackplate,
-.interactiveContainer:hover .blueprintBackplate {
-  transform: translate(-10px, 10px) rotate(-1deg);
-  border-color: var(--color-accent);
-  opacity: 0.85;
-}
-
-.backplateCrossTL,
-.backplateCrossBR {
-  position: absolute;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--color-accent);
-  line-height: 1;
-}
-
-.backplateCrossTL { top: 4px; left: 4px; }
-.backplateCrossBR { bottom: 4px; right: 4px; }
 
 /* ==========================================================================
    PRIMARY LAYER: TRANSFORMING IMAGE FRAME
-   Shape morphing & subtle 3D lift
    ========================================================================== */
 .frame {
   position: relative;
-  z-index: 3;
+  z-index: 6; /* sits in front of idle icons */
   width: 100%;
   aspect-ratio: 4 / 5;
   background-color: var(--bg-surface);
@@ -76,24 +36,28 @@
   border-radius: var(--radius-xs);
   box-shadow: var(--shadow-card);
   overflow: hidden;
-  transition: 
-    transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-radius 420ms cubic-bezier(0.34, 1.56, 0.64, 1),
+  cursor: pointer;
+  outline: none;
+  transition:
+    transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 450ms cubic-bezier(0.34, 1.56, 0.64, 1),
     border-color var(--duration-fast) var(--ease-mechanical),
-    box-shadow 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
   transform: scale(1) translateY(0) rotate(0deg);
 }
 
+.interactiveContainer:focus-visible .frame {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 .containerActive .frame,
-.interactiveContainer:hover .frame,
 .frameActive {
-  /* Architectural shape transformation: subtle asymmetric corner morphing */
-  border-radius: 20px 6px 22px 6px;
-  /* Controlled size & perspective transform */
-  transform: scale(1.02) translateY(-4px) rotate(0.6deg);
-  border-color: rgba(211, 78, 38, 0.3);
-  box-shadow: 
-    0 18px 36px -10px rgba(20, 19, 18, 0.14),
+  border-radius: 18px 6px 20px 6px;
+  transform: scale(1.015) translateY(-4px) rotate(0.4deg);
+  border-color: rgba(211, 78, 38, 0.35);
+  box-shadow:
+    0 20px 42px -10px rgba(20, 19, 18, 0.16),
     0 0 0 1px rgba(211, 78, 38, 0.2);
 }
 
@@ -105,12 +69,11 @@
   color: var(--text-tertiary);
   line-height: 1;
   user-select: none;
-  z-index: 5;
+  z-index: 7;
   transition: color var(--duration-fast) var(--ease-mechanical);
 }
 
-.containerActive .crosshair,
-.interactiveContainer:hover .crosshair {
+.containerActive .crosshair {
   color: var(--color-accent);
 }
 
@@ -127,7 +90,7 @@
   width: 7px;
   height: 7px;
   background-color: var(--color-accent);
-  z-index: 6;
+  z-index: 8;
   outline: none;
   display: flex;
   align-items: center;
@@ -151,12 +114,11 @@
 }
 
 .pipActive,
-.containerActive .signaturePip,
-.interactiveContainer:hover .signaturePip {
+.containerActive .signaturePip {
   transform: scale(1.25);
 }
 
-/* Real Image Rendering & Smooth Transform */
+/* Image Rendering */
 .imageWrapper {
   position: relative;
   width: 100%;
@@ -166,15 +128,14 @@
 .image {
   object-fit: cover;
   filter: contrast(1.03) brightness(0.98);
-  transition: 
+  transition:
     transform 480ms cubic-bezier(0.34, 1.56, 0.64, 1),
     filter var(--duration-normal) var(--ease-mechanical);
   transform: scale(1) rotate(0deg);
 }
 
-.containerActive .image,
-.interactiveContainer:hover .image {
-  transform: scale(1.045) rotate(-0.5deg);
+.containerActive .image {
+  transform: scale(1.04) rotate(-0.4deg);
   filter: contrast(1.05) brightness(1.01);
 }
 
@@ -183,8 +144,8 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 70%,
-    rgba(20, 19, 18, 0.2) 100%
+    transparent 65%,
+    rgba(20, 19, 18, 0.25) 100%
   );
   pointer-events: none;
   opacity: 0.7;
@@ -194,9 +155,276 @@
   filter: grayscale(100%) contrast(1.08) brightness(0.96);
 }
 
-.containerActive .monochrome,
-.interactiveContainer:hover .monochrome {
+.containerActive .monochrome {
   filter: grayscale(15%) contrast(1.05) brightness(0.99);
+}
+
+/* ==========================================================================
+   POP-OUT CONTACT ICONS LAYER
+   Behind image by default (z-index: 2).
+   On hover: moves in front (z-index: 15) and pops outside away from image.
+   ========================================================================== */
+.iconsOrbitLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2; /* strictly behind .frame by default */
+  transition: z-index 0ms 350ms;
+}
+
+.containerActive .iconsOrbitLayer {
+  z-index: 15; /* in front on hover */
+  pointer-events: auto;
+  transition: z-index 0ms 0ms;
+}
+
+/* Circular Floating Contact Icon Button */
+.popIconBtn {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 8px 24px -4px rgba(20, 19, 18, 0.16);
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  user-select: none;
+  z-index: 5;
+  transition:
+    transform 480ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 320ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 320ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 250ms ease;
+}
+
+[data-theme="dark"] .popIconBtn {
+  background-color: rgba(36, 34, 32, 0.94);
+  border-color: rgba(244, 242, 237, 0.18);
+  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.5);
+  color: var(--text-primary);
+}
+
+.containerActive .popIconBtn,
+.iconBtnActive {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Icon glyph center */
+.iconGlyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  transition: transform 200ms ease, color 200ms ease;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   INDIVIDUAL ICON POSITIONS:
+   Default: Tucked BEHIND the image (scale 0.3, opacity 0)
+   On hover: Popped OUTSIDE away from the image frame (not on image!)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. LinkedIn (Top-Right outside) */
+.iconLinkedIn {
+  top: 14%;
+  right: 16px;
+  transform: translate(0, 0) scale(0.3);
+  transition-delay: 0ms;
+}
+
+.containerActive .iconLinkedIn,
+.iconLinkedIn.iconBtnActive {
+  transform: translate(64px, -10px) scale(1);
+  animation: hopAnim1 2.6s ease-in-out infinite 0.1s;
+}
+
+/* 2. Direct Email (Bottom-Right outside) */
+.iconEmail {
+  bottom: 18%;
+  right: 16px;
+  transform: translate(0, 0) scale(0.3);
+  transition-delay: 60ms;
+}
+
+.containerActive .iconEmail,
+.iconEmail.iconBtnActive {
+  transform: translate(66px, 12px) scale(1);
+  animation: hopAnim2 2.8s ease-in-out infinite 0.5s;
+}
+
+/* 3. Résumé (Top-Left outside) */
+.iconResume {
+  top: 14%;
+  left: 16px;
+  transform: translate(0, 0) scale(0.3);
+  transition-delay: 40ms;
+}
+
+.containerActive .iconResume,
+.iconResume.iconBtnActive {
+  transform: translate(-64px, -10px) scale(1);
+  animation: hopAnim3 2.7s ease-in-out infinite 0.3s;
+}
+
+/* 4. Direct Connect / Chat (Bottom-Left outside) */
+.iconContact {
+  bottom: 18%;
+  left: 16px;
+  transform: translate(0, 0) scale(0.3);
+  transition-delay: 100ms;
+}
+
+.containerActive .iconContact,
+.iconContact.iconBtnActive {
+  transform: translate(-66px, 12px) scale(1);
+  animation: hopAnim4 2.5s ease-in-out infinite 0.7s;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   HOPPING & BOBBING ANIMATIONS WHEN POPPED OUT
+   Gentle playful hopping in place
+   ────────────────────────────────────────────────────────────────────────── */
+@keyframes hopAnim1 {
+  0%, 100% {
+    transform: translate(64px, -10px) scale(1);
+  }
+  50% {
+    transform: translate(64px, -19px) scale(1.05);
+  }
+}
+
+@keyframes hopAnim2 {
+  0%, 100% {
+    transform: translate(66px, 12px) scale(1);
+  }
+  50% {
+    transform: translate(66px, 3px) scale(1.05);
+  }
+}
+
+@keyframes hopAnim3 {
+  0%, 100% {
+    transform: translate(-64px, -10px) scale(1);
+  }
+  50% {
+    transform: translate(-64px, -19px) scale(1.05);
+  }
+}
+
+@keyframes hopAnim4 {
+  0%, 100% {
+    transform: translate(-66px, 12px) scale(1);
+  }
+  50% {
+    transform: translate(-66px, 3px) scale(1.05);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   PULSING AURA RING
+   ────────────────────────────────────────────────────────────────────────── */
+.pulseAura {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--color-accent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.containerActive .pulseAura {
+  animation: auraPulse 3s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes auraPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   HOVER ON INDIVIDUAL ICON
+   Pauses hop, enlarges with rich feedback and shows tooltip
+   ────────────────────────────────────────────────────────────────────────── */
+.popIconBtn:hover {
+  animation-play-state: paused !important;
+  background-color: var(--bg-surface-elevated, #ffffff);
+  border-color: var(--color-accent) !important;
+  box-shadow:
+    0 14px 32px -4px rgba(211, 78, 38, 0.35),
+    0 0 0 1px rgba(211, 78, 38, 0.3) !important;
+  z-index: 30 !important;
+}
+
+.popIconBtn:hover .iconGlyph {
+  transform: scale(1.15);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MINIMAL TOOLTIP PILL
+   ────────────────────────────────────────────────────────────────────────── */
+.iconTooltip {
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 4px 9px;
+  background-color: rgba(20, 19, 18, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+  z-index: 40;
+}
+
+[data-theme="dark"] .iconTooltip {
+  background-color: rgba(250, 248, 244, 0.95);
+  color: #141312;
+  border-color: rgba(20, 19, 18, 0.2);
+}
+
+.popIconBtn:hover .iconTooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltipSuccess {
+  background-color: #2e8b57 !important;
+  color: #ffffff !important;
 }
 
 /* Placeholder Canvas */
@@ -215,7 +443,7 @@
 .draftingGrid {
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(to right, var(--border-hairline) 1px, transparent 1px),
     linear-gradient(to bottom, var(--border-hairline) 1px, transparent 1px);
   background-size: 28px 28px;
@@ -284,9 +512,93 @@
   color: var(--text-secondary);
 }
 
+/* ==========================================================================
+   RESPONSIVE DESIGN (Tablets & Mobile)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .figure {
+    max-width: 350px;
+  }
+
+  .containerActive .iconLinkedIn,
+  .iconLinkedIn.iconBtnActive {
+    transform: translate(52px, -8px) scale(1);
+  }
+
+  .containerActive .iconEmail,
+  .iconEmail.iconBtnActive {
+    transform: translate(52px, 10px) scale(1);
+  }
+
+  .containerActive .iconResume,
+  .iconResume.iconBtnActive {
+    transform: translate(-52px, -8px) scale(1);
+  }
+
+  .containerActive .iconContact,
+  .iconContact.iconBtnActive {
+    transform: translate(-52px, 10px) scale(1);
+  }
+
+  @keyframes hopAnim1 {
+    0%, 100% { transform: translate(52px, -8px) scale(1); }
+    50% { transform: translate(52px, -16px) scale(1.05); }
+  }
+  @keyframes hopAnim2 {
+    0%, 100% { transform: translate(52px, 10px) scale(1); }
+    50% { transform: translate(52px, 2px) scale(1.05); }
+  }
+  @keyframes hopAnim3 {
+    0%, 100% { transform: translate(-52px, -8px) scale(1); }
+    50% { transform: translate(-52px, -16px) scale(1.05); }
+  }
+  @keyframes hopAnim4 {
+    0%, 100% { transform: translate(-52px, 10px) scale(1); }
+    50% { transform: translate(-52px, 2px) scale(1.05); }
+  }
+}
+
 @media (max-width: 768px) {
   .figure {
     max-width: 320px;
     margin: 0 auto;
+  }
+
+  /* On mobile: keep icons closer to avoid horizontal page overflow */
+  .containerActive .iconLinkedIn,
+  .iconLinkedIn.iconBtnActive {
+    transform: translate(32px, -8px) scale(0.92);
+  }
+
+  .containerActive .iconEmail,
+  .iconEmail.iconBtnActive {
+    transform: translate(32px, 10px) scale(0.92);
+  }
+
+  .containerActive .iconResume,
+  .iconResume.iconBtnActive {
+    transform: translate(-32px, -8px) scale(0.92);
+  }
+
+  .containerActive .iconContact,
+  .iconContact.iconBtnActive {
+    transform: translate(-32px, 10px) scale(0.92);
+  }
+
+  @keyframes hopAnim1 {
+    0%, 100% { transform: translate(32px, -8px) scale(0.92); }
+    50% { transform: translate(32px, -14px) scale(0.96); }
+  }
+  @keyframes hopAnim2 {
+    0%, 100% { transform: translate(32px, 10px) scale(0.92); }
+    50% { transform: translate(32px, 4px) scale(0.96); }
+  }
+  @keyframes hopAnim3 {
+    0%, 100% { transform: translate(-32px, -8px) scale(0.92); }
+    50% { transform: translate(-32px, -14px) scale(0.96); }
+  }
+  @keyframes hopAnim4 {
+    0%, 100% { transform: translate(-32px, 10px) scale(0.92); }
+    50% { transform: translate(-32px, 4px) scale(0.96); }
   }
 }

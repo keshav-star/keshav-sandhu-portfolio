@@ -126,10 +126,29 @@
   left: auto;
 }
 
+/* Vertical alignments */
+.cardVAlignDown {
+  top: -8px;
+  transform: translateY(0) scale(0.92);
+}
+
+.cardVisible.cardVAlignDown {
+  transform: translateY(0) scale(1);
+}
+
+.cardVAlignUp {
+  top: auto;
+  bottom: -8px;
+  transform: translateY(0) scale(0.92);
+}
+
+.cardVisible.cardVAlignUp {
+  transform: translateY(0) scale(1);
+}
+
 /* Visible state */
 .cardVisible {
   opacity: 1;
-  transform: translateY(-50%) scale(1);
   pointer-events: auto;
 }
 
@@ -203,10 +222,10 @@
 /* Desktop positions (scattered in whitespace) */
 @media (min-width: 769px) {
   /* 1. Rating star — top-left gap above headline */
-  .pos1 { top: 14%; left: 2%; }
+  .pos1 { top: 16%; left: 2.5%; }
 
   /* 2. Award medal — right column upper gutter */
-  .pos2 { top: 10%; right: 4%; }
+  .pos2 { top: 18%; right: 4%; }
 
   /* 3. Releases pulse — left column bottom area */
   .pos3 { bottom: 16%; left: 6%; }

@@ -92,28 +92,38 @@ function PropDot({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [cardSide, setCardSide] = useState<"right" | "left">("right");
+  const [cardVAlign, setCardVAlign] = useState<"center" | "down" | "up">("center");
   const dotRef = useRef<HTMLDivElement>(null);
 
-  const updateCardSide = useCallback(() => {
+  const updateCardPosition = useCallback(() => {
     if (dotRef.current) {
       const rect = dotRef.current.getBoundingClientRect();
       setCardSide(rect.left > window.innerWidth / 2 ? "left" : "right");
+      
+      // If near sticky navbar (top < 240px), align downwards to prevent clipping under header
+      if (rect.top < 240) {
+        setCardVAlign("down");
+      } else if (window.innerHeight - rect.bottom < 220) {
+        setCardVAlign("up");
+      } else {
+        setCardVAlign("center");
+      }
     }
   }, []);
 
   useEffect(() => {
-    updateCardSide();
-    window.addEventListener("resize", updateCardSide);
-    return () => window.removeEventListener("resize", updateCardSide);
-  }, [updateCardSide]);
+    updateCardPosition();
+    window.addEventListener("resize", updateCardPosition);
+    return () => window.removeEventListener("resize", updateCardPosition);
+  }, [updateCardPosition]);
 
   return (
     <div
       ref={dotRef}
       className={`${styles.propDot} ${className} ${isOpen ? styles.dotOpen : ""}`}
-      onMouseEnter={() => { updateCardSide(); setIsOpen(true); }}
+      onMouseEnter={() => { updateCardPosition(); setIsOpen(true); }}
       onMouseLeave={() => setIsOpen(false)}
-      onFocus={() => { updateCardSide(); setIsOpen(true); }}
+      onFocus={() => { updateCardPosition(); setIsOpen(true); }}
       onBlur={() => setIsOpen(false)}
       tabIndex={0}
       role="button"
@@ -130,6 +140,12 @@ function PropDot({
       <div
         className={`${styles.hoverCard} ${isOpen ? styles.cardVisible : ""} ${
           cardSide === "left" ? styles.cardLeft : styles.cardRight
+        } ${
+          cardVAlign === "down"
+            ? styles.cardVAlignDown
+            : cardVAlign === "up"
+            ? styles.cardVAlignUp
+            : ""
         }`}
         role="tooltip"
       >
