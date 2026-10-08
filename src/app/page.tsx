@@ -7,6 +7,7 @@ import { PersonalPortrait } from "@/components/ui/PersonalPortrait";
 import { PersonalIntro } from "@/components/ui/PersonalIntro";
 import { ProjectDossierCard } from "@/components/ui/ProjectDossierCard";
 import { BuildSituationGuide } from "@/components/ui/BuildSituationGuide";
+import { TechCrossStrips } from "@/components/ui/TechCrossStrips";
 import { CalBookingButton } from "@/components/ui/CalBookingButton";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { HeroScatteredProps } from "@/components/ui/HeroAccoladeProps";
@@ -85,6 +86,9 @@ export default function HomePage() {
             <BuildSituationGuide />
           </div>
         </section>
+
+        {/* Continuous Moving Technology & Domain Ticker Strips */}
+        <TechCrossStrips />
 
         {/* ==================================================================
             FEATURED PROJECT DOSSIER: DUAL-LAYER DEMONSTRATION

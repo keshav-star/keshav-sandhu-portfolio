@@ -1,0 +1,265 @@
+/* ==========================================================================
+   TECH CROSS STRIPS - DUAL SLANTED TICKER RIBBONS
+   Non-Overlapping · Generous Height · Mechanical Precision
+   ========================================================================== */
+
+.stripsSection {
+  position: relative;
+  width: 100%;
+  padding: clamp(var(--space-12), 7vw, var(--space-20)) 0;
+  overflow: hidden;
+  background-color: var(--bg-canvas-subtle);
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  pointer-events: auto;
+}
+
+.stripsContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Edge Vignette Fade Masks ── */
+.fadeMaskLeft {
+  position: absolute;
+  left: 0;
+  top: -50px;
+  bottom: -50px;
+  width: clamp(70px, 15vw, 220px);
+  z-index: 10;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--bg-canvas-subtle, #1A1918) 20%, transparent 100%);
+}
+
+.fadeMaskRight {
+  position: absolute;
+  right: 0;
+  top: -50px;
+  bottom: -50px;
+  width: clamp(70px, 15vw, 220px);
+  z-index: 10;
+  pointer-events: none;
+  background: linear-gradient(270deg, var(--bg-canvas-subtle, #1A1918) 20%, transparent 100%);
+}
+
+/* ── Slanted Stage: Clean Stack with Zero Overlap ── */
+.stripsStage {
+  position: relative;
+  width: 118vw;
+  left: -9vw;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4); /* Dedicated space between strips: NO overlap */
+  transform: rotate(-1.75deg);
+  transform-origin: center center;
+}
+
+/* ── STRIP 1: Tech Logos Ribbon (Scrolls Left) ── */
+.stripLogosWrapper {
+  position: relative;
+  width: 100%;
+  background-color: var(--bg-surface, #1F1D1C);
+  border-top: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+  padding: 16px 0; /* More height */
+  overflow: hidden;
+}
+
+.stripLogosTrack {
+  display: flex;
+  width: max-content;
+  animation: scrollLeft 44s linear infinite;
+  will-change: transform;
+}
+
+.stripLogosTrack:hover {
+  animation-play-state: paused;
+}
+
+.stripLogosSequence {
+  display: flex;
+  align-items: center;
+}
+
+.logoItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 11px 20px; /* Generous height & padding */
+  margin: 0 10px;
+  background-color: var(--bg-surface-elevated, #262422);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  white-space: nowrap;
+  transition: all var(--duration-fast) var(--ease-mechanical);
+  cursor: default;
+}
+
+.logoItem:hover {
+  border-color: var(--color-accent);
+  background-color: var(--bg-canvas-subtle, #1A1918);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--color-accent-subtle);
+}
+
+.logoSvgWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--text-primary);
+  transition: transform var(--duration-fast) var(--ease-mechanical);
+}
+
+.logoItem:hover .logoSvgWrap {
+  color: var(--color-accent);
+  transform: scale(1.12);
+}
+
+.logoName {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem; /* Larger, readable text */
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.logoCategory {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  background-color: var(--bg-canvas, #131211);
+  padding: 2px 7px;
+  border-radius: 3px;
+  border: 1px solid var(--border-hairline);
+}
+
+/* ── STRIP 2: Domain Phrases Ribbon (Scrolls Right) ── */
+.stripPhrasesWrapper {
+  position: relative;
+  width: 100%;
+  background: rgba(24, 22, 21, 0.96);
+  border-top: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 16px var(--color-accent-subtle);
+  padding: 13px 0; /* More height */
+  overflow: hidden;
+}
+
+.stripPhrasesTrack {
+  display: flex;
+  width: max-content;
+  animation: scrollRight 38s linear infinite;
+  will-change: transform;
+}
+
+.stripPhrasesTrack:hover {
+  animation-play-state: paused;
+}
+
+.stripPhrasesSequence {
+  display: flex;
+  align-items: center;
+}
+
+.phraseItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 6px 22px; /* Generous height */
+  margin: 0 6px;
+  white-space: nowrap;
+}
+
+.phraseTag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  background-color: var(--color-accent-subtle);
+  border: 1px solid rgba(211, 78, 38, 0.35);
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.phraseText {
+  font-family: var(--font-mono);
+  font-size: 0.85rem; /* Larger, crisp mono text */
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.phraseCrosshair {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  margin-left: var(--space-2);
+  user-select: none;
+}
+
+/* ── Seamless Infinite Marquee Keyframes ── */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ── Mobile Responsiveness ── */
+@media (max-width: 768px) {
+  .stripsStage {
+    gap: var(--space-3);
+    transform: rotate(-1.5deg);
+  }
+
+  .stripLogosWrapper {
+    padding: 12px 0;
+  }
+
+  .stripPhrasesWrapper {
+    padding: 10px 0;
+  }
+
+  .logoItem {
+    padding: 8px 14px;
+    margin: 0 6px;
+  }
+
+  .logoName {
+    font-size: 0.82rem;
+  }
+
+  .phraseText {
+    font-size: 0.76rem;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .stripLogosTrack,
+  .stripPhrasesTrack {
+    animation-duration: 120s;
+  }
+}
