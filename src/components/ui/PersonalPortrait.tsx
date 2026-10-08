@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./PersonalPortrait.module.css";
 
@@ -21,67 +23,84 @@ export function PersonalPortrait({
   priority = false,
   className = "",
 }: PersonalPortraitProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTapped, setIsTapped] = useState(false);
+
+  const isActive = isHovered || isTapped;
+
+  const toggleTap = () => {
+    setIsTapped((prev) => !prev);
+  };
+
   return (
     <figure
       className={`${styles.figure} ${className}`}
       aria-label="Keshav Sandhu - Portrait Plate"
     >
-      <div className={styles.frame}>
-        {/* Corner registration crosshairs */}
-        <span className={`${styles.crosshair} ${styles.tl}`}>+</span>
-        <span className={`${styles.crosshair} ${styles.tr}`}>+</span>
-        <span className={`${styles.crosshair} ${styles.bl}`}>+</span>
-        <span className={`${styles.crosshair} ${styles.br}`}>+</span>
+      <div
+        className={`${styles.interactiveContainer} ${isActive ? styles.containerActive : ""}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={toggleTap}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleTap();
+          }
+        }}
+        tabIndex={0}
+        role="button"
+        aria-pressed={isActive}
+        aria-label="Keshav Sandhu portrait plate. Interactive on hover."
+      >
+        {/* Architectural drafting backplate that shifts on interaction */}
+        <div className={styles.blueprintBackplate} aria-hidden="true">
+          <div className={styles.backplateCrossTL}>+</div>
+          <div className={styles.backplateCrossBR}>+</div>
+        </div>
 
-        {/* Signature Terracotta Registration Pip with tactile physical interaction */}
-        <span
-          className={styles.signaturePip}
-          aria-hidden="true"
-        />
+        {/* Primary Transforming Image Frame */}
+        <div className={`${styles.frame} ${isActive ? styles.frameActive : ""}`}>
+          {/* Corner registration crosshairs */}
+          <span className={`${styles.crosshair} ${styles.tl}`}>+</span>
+          <span className={`${styles.crosshair} ${styles.tr}`}>+</span>
+          <span className={`${styles.crosshair} ${styles.bl}`}>+</span>
+          <span className={`${styles.crosshair} ${styles.br}`}>+</span>
 
-        {src ? (
-          <div className={styles.imageWrapper}>
-            <Image
-              src={src}
-              alt={alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 440px"
-              style={{ objectPosition }}
-              className={`${styles.image} ${monochrome ? styles.monochrome : ""}`}
-              priority={priority}
-            />
-          </div>
-        ) : (
-          <div className={styles.placeholderCanvas}>
-            {/* Blueprint drafting guides */}
-            <div className={styles.draftingGrid} />
+          {/* Signature Terracotta Registration Pip with tactile ripple */}
+          <span
+            className={`${styles.signaturePip} ${isActive ? styles.pipActive : ""}`}
+            aria-hidden="true"
+          >
+            <span className={styles.pipPulseRing} />
+          </span>
 
-            <div className={styles.placeholderContent}>
-              <div className={styles.portraitTag}>
-                <span className={styles.tagPrefix}>PLATE //</span>
-                <span>PERSONAL PORTRAIT</span>
-              </div>
-
-              <div className={styles.placeholderTitle}>
-                [ KESHAV SANDHU ]
-              </div>
-
-              <div className={styles.artDirectionNote}>
-                <p className={styles.noteLine}>
-                  <strong>INTENDED DIRECTION:</strong> Candid, environmental portrait.
-                  Keshav working at a desk, reviewing an interface, or in natural ambient light.
-                </p>
-                <p className={styles.constraintLine}>
-                  No corporate crossed-arms poses. No stock photography.
-                </p>
-              </div>
-
-              <div className={styles.specRatio}>
-                RATIO // 4:5 [EDITORIAL CROP]
+          {src ? (
+            <div className={styles.imageWrapper}>
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 420px"
+                style={{ objectPosition }}
+                className={`${styles.image} ${monochrome ? styles.monochrome : ""}`}
+                priority={priority}
+              />
+              <div className={styles.imageOverlay} />
+            </div>
+          ) : (
+            <div className={styles.placeholderCanvas}>
+              <div className={styles.draftingGrid} />
+              <div className={styles.placeholderContent}>
+                <div className={styles.portraitTag}>
+                  <span className={styles.tagPrefix}>PLATE //</span>
+                  <span>PERSONAL PORTRAIT</span>
+                </div>
+                <div className={styles.placeholderTitle}>[ KESHAV SANDHU ]</div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {caption && (

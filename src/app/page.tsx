@@ -8,6 +8,8 @@ import { PersonalIntro } from "@/components/ui/PersonalIntro";
 import { ProjectDossierCard } from "@/components/ui/ProjectDossierCard";
 import { BuildSituationGuide } from "@/components/ui/BuildSituationGuide";
 import { CalBookingButton } from "@/components/ui/CalBookingButton";
+import { StatusBadge } from "@/components/ui/StatusBadge";
+import { HeroScatteredProps } from "@/components/ui/HeroAccoladeProps";
 import { featuredProjects } from "@/content/projects";
 
 export default function HomePage() {
@@ -29,10 +31,20 @@ export default function HomePage() {
           className={styles.heroSection}
           aria-label="Keshav Sandhu - Hero Overview"
         >
+          {/* Tiny icon dots scattered in hero free spaces */}
+          <HeroScatteredProps />
+
           <div className="container">
             <div className={styles.heroGrid}>
-              {/* Left Column: Personal Narrative, Proof & Actions */}
+              {/* Left Column: Personal Narrative & Actions */}
               <div className={styles.heroNarrativeCol}>
+                <div className={`${styles.heroDatumRow} ${styles.animateFadeIn}`}>
+                  <StatusBadge
+                    statusText="AVAILABLE FOR SELECT CONTRACTS & ROLES"
+                    location="NOIDA, IN [UTC+5:30]"
+                  />
+                </div>
+
                 <h1 className={`${styles.heroStatement} ${styles.animateFadeIn}`}>
                   Product systems that <span className="font-serif-italic">perform in practice.</span>
                 </h1>
@@ -54,9 +66,9 @@ export default function HomePage() {
                     Download résumé
                   </StudioButton>
                 </div>
-
               </div>
 
+              {/* Right Column: Portrait */}
               <div className={`${styles.heroPortraitCol} ${styles.animateFadeIn} ${styles.delay3}`}>
                 <PersonalPortrait
                   src="/images/keshav-sandhu-editorial-portrait.png"

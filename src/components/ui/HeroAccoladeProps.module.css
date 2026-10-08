@@ -1,0 +1,279 @@
+/* ==========================================================================
+   HERO SCATTERED PROPS
+   Tiny 18×18 icon dots positioned in hero whitespace.
+   On hover: rich, beautiful card reveals with spring animation.
+   ========================================================================== */
+
+/* ── Container: lives inside heroSection, covers the full area ── */
+.scatteredContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* ── The Dot: 18×18 icon glyph ── */
+.propDot {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--border-hairline);
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+  z-index: 2;
+  transition:
+    transform 220ms var(--ease-mechanical),
+    background-color 180ms var(--ease-mechanical),
+    border-color 180ms var(--ease-mechanical),
+    box-shadow 220ms var(--ease-mechanical);
+}
+
+[data-theme="dark"] .propDot {
+  background-color: rgba(38, 36, 34, 0.75);
+}
+
+.propDot:hover,
+.propDot:focus-visible,
+.dotOpen {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(211, 78, 38, 0.35);
+  z-index: 20;
+}
+
+.dotIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: color 180ms var(--ease-mechanical);
+}
+
+.propDot:hover .dotIcon,
+.propDot:focus-visible .dotIcon,
+.dotOpen .dotIcon {
+  color: #FFFFFF;
+}
+
+/* Pulsing hint ring (only visible in idle state) */
+.dotPulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--text-tertiary);
+  opacity: 0;
+  animation: dotPulseAnim 3s ease-out infinite;
+  pointer-events: none;
+}
+
+.propDot:hover .dotPulse,
+.dotOpen .dotPulse {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes dotPulseAnim {
+  0% { transform: scale(0.85); opacity: 0; }
+  20% { opacity: 0.4; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* ── Rich Hover Card ── */
+.hoverCard {
+  position: absolute;
+  top: 50%;
+  width: 280px;
+  padding: 0;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  box-shadow:
+    0 16px 48px -12px rgba(20, 19, 18, 0.18),
+    0 4px 14px -4px rgba(20, 19, 18, 0.06);
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-50%) scale(0.92);
+  transition:
+    opacity 200ms var(--ease-mechanical),
+    transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 30;
+}
+
+[data-theme="dark"] .hoverCard {
+  background-color: var(--color-surface-plate-dark);
+  box-shadow:
+    0 16px 48px -12px rgba(0, 0, 0, 0.55),
+    0 4px 14px -4px rgba(0, 0, 0, 0.3);
+}
+
+/* Card position relative to dot */
+.cardRight {
+  left: calc(100% + 14px);
+}
+
+.cardLeft {
+  right: calc(100% + 14px);
+  left: auto;
+}
+
+/* Visible state */
+.cardVisible {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  pointer-events: auto;
+}
+
+/* Accent strip at top of card */
+.cardAccent {
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+}
+
+.cardBody {
+  padding: 16px 18px 18px;
+}
+
+/* Header row: icon + title */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.cardIcon {
+  display: flex;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+/* Subtitle line */
+.cardSubtitle {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding-left: 26px; /* align with title after icon */
+}
+
+/* Divider */
+.cardDivider {
+  height: 1px;
+  background-color: var(--border-hairline);
+  margin-bottom: 10px;
+}
+
+/* Detail paragraph */
+.cardDetail {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   SPATIAL POSITIONS — Scattered across hero free spaces
+   On desktop: absolute in the heroSection container
+   On mobile: flow layout, no absolute positioning
+   ========================================================================== */
+
+/* Desktop positions (scattered in whitespace) */
+@media (min-width: 769px) {
+  /* 1. Rating star — top-left gap above headline */
+  .pos1 { top: 14%; left: 2%; }
+
+  /* 2. Award medal — right column upper gutter */
+  .pos2 { top: 10%; right: 4%; }
+
+  /* 3. Releases pulse — left column bottom area */
+  .pos3 { bottom: 16%; left: 6%; }
+
+  /* 4. React atom — right column middle gutter */
+  .pos4 { top: 52%; right: 2%; }
+
+  /* 5. Coffee cup — bottom-right open canvas */
+  .pos5 { bottom: 10%; right: 12%; }
+}
+
+/* ── Staggered pulse delays per dot ── */
+.pos1 .dotPulse { animation-delay: 0s; }
+.pos2 .dotPulse { animation-delay: 0.6s; }
+.pos3 .dotPulse { animation-delay: 1.2s; }
+.pos4 .dotPulse { animation-delay: 1.8s; }
+.pos5 .dotPulse { animation-delay: 2.4s; }
+
+/* ── RESPONSIVE: Mobile/Tablet ── */
+@media (max-width: 768px) {
+  .scatteredContainer {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: var(--space-4) 0 0;
+    justify-content: flex-start;
+  }
+
+  .propDot {
+    position: static;
+  }
+
+  /* Cards appear below the dot on mobile */
+  .hoverCard {
+    position: fixed;
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    max-width: 360px;
+    transform: translateY(8px) scale(0.96);
+    z-index: 999;
+  }
+
+  .cardLeft,
+  .cardRight {
+    left: 16px;
+    right: 16px;
+  }
+
+  .cardVisible {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .dotPulse {
+    animation: none !important;
+  }
+  .hoverCard {
+    transition: opacity 150ms linear !important;
+    transform: translateY(-50%) scale(1) !important;
+  }
+  .propDot {
+    transition: none !important;
+  }
+}
