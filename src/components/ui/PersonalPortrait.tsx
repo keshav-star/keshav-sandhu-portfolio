@@ -194,11 +194,13 @@ export function PersonalPortrait({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <span className={styles.pulseAura} aria-hidden="true" />
-            <span className={styles.iconGlyph}>
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28z" />
-              </svg>
+            <span className={styles.iconContent}>
+              <span className={styles.pulseAura} aria-hidden="true" />
+              <span className={styles.iconGlyph}>
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28z" />
+                </svg>
+              </span>
             </span>
             <span className={styles.iconTooltip}>LinkedIn ↗</span>
           </a>
@@ -213,18 +215,20 @@ export function PersonalPortrait({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <span className={styles.pulseAura} aria-hidden="true" />
-            <span className={styles.iconGlyph}>
-              {copiedEmail ? (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              ) : (
-                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-              )}
+            <span className={styles.iconContent}>
+              <span className={styles.pulseAura} aria-hidden="true" />
+              <span className={styles.iconGlyph}>
+                {copiedEmail ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                ) : (
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                )}
+              </span>
             </span>
             <span className={`${styles.iconTooltip} ${copiedEmail ? styles.tooltipSuccess : ""}`}>
               {copiedEmail ? "Copied! ✓" : "Copy Email ✉"}
@@ -240,14 +244,16 @@ export function PersonalPortrait({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <span className={styles.pulseAura} aria-hidden="true" />
-            <span className={styles.iconGlyph}>
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="12" y1="18" x2="12" y2="12" />
-                <polyline points="9 15 12 18 15 15" />
-              </svg>
+            <span className={styles.iconContent}>
+              <span className={styles.pulseAura} aria-hidden="true" />
+              <span className={styles.iconGlyph}>
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="12" y1="18" x2="12" y2="12" />
+                  <polyline points="9 15 12 18 15 15" />
+                </svg>
+              </span>
             </span>
             <span className={styles.iconTooltip}>Résumé ↓</span>
           </a>
@@ -261,11 +267,13 @@ export function PersonalPortrait({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <span className={styles.pulseAura} aria-hidden="true" />
-            <span className={styles.iconGlyph}>
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
+            <span className={styles.iconContent}>
+              <span className={styles.pulseAura} aria-hidden="true" />
+              <span className={styles.iconGlyph}>
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+              </span>
             </span>
             <span className={styles.iconTooltip}>Contact →</span>
           </a>

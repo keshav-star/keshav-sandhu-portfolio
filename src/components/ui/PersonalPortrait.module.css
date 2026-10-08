@@ -345,23 +345,15 @@
 
 /* ==========================================================================
    POP-OUT CONTACT ICONS LAYER
-   Behind image by default (z-index: 2).
-   On hover: moves in front (z-index: 15) and pops outside away from image.
+   Behind image by default (z-index: 5 vs .frame at z-index: 6).
+   On hover: pops outside away from image.
+   After 3s away: reverses trajectory, gliding back underneath and behind the frame.
    ========================================================================== */
 .iconsOrbitLayer {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 2; /* strictly behind .frame by default */
-  transition: z-index 0ms 350ms;
-}
-
-.containerActive .iconsOrbitLayer,
-.interactiveContainer:hover .iconsOrbitLayer,
-.figure:hover .iconsOrbitLayer {
-  z-index: 15; /* in front on hover */
-  pointer-events: auto;
-  transition: z-index 0ms 0ms;
+  z-index: 5; /* strictly behind .frame (z-index: 6) so icons slide under border on retreat */
 }
 
 /* Circular Floating Contact Icon Button */
@@ -383,13 +375,13 @@
   cursor: pointer;
   pointer-events: none;
   opacity: 0;
-  visibility: hidden;
   user-select: none;
   z-index: 5;
+  /* RETREAT TRANSITION (When active ends after 3s):
+     Smooth, graceful glide all the way back behind the image */
   transition:
-    transform 480ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity 320ms cubic-bezier(0.16, 1, 0.3, 1),
-    visibility 320ms ease,
+    transform 620ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 440ms cubic-bezier(0.4, 0, 0.2, 1) 120ms,
     background-color 200ms ease,
     border-color 200ms ease,
     box-shadow 250ms ease;
@@ -402,13 +394,36 @@
   color: var(--text-primary);
 }
 
+/* POP-OUT TRANSITION (When active on hover):
+   Lively spring expansion out from behind image */
 .containerActive .popIconBtn,
 .interactiveContainer:hover .popIconBtn,
 .figure:hover .popIconBtn,
 .iconBtnActive {
   opacity: 1;
-  visibility: visible;
   pointer-events: auto;
+  transition:
+    transform 560ms cubic-bezier(0.34, 1.45, 0.64, 1),
+    opacity 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 250ms ease;
+}
+
+.popIconBtn:hover {
+  z-index: 12;
+}
+
+/* Inner hopping container decoupled from outer travel trajectory */
+.iconContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 50%;
+  transition: transform 300ms ease;
 }
 
 /* Icon glyph center */
@@ -422,111 +437,140 @@
 
 /* ──────────────────────────────────────────────────────────────────────────
    INDIVIDUAL ICON POSITIONS:
-   Default: Tucked BEHIND the image (scale 0.3, opacity 0)
-   On hover: Popped OUTSIDE away from the image frame (not on image!)
+   Default: Tucked BEHIND the image (passes under .frame border)
+   On hover: Popped OUTSIDE away from the image frame
+   After 3s: Reverses trajectory smoothly back behind image
    ────────────────────────────────────────────────────────────────────────── */
 
 /* 1. LinkedIn (Top-Right outside) */
 .iconLinkedIn {
   top: 18%;
   right: -24px;
-  transform: translate(-24px, 0) scale(0.3);
-  transition-delay: 0ms;
+  transform: translate(-30px, 8px) scale(0.35);
+  transition-delay: 80ms; /* retreat delay */
 }
 
 .containerActive .iconLinkedIn,
 .interactiveContainer:hover .iconLinkedIn,
 .figure:hover .iconLinkedIn,
 .iconLinkedIn.iconBtnActive {
-  transform: translate(32px, 0) scale(1);
-  animation: hopAnim1 2.6s ease-in-out infinite 0.1s;
+  transform: translate(40px, 0) scale(1);
+  transition-delay: 0ms; /* pop-out delay */
+}
+
+.containerActive .iconLinkedIn .iconContent,
+.interactiveContainer:hover .iconLinkedIn .iconContent,
+.figure:hover .iconLinkedIn .iconContent,
+.iconLinkedIn.iconBtnActive .iconContent {
+  animation: hopBob1 2.6s ease-in-out infinite 0.1s;
 }
 
 /* 2. Direct Email (Bottom-Right outside) */
 .iconEmail {
   bottom: 24%;
   right: -24px;
-  transform: translate(-24px, 0) scale(0.3);
-  transition-delay: 60ms;
+  transform: translate(-30px, -8px) scale(0.35);
+  transition-delay: 40ms;
 }
 
 .containerActive .iconEmail,
 .interactiveContainer:hover .iconEmail,
 .figure:hover .iconEmail,
 .iconEmail.iconBtnActive {
-  transform: translate(32px, 0) scale(1);
-  animation: hopAnim2 2.8s ease-in-out infinite 0.5s;
+  transform: translate(40px, 0) scale(1);
+  transition-delay: 80ms;
+}
+
+.containerActive .iconEmail .iconContent,
+.interactiveContainer:hover .iconEmail .iconContent,
+.figure:hover .iconEmail .iconContent,
+.iconEmail.iconBtnActive .iconContent {
+  animation: hopBob2 2.8s ease-in-out infinite 0.5s;
 }
 
 /* 3. Résumé (Top-Left outside) */
 .iconResume {
   top: 18%;
   left: -24px;
-  transform: translate(24px, 0) scale(0.3);
-  transition-delay: 40ms;
+  transform: translate(30px, 8px) scale(0.35);
+  transition-delay: 60ms;
 }
 
 .containerActive .iconResume,
 .interactiveContainer:hover .iconResume,
 .figure:hover .iconResume,
 .iconResume.iconBtnActive {
-  transform: translate(-32px, 0) scale(1);
-  animation: hopAnim3 2.7s ease-in-out infinite 0.3s;
+  transform: translate(-40px, 0) scale(1);
+  transition-delay: 40ms;
+}
+
+.containerActive .iconResume .iconContent,
+.interactiveContainer:hover .iconResume .iconContent,
+.figure:hover .iconResume .iconContent,
+.iconResume.iconBtnActive .iconContent {
+  animation: hopBob3 2.7s ease-in-out infinite 0.3s;
 }
 
 /* 4. Direct Connect / Chat (Bottom-Left outside) */
 .iconContact {
   bottom: 24%;
   left: -24px;
-  transform: translate(24px, 0) scale(0.3);
-  transition-delay: 100ms;
+  transform: translate(30px, -8px) scale(0.35);
+  transition-delay: 0ms;
 }
 
 .containerActive .iconContact,
 .interactiveContainer:hover .iconContact,
 .figure:hover .iconContact,
 .iconContact.iconBtnActive {
-  transform: translate(-32px, 0) scale(1);
-  animation: hopAnim4 2.5s ease-in-out infinite 0.7s;
+  transform: translate(-40px, 0) scale(1);
+  transition-delay: 120ms;
+}
+
+.containerActive .iconContact .iconContent,
+.interactiveContainer:hover .iconContact .iconContent,
+.figure:hover .iconContact .iconContent,
+.iconContact.iconBtnActive .iconContent {
+  animation: hopBob4 2.5s ease-in-out infinite 0.7s;
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   HOPPING & BOBBING ANIMATIONS WHEN POPPED OUT
-   Gentle playful hopping in place
+   HOPPING & BOBBING ANIMATIONS ON INNER CONTENT
+   Decoupled from outer button translation trajectory
    ────────────────────────────────────────────────────────────────────────── */
-@keyframes hopAnim1 {
+@keyframes hopBob1 {
   0%, 100% {
-    transform: translate(32px, 0) scale(1);
+    transform: translateY(0px);
   }
   50% {
-    transform: translate(32px, -9px) scale(1.05);
+    transform: translateY(-7px);
   }
 }
 
-@keyframes hopAnim2 {
+@keyframes hopBob2 {
   0%, 100% {
-    transform: translate(32px, 0) scale(1);
+    transform: translateY(0px);
   }
   50% {
-    transform: translate(32px, -8px) scale(1.05);
+    transform: translateY(-6px);
   }
 }
 
-@keyframes hopAnim3 {
+@keyframes hopBob3 {
   0%, 100% {
-    transform: translate(-32px, 0) scale(1);
+    transform: translateY(0px);
   }
   50% {
-    transform: translate(-32px, -9px) scale(1.05);
+    transform: translateY(-7px);
   }
 }
 
-@keyframes hopAnim4 {
+@keyframes hopBob4 {
   0%, 100% {
-    transform: translate(-32px, 0) scale(1);
+    transform: translateY(0px);
   }
   50% {
-    transform: translate(-32px, -8px) scale(1.05);
+    transform: translateY(-6px);
   }
 }
 
