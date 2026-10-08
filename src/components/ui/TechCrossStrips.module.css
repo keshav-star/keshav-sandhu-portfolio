@@ -1,265 +1,475 @@
-/* ==========================================================================
-   TECH CROSS STRIPS - DUAL SLANTED TICKER RIBBONS
-   Non-Overlapping · Generous Height · Mechanical Precision
-   ========================================================================== */
-
-.stripsSection {
+.marqueeSection {
   position: relative;
   width: 100%;
-  padding: clamp(var(--space-12), 7vw, var(--space-20)) 0;
   overflow: hidden;
-  background-color: var(--bg-canvas-subtle);
-  border-top: 1px solid var(--border-hairline);
-  border-bottom: 1px solid var(--border-hairline);
-  pointer-events: auto;
+  border-block: 1px solid var(--border-hairline);
 }
 
-.stripsContainer {
+.stripHeader,
+.capabilityHeader {
   position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 2;
 }
 
-/* ── Edge Vignette Fade Masks ── */
-.fadeMaskLeft {
+.stripEyebrow {
+  display: block;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.edgeFadeLeft,
+.edgeFadeRight {
   position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  width: clamp(32px, 7vw, 110px);
+  pointer-events: none;
+}
+
+.edgeFadeLeft {
   left: 0;
-  top: -50px;
-  bottom: -50px;
-  width: clamp(70px, 15vw, 220px);
-  z-index: 10;
-  pointer-events: none;
-  background: linear-gradient(90deg, var(--bg-canvas-subtle, #1A1918) 20%, transparent 100%);
 }
 
-.fadeMaskRight {
-  position: absolute;
+.edgeFadeRight {
   right: 0;
-  top: -50px;
-  bottom: -50px;
-  width: clamp(70px, 15vw, 220px);
-  z-index: 10;
-  pointer-events: none;
-  background: linear-gradient(270deg, var(--bg-canvas-subtle, #1A1918) 20%, transparent 100%);
 }
 
-/* ── Slanted Stage: Clean Stack with Zero Overlap ── */
-.stripsStage {
-  position: relative;
-  width: 118vw;
-  left: -9vw;
+/* Technology rail */
+.technologySection {
+  padding: clamp(var(--space-10), 6vw, var(--space-16)) 0;
+  background-color: var(--bg-canvas-subtle);
+  background-image: linear-gradient(var(--border-hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-hairline) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.stripHeader {
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+.stripHeader h2 {
+  max-width: 700px;
+  margin-top: var(--space-2);
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.stripMeta {
+  display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
-  gap: var(--space-4); /* Dedicated space between strips: NO overlap */
-  transform: rotate(-1.75deg);
-  transform-origin: center center;
+  align-items: flex-end;
+  gap: 5px;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 0.59rem;
+  letter-spacing: 0.09em;
 }
 
-/* ── STRIP 1: Tech Logos Ribbon (Scrolls Left) ── */
-.stripLogosWrapper {
+.liveSignal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.liveSignal i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-status-active);
+  box-shadow: 0 0 8px var(--color-status-active);
+  animation: signalPulse 1.8s ease-in-out infinite;
+}
+
+.techViewport {
   position: relative;
-  width: 100%;
-  background-color: var(--bg-surface, #1F1D1C);
-  border-top: 1px solid var(--border-hairline);
-  border-bottom: 1px solid var(--border-hairline);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
-  padding: 16px 0; /* More height */
+  padding: 11px 0;
   overflow: hidden;
+  border-block: 1px solid var(--border-medium);
+  background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
+  box-shadow: 0 12px 42px rgba(20, 19, 18, 0.07);
 }
 
-.stripLogosTrack {
+.techViewport::before,
+.techViewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 4;
+  width: 1px;
+  height: 100%;
+  background: var(--color-accent);
+}
+
+.techViewport::before {
+  left: var(--container-gutter);
+}
+
+.techViewport::after {
+  right: var(--container-gutter);
+}
+
+.techViewport .edgeFadeLeft {
+  background: linear-gradient(90deg, var(--bg-surface) 8%, transparent);
+}
+
+.techViewport .edgeFadeRight {
+  background: linear-gradient(270deg, var(--bg-surface) 8%, transparent);
+}
+
+.techTrack {
   display: flex;
   width: max-content;
-  animation: scrollLeft 44s linear infinite;
+  animation: moveLeft 56s linear infinite;
   will-change: transform;
 }
 
-.stripLogosTrack:hover {
+.techViewport:hover .techTrack {
   animation-play-state: paused;
 }
 
-.stripLogosSequence {
+.techSequence {
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  padding-right: var(--space-3);
 }
 
-.logoItem {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: 11px 20px; /* Generous height & padding */
-  margin: 0 10px;
-  background-color: var(--bg-surface-elevated, #262422);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-xs);
+.techItem {
+  display: inline-grid;
+  position: relative;
+  min-width: 235px;
+  grid-template-columns: 25px 32px auto;
+  grid-template-rows: auto auto;
+  column-gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-right: 1px solid var(--border-hairline);
   white-space: nowrap;
-  transition: all var(--duration-fast) var(--ease-mechanical);
-  cursor: default;
+  transition: background 220ms var(--ease-mechanical), color 220ms, transform 220ms var(--ease-mechanical), opacity 220ms;
 }
 
-.logoItem:hover {
-  border-color: var(--color-accent);
-  background-color: var(--bg-canvas-subtle, #1A1918);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px var(--color-accent-subtle);
+.techViewport:hover .techItem:not(:hover) {
+  opacity: 0.42;
+}
+
+.techItem:hover {
+  z-index: 2;
+  background: var(--text-primary);
+  color: var(--bg-canvas);
+  transform: translateY(-3px);
+}
+
+.techIndex {
+  grid-row: 1 / 3;
+  align-self: center;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
 }
 
 .logoSvgWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
+  display: grid;
+  grid-row: 1 / 3;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  place-items: center;
   color: var(--text-primary);
-  transition: transform var(--duration-fast) var(--ease-mechanical);
+  transition: color 180ms, transform 220ms var(--ease-mechanical);
 }
 
-.logoItem:hover .logoSvgWrap {
+.techItem:hover .logoSvgWrap {
   color: var(--color-accent);
-  transform: scale(1.12);
+  transform: rotate(-5deg) scale(1.08);
 }
 
-.logoName {
+.techName {
+  align-self: end;
+  color: var(--text-primary);
   font-family: var(--font-sans);
-  font-size: 0.9375rem; /* Larger, readable text */
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
-.logoCategory {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.06em;
+.techCategory {
+  align-self: start;
   color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  background-color: var(--bg-canvas, #131211);
-  padding: 2px 7px;
-  border-radius: 3px;
-  border: 1px solid var(--border-hairline);
 }
 
-/* ── STRIP 2: Domain Phrases Ribbon (Scrolls Right) ── */
-.stripPhrasesWrapper {
-  position: relative;
-  width: 100%;
-  background: rgba(24, 22, 21, 0.96);
-  border-top: 1px solid var(--color-accent);
-  border-bottom: 1px solid var(--color-accent);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 16px var(--color-accent-subtle);
-  padding: 13px 0; /* More height */
-  overflow: hidden;
+.techItem:hover .techName,
+.techItem:hover .techCategory {
+  color: var(--bg-canvas);
 }
 
-.stripPhrasesTrack {
-  display: flex;
+.techDivider {
+  position: absolute;
+  right: -4px;
+  bottom: 3px;
+  z-index: 2;
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+}
+
+/* Capability signal */
+.capabilitySection {
+  min-height: 350px;
+  padding: clamp(var(--space-12), 7vw, var(--space-20)) 0;
+  background: #11100f;
+  color: #f4f1eb;
+  isolation: isolate;
+}
+
+.capabilitySection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.15;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+  background-size: 23px 23px;
+  mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+}
+
+.capabilityBackdrop {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  z-index: -1;
   width: max-content;
-  animation: scrollRight 38s linear infinite;
-  will-change: transform;
-}
-
-.stripPhrasesTrack:hover {
-  animation-play-state: paused;
-}
-
-.stripPhrasesSequence {
-  display: flex;
-  align-items: center;
-}
-
-.phraseItem {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: 6px 22px; /* Generous height */
-  margin: 0 6px;
-  white-space: nowrap;
-}
-
-.phraseTag {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--color-accent);
-  background-color: var(--color-accent-subtle);
-  border: 1px solid rgba(211, 78, 38, 0.35);
-  padding: 2px 8px;
-  border-radius: 2px;
-  text-transform: uppercase;
-}
-
-.phraseText {
-  font-family: var(--font-mono);
-  font-size: 0.85rem; /* Larger, crisp mono text */
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  color: var(--text-primary);
-  text-transform: uppercase;
-}
-
-.phraseCrosshair {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--color-accent);
-  margin-left: var(--space-2);
+  color: rgba(255, 255, 255, 0.027);
+  font-family: var(--font-sans);
+  font-size: clamp(5rem, 13vw, 12rem);
+  font-weight: 700;
+  letter-spacing: -0.07em;
+  line-height: 0.8;
+  transform: translateX(-50%);
   user-select: none;
 }
 
-/* ── Seamless Infinite Marquee Keyframes ── */
-@keyframes scrollLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
+.capabilityHeader {
+  display: grid;
+  grid-template-columns: 52px minmax(260px, 1fr) minmax(240px, 0.55fr);
+  gap: var(--space-5);
+  align-items: end;
+  margin-bottom: var(--space-10);
+}
+
+.capabilityHeaderIndex {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(242, 103, 61, 0.65);
+  border-radius: 50%;
+  color: #f2673d;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.capabilityHeader h2 {
+  margin-top: var(--space-2);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.5vw, 4.4rem);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.capabilityHeader p {
+  max-width: 390px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.8rem;
+}
+
+.capabilityViewport {
+  position: relative;
+  width: 108%;
+  margin-left: -4%;
+  overflow: hidden;
+  border-block: 1px solid rgba(242, 103, 61, 0.45);
+  background: rgba(255, 255, 255, 0.035);
+  transform: rotate(-1deg);
+}
+
+.capabilityViewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 90px;
+  opacity: 0.22;
+  background: linear-gradient(90deg, transparent, #f2673d, transparent);
+  animation: scanner 8s linear infinite;
+  pointer-events: none;
+}
+
+.capabilityViewport .edgeFadeLeft {
+  background: linear-gradient(90deg, #11100f 10%, transparent);
+}
+
+.capabilityViewport .edgeFadeRight {
+  background: linear-gradient(270deg, #11100f 10%, transparent);
+}
+
+.capabilityTrack {
+  display: flex;
+  width: max-content;
+  animation: moveRight 64s linear infinite;
+  will-change: transform;
+}
+
+.capabilityViewport:hover .capabilityTrack {
+  animation-play-state: paused;
+}
+
+.capabilitySequence {
+  display: flex;
+  align-items: center;
+}
+
+.capabilityItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6) 28px;
+  white-space: nowrap;
+  transition: background 220ms, opacity 220ms;
+}
+
+.capabilityViewport:hover .capabilityItem:not(:hover) {
+  opacity: 0.3;
+}
+
+.capabilityItem:hover {
+  background: rgba(242, 103, 61, 0.08);
+}
+
+.capabilityTag {
+  display: grid;
+  min-width: 38px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid rgba(242, 103, 61, 0.55);
+  color: #f2673d;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+}
+
+.capabilityText {
+  color: #f4f1eb;
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.3vw, 2.15rem);
+  letter-spacing: -0.015em;
+}
+
+.capabilityNode {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  margin-left: var(--space-3);
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+}
+
+.capabilityNode i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #f2673d;
+  box-shadow: 0 0 9px rgba(242, 103, 61, 0.8);
+}
+
+@keyframes moveLeft {
+  to {
     transform: translateX(-50%);
   }
 }
 
-@keyframes scrollRight {
-  0% {
+@keyframes moveRight {
+  from {
     transform: translateX(-50%);
   }
-  100% {
+
+  to {
     transform: translateX(0);
   }
 }
 
-/* ── Mobile Responsiveness ── */
-@media (max-width: 768px) {
-  .stripsStage {
-    gap: var(--space-3);
-    transform: rotate(-1.5deg);
-  }
-
-  .stripLogosWrapper {
-    padding: 12px 0;
-  }
-
-  .stripPhrasesWrapper {
-    padding: 10px 0;
-  }
-
-  .logoItem {
-    padding: 8px 14px;
-    margin: 0 6px;
-  }
-
-  .logoName {
-    font-size: 0.82rem;
-  }
-
-  .phraseText {
-    font-size: 0.76rem;
+@keyframes signalPulse {
+  50% {
+    opacity: 0.35;
+    transform: scale(0.72);
   }
 }
 
-/* Reduced Motion Support */
+@keyframes scanner {
+  from {
+    transform: translateX(-120px);
+  }
+
+  to {
+    transform: translateX(110vw);
+  }
+}
+
+@media (max-width: 760px) {
+  .stripHeader {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .stripMeta {
+    align-items: flex-start;
+  }
+
+  .techItem {
+    min-width: 210px;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .capabilityHeader {
+    grid-template-columns: 42px 1fr;
+  }
+
+  .capabilityHeader p {
+    grid-column: 2;
+  }
+
+  .capabilityViewport {
+    width: 116%;
+    margin-left: -8%;
+  }
+
+  .capabilityItem {
+    padding: var(--space-5) var(--space-4);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .stripLogosTrack,
-  .stripPhrasesTrack {
-    animation-duration: 120s;
+  .techTrack,
+  .capabilityTrack,
+  .capabilityViewport::after,
+  .liveSignal i {
+    animation-play-state: paused;
   }
 }

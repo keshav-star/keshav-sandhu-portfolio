@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import styles from "./TechCrossStrips.module.css";
 
@@ -220,69 +218,86 @@ const DOMAIN_PHRASES = [
   { phrase: "ROLE-BASED ACCESS CONTROL (RBAC)", tag: "SEC" },
 ];
 
-export function TechCrossStrips() {
+function TechnologySequence({ clone = false }: { clone?: boolean }) {
   return (
-    <section className={styles.stripsSection} aria-label="Core technologies and engineering domains">
-      <div className={styles.stripsContainer}>
-        {/* Subtle Vignette Edge Masks for Smooth Infinite Flow */}
-        <div className={styles.fadeMaskLeft} aria-hidden="true" />
-        <div className={styles.fadeMaskRight} aria-hidden="true" />
+    <div className={styles.techSequence}>
+      {TECH_LOGOS.map((tech, index) => (
+        <div key={`${tech.name}-${clone ? "clone" : "source"}`} className={styles.techItem}>
+          <span className={styles.techIndex}>{String(index + 1).padStart(2, "0")}</span>
+          <span className={styles.logoSvgWrap}>{tech.logo}</span>
+          <span className={styles.techName}>{tech.name}</span>
+          <span className={styles.techCategory}>{tech.category}</span>
+          <span className={styles.techDivider}>/</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
-        {/* ── Non-overlapping Slanted Stage holding both ribbons ── */}
-        <div className={styles.stripsStage}>
-          {/* ── STRIP 1: Slanted Tech Logos Ribbon (Continuous Left Scroll) ── */}
-          <div className={styles.stripLogosWrapper}>
-            <div className={styles.stripLogosTrack}>
-              {/* Set A */}
-              <div className={styles.stripLogosSequence} aria-hidden="true">
-                {TECH_LOGOS.map((tech) => (
-                  <div key={tech.name} className={styles.logoItem}>
-                    <div className={styles.logoSvgWrap}>{tech.logo}</div>
-                    <span className={styles.logoName}>{tech.name}</span>
-                    <span className={styles.logoCategory}>{tech.category}</span>
-                  </div>
-                ))}
-              </div>
+function CapabilitySequence({ clone = false }: { clone?: boolean }) {
+  return (
+    <div className={styles.capabilitySequence}>
+      {DOMAIN_PHRASES.map((item, index) => (
+        <div key={`${item.tag}-${clone ? "clone" : "source"}-${index}`} className={styles.capabilityItem}>
+          <span className={styles.capabilityTag}>{item.tag}</span>
+          <span className={styles.capabilityText}>{item.phrase}</span>
+          <span className={styles.capabilityNode} aria-hidden="true"><i /></span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
-              {/* Set B (Seamless Clone for Infinite Marquee) */}
-              <div className={styles.stripLogosSequence}>
-                {TECH_LOGOS.map((tech) => (
-                  <div key={`${tech.name}-clone`} className={styles.logoItem}>
-                    <div className={styles.logoSvgWrap}>{tech.logo}</div>
-                    <span className={styles.logoName}>{tech.name}</span>
-                    <span className={styles.logoCategory}>{tech.category}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+export function TechnologyStrip() {
+  return (
+    <section className={`${styles.marqueeSection} ${styles.technologySection}`} aria-labelledby="technology-strip-title">
+      <div className={`container ${styles.stripHeader}`}>
+        <div>
+          <span className={styles.stripEyebrow}>01 / PRODUCTION TOOLKIT</span>
+          <h2 id="technology-strip-title">Tools I trust when the product has to hold up.</h2>
+        </div>
+        <div className={styles.stripMeta}>
+          <span>{String(TECH_LOGOS.length).padStart(2, "0")} CORE TECHNOLOGIES</span>
+          <span className={styles.liveSignal}><i /> CONTINUOUSLY EVOLVING</span>
+        </div>
+      </div>
 
-          {/* ── STRIP 2: Domain Titles & Phrases Ribbon (Continuous Right Scroll) ── */}
-          <div className={styles.stripPhrasesWrapper}>
-            <div className={styles.stripPhrasesTrack}>
-              {/* Set A */}
-              <div className={styles.stripPhrasesSequence} aria-hidden="true">
-                {DOMAIN_PHRASES.map((item, idx) => (
-                  <div key={idx} className={styles.phraseItem}>
-                    <span className={styles.phraseTag}>{item.tag}</span>
-                    <span className={styles.phraseText}>{item.phrase}</span>
-                    <span className={styles.phraseCrosshair} aria-hidden="true">+</span>
-                  </div>
-                ))}
-              </div>
+      <p className="sr-only">Core technologies include {TECH_LOGOS.map((technology) => technology.name).join(", ")}.</p>
 
-              {/* Set B (Seamless Clone for Infinite Marquee) */}
-              <div className={styles.stripPhrasesSequence}>
-                {DOMAIN_PHRASES.map((item, idx) => (
-                  <div key={`phrase-clone-${idx}`} className={styles.phraseItem}>
-                    <span className={styles.phraseTag}>{item.tag}</span>
-                    <span className={styles.phraseText}>{item.phrase}</span>
-                    <span className={styles.phraseCrosshair} aria-hidden="true">+</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+      <div className={styles.techViewport} aria-hidden="true">
+        <div className={styles.edgeFadeLeft} />
+        <div className={styles.edgeFadeRight} />
+        <div className={styles.techTrack}>
+          <TechnologySequence />
+          <TechnologySequence clone />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function CapabilityStrip() {
+  return (
+    <section className={`${styles.marqueeSection} ${styles.capabilitySection}`} aria-labelledby="capability-strip-title">
+      <div className={styles.capabilityBackdrop} aria-hidden="true">BUILD / OPERATE / SCALE</div>
+
+      <div className={`container ${styles.capabilityHeader}`}>
+        <div className={styles.capabilityHeaderIndex}>02</div>
+        <div>
+          <span className={styles.stripEyebrow}>ENGINEERING RANGE / FIELD NOTES</span>
+          <h2 id="capability-strip-title">Systems, not just screens.</h2>
+        </div>
+        <p>From contextual AI to tenant isolation and the performance work between them.</p>
+      </div>
+
+      <p className="sr-only">Engineering capabilities include {DOMAIN_PHRASES.map((item) => item.phrase.toLowerCase()).join(", ")}.</p>
+
+      <div className={styles.capabilityViewport} aria-hidden="true">
+        <div className={styles.edgeFadeLeft} />
+        <div className={styles.edgeFadeRight} />
+        <div className={styles.capabilityTrack}>
+          <CapabilitySequence />
+          <CapabilitySequence clone />
         </div>
       </div>
     </section>

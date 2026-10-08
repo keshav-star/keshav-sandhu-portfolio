@@ -7,7 +7,7 @@ import { PersonalPortrait } from "@/components/ui/PersonalPortrait";
 import { PersonalIntro } from "@/components/ui/PersonalIntro";
 import { ProjectDeckSection } from "@/components/ui/ProjectDeckSection";
 import { BuildSituationGuide } from "@/components/ui/BuildSituationGuide";
-import { TechCrossStrips } from "@/components/ui/TechCrossStrips";
+import { CapabilityStrip, TechnologyStrip } from "@/components/ui/TechCrossStrips";
 import { CalBookingButton } from "@/components/ui/CalBookingButton";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { HeroScatteredProps } from "@/components/ui/HeroAccoladeProps";
@@ -87,8 +87,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Continuous Moving Technology & Domain Ticker Strips */}
-        <TechCrossStrips />
+        {/* Production toolkit transition: collaboration approach → shipped work. */}
+        <TechnologyStrip />
 
         {/* Selected work presented as a tactile case-study deck. */}
         <section id="work" className={styles.dossierSection} aria-label="Selected Engineering Work">
@@ -113,6 +113,9 @@ export default function HomePage() {
             <PersonalIntro />
           </div>
         </section>
+
+        {/* Capability transition: personal practice → engineering lab. */}
+        <CapabilityStrip />
 
         <section id="lab" className={styles.labSection} aria-labelledby="lab-title">
           <div className="container">
