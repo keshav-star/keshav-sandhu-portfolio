@@ -5,7 +5,7 @@ import { StudioFooter } from "@/components/layout/StudioFooter";
 import { StudioButton } from "@/components/ui/StudioButton";
 import { PersonalPortrait } from "@/components/ui/PersonalPortrait";
 import { PersonalIntro } from "@/components/ui/PersonalIntro";
-import { ProjectDossierCard } from "@/components/ui/ProjectDossierCard";
+import { ProjectDeckSection } from "@/components/ui/ProjectDeckSection";
 import { BuildSituationGuide } from "@/components/ui/BuildSituationGuide";
 import { TechCrossStrips } from "@/components/ui/TechCrossStrips";
 import { CalBookingButton } from "@/components/ui/CalBookingButton";
@@ -90,26 +90,21 @@ export default function HomePage() {
         {/* Continuous Moving Technology & Domain Ticker Strips */}
         <TechCrossStrips />
 
-        {/* ==================================================================
-            FEATURED PROJECT DOSSIER: DUAL-LAYER DEMONSTRATION
-            Human Story (Primary) + Engineering Depth (Supporting)
-            ================================================================== */}
+        {/* Selected work presented as a tactile case-study deck. */}
         <section id="work" className={styles.dossierSection} aria-label="Selected Engineering Work">
           <div className="container">
             <div className={styles.sectionHeader}>
               <div className="datum-bar">
                 <span className="datum-crosshair">+</span>
-                <span>SELECTED WORK // PRODUCTION DOSSIER</span>
+                <span>SELECTED WORK // PRODUCTION SYSTEMS</span>
               </div>
-              <h2 className={styles.sectionTitle}>Selected systems, built in production.</h2>
+              <h2 className={styles.sectionTitle}>Selected systems, measurable impact.</h2>
               <p className={styles.sectionSubtitle}>
-              Product context, implementation decisions, and measurable outcomes.
+                Three products shaped from architecture through operation.
               </p>
             </div>
 
-            {featuredProjects.map((project) => (
-              <ProjectDossierCard key={project.index} {...project} />
-            ))}
+            <ProjectDeckSection projects={featuredProjects} />
           </div>
         </section>
 

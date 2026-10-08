@@ -43,7 +43,7 @@ export const featuredProjects: ProjectDossierProps[] = [
     },
     media: {
       src: "/images/sokrates.png",
-      alt: "Sokrates.sos"
+      alt: "SOKRATE PMO compliance operations dashboard"
     },
     placeholderLabel: "PRIVATE CLIENT WORK // PRODUCT SCREENSHOTS UNAVAILABLE",
   },
@@ -83,7 +83,7 @@ export const featuredProjects: ProjectDossierProps[] = [
     },
     media: {
       src: "/images/twin-protocol.png",
-      alt: "Sokrates.sos"
+      alt: "Twin Protocol AI platform landing page"
     },
     placeholderLabel: "PRIVATE CLIENT WORK // PRODUCT SCREENSHOTS UNAVAILABLE",
   },
@@ -120,7 +120,7 @@ export const featuredProjects: ProjectDossierProps[] = [
     },
     media: {
       src: "/images/trystyle.jpeg",
-      alt: "Sokrates.sos"
+      alt: "TryStyle virtual try-on administration interface"
     },
     placeholderLabel: "PRIVATE CLIENT WORK // PRODUCT SCREENSHOTS UNAVAILABLE",
   },
