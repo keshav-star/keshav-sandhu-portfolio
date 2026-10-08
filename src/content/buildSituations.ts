@@ -15,7 +15,7 @@ export interface PipelineStep {
 }
 
 export interface FocusCard {
-  icon: "target" | "zap" | "compass" | "shield" | "search" | "layers" | "activity" | "cpu";
+  icon: "target" | "zap" | "compass" | "shield" | "search" | "layers" | "activity" | "cpu" | "database" | "server";
   title: string;
   description: string;
 }
