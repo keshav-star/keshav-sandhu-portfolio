@@ -38,7 +38,7 @@ export default function HomePage() {
                 </h1>
 
                 <p className={`${styles.heroDescriptor} ${styles.animateFadeIn} ${styles.delay1}`}>
-                  I design and build multi-tenant SaaS and applied AI products, from critical workflows to dependable systems.
+                  I build resilient software products and scalable architectures, translating complex problems into seamless user experiences.
                 </p>
 
                 <div className={`${styles.heroActionRow} ${styles.animateFadeIn} ${styles.delay2}`}>

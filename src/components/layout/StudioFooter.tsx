@@ -10,8 +10,8 @@ export function StudioFooter() {
         <div className={styles.colophonBlock}>
           <div className={styles.studioName}>KESHAV SANDHU // ENGINEERING PRACTICE</div>
           <p className={styles.colophonText}>
-            Full-stack product engineer with 2+ years of experience building multi-tenant SaaS,
-            operational workflows, and applied-AI products.
+            Full-stack product engineer with experience designing and building resilient digital products,
+            scalable architectures, and high-performance web systems.
           </p>
         </div>
 

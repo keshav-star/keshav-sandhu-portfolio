@@ -23,7 +23,7 @@ export default function OpenGraphImage() {
         KESHAV SANDHU // PRODUCT ENGINEER
       </div>
       <div style={{ display: "flex", maxWidth: "930px", fontSize: 88, lineHeight: 1.05, letterSpacing: -4 }}>
-        Multi-tenant SaaS and applied-AI products that hold up in production.
+        Resilient software products and scalable architectures.
       </div>
       <div style={{ display: "flex", fontSize: 28, color: "#5A5650" }}>
         Full-stack engineering · Noida, India

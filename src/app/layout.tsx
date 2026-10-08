@@ -30,17 +30,16 @@ export const metadata: Metadata = {
   applicationName: siteName,
   title: "Keshav Sandhu - Full-Stack Product Engineer",
   description:
-    "Personal engineering practice of Keshav Sandhu. Full-Stack Engineer specializing in AI integrations, multi-tenant architectures, and high-performance web systems. From idea to working product.",
+    "Personal engineering practice of Keshav Sandhu. Full-Stack Product Engineer building resilient software products, scalable architectures, and high-performance systems. From idea to working product.",
   keywords: [
     "Keshav Sandhu",
     "Full-Stack Engineer",
-    "AI Systems",
-    "Multi-Tenant Architecture",
+    "Product Engineer",
+    "System Architecture",
     "Next.js",
     "TypeScript",
     "PostgreSQL",
-    "LangChain",
-    "Product Engineer",
+    "AI Systems",
   ],
   authors: [{ name: "Keshav Sandhu" }],
   alternates: siteUrl ? { canonical: "/" } : undefined,
@@ -50,7 +49,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: siteName,
-    description: "Multi-tenant SaaS and applied-AI products that hold up in production.",
+    description: "Resilient software products and scalable architectures that hold up in production.",
     type: "website",
     locale: "en_US",
     url: siteUrl?.toString(),
@@ -58,7 +57,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: siteName,
-    description: "Multi-tenant SaaS and applied-AI products that hold up in production.",
+    description: "Resilient software products and scalable architectures that hold up in production.",
   },
 };
 
