@@ -24,26 +24,84 @@
 }
 
 /* ==========================================================================
+   AMBIENT BACKLIGHT LAYER
+   Soft warm halo that seamlessly melts image perimeter into canvas background
+   ========================================================================== */
+.ambientBacklight {
+  position: absolute;
+  inset: -24px;
+  border-radius: 44px;
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    rgba(211, 78, 38, 0.24) 0%,
+    rgba(240, 140, 90, 0.16) 38%,
+    rgba(235, 230, 222, 0.45) 62%,
+    transparent 78%
+  );
+  filter: blur(42px);
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 500ms ease, transform 500ms ease, filter 500ms ease;
+  transform: scale(0.96);
+  animation: backlightBreathe 7s ease-in-out infinite;
+}
+
+[data-theme="dark"] .ambientBacklight {
+  background: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    rgba(211, 78, 38, 0.34) 0%,
+    rgba(240, 140, 90, 0.18) 40%,
+    rgba(34, 30, 28, 0.6) 65%,
+    transparent 80%
+  );
+  filter: blur(46px);
+}
+
+.containerActive .ambientBacklight,
+.interactiveContainer:hover .ambientBacklight,
+.figure:hover .ambientBacklight {
+  opacity: 1;
+  filter: blur(52px);
+  transform: scale(1.08);
+}
+
+@keyframes backlightBreathe {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(0.96);
+    filter: blur(40px);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.03);
+    filter: blur(46px);
+  }
+}
+
+/* ==========================================================================
    PRIMARY LAYER: TRANSFORMING IMAGE FRAME
+   Blended seamlessly into background, with animated running border beam
    ========================================================================== */
 .frame {
   position: relative;
   z-index: 6; /* sits in front of idle icons */
   width: 100%;
   aspect-ratio: 4 / 5;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-xs);
-  box-shadow: var(--shadow-card);
+  background-color: transparent;
+  border: none;
+  border-radius: 32px;
+  box-shadow: 
+    0 20px 50px -15px rgba(20, 19, 18, 0.07),
+    0 0 35px -5px rgba(211, 78, 38, 0.1);
   overflow: hidden;
   cursor: pointer;
   outline: none;
+  animation: portraitFloating 7s ease-in-out infinite;
   transition:
-    transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-radius 450ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-color var(--duration-fast) var(--ease-mechanical),
-    box-shadow 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
-  transform: scale(1) translateY(0) rotate(0deg);
+    transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 500ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .interactiveContainer:focus-visible .frame {
@@ -52,45 +110,125 @@
 }
 
 .containerActive .frame,
+.interactiveContainer:hover .frame,
+.figure:hover .frame,
 .frameActive {
-  border-radius: 18px 6px 20px 6px;
-  transform: scale(1.015) translateY(-4px) rotate(0.4deg);
-  border-color: rgba(211, 78, 38, 0.35);
+  border-radius: 36px 20px 38px 22px;
+  transform: translateY(-8px) scale(1.02);
   box-shadow:
-    0 20px 42px -10px rgba(20, 19, 18, 0.16),
-    0 0 0 1px rgba(211, 78, 38, 0.2);
+    0 26px 56px -12px rgba(20, 19, 18, 0.14),
+    0 0 48px -2px rgba(211, 78, 38, 0.3);
+}
+
+@keyframes portraitFloating {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0.35deg);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   RUNNING ANIMATED BEAM SVG AROUND FRAME PERIMETER
+   Traces the border continuously, accelerates and glows brighter on hover
+   ────────────────────────────────────────────────────────────────────────── */
+.borderRunningSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9;
+  border-radius: inherit;
+  overflow: visible;
+}
+
+.borderTrack {
+  fill: none;
+  stroke: var(--border-hairline);
+  stroke-width: 1px;
+  opacity: 0.22;
+  transition: opacity 300ms ease, stroke 300ms ease;
+}
+
+.containerActive .borderTrack,
+.interactiveContainer:hover .borderTrack,
+.figure:hover .borderTrack {
+  opacity: 0.6;
+  stroke: rgba(211, 78, 38, 0.35);
+}
+
+.borderBeam {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  stroke-dasharray: 22 78;
+  stroke-dashoffset: 0;
+  animation: runBeamAround 6s linear infinite;
+  filter: 
+    drop-shadow(0 0 5px rgba(211, 78, 38, 0.8))
+    drop-shadow(0 0 10px rgba(211, 78, 38, 0.4));
+  transition: 
+    stroke-width 300ms ease,
+    filter 300ms ease,
+    animation-duration 300ms ease;
+}
+
+.containerActive .borderBeam,
+.interactiveContainer:hover .borderBeam,
+.figure:hover .borderBeam {
+  stroke-width: 3.2px;
+  animation-duration: 2.4s; /* runs faster and more energetic on hover! */
+  filter: 
+    drop-shadow(0 0 8px rgba(211, 78, 38, 1)) 
+    drop-shadow(0 0 18px rgba(211, 78, 38, 0.7));
+}
+
+@keyframes runBeamAround {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
 }
 
 /* Corner Crosshairs */
 .crosshair {
   position: absolute;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-tertiary);
   line-height: 1;
   user-select: none;
-  z-index: 7;
-  transition: color var(--duration-fast) var(--ease-mechanical);
+  z-index: 10;
+  opacity: 0;
+  transition: color var(--duration-fast) var(--ease-mechanical), opacity 300ms ease;
 }
 
-.containerActive .crosshair {
+.containerActive .crosshair,
+.interactiveContainer:hover .crosshair,
+.figure:hover .crosshair {
   color: var(--color-accent);
+  opacity: 0.7;
 }
 
-.tl { top: 8px; left: 8px; }
-.tr { top: 8px; right: 8px; }
-.bl { bottom: 8px; left: 8px; }
-.br { bottom: 8px; right: 8px; }
+.tl { top: 14px; left: 14px; }
+.tr { top: 14px; right: 14px; }
+.bl { bottom: 14px; left: 14px; }
+.br { bottom: 14px; right: 14px; }
 
 /* Signature Terracotta Registration Pip */
 .signaturePip {
   position: absolute;
-  top: 10px;
-  right: 24px;
+  top: 14px;
+  right: 28px;
   width: 7px;
   height: 7px;
   background-color: var(--color-accent);
-  z-index: 8;
+  z-index: 11;
   outline: none;
   display: flex;
   align-items: center;
@@ -118,25 +256,54 @@
   transform: scale(1.25);
 }
 
-/* Image Rendering */
+/* Image Rendering & Feathered Perimeter Blend */
 .imageWrapper {
   position: relative;
   width: 100%;
   height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  /* Feathered radial mask dissolving all 4 borders into transparent canvas */
+  mask-image: radial-gradient(
+    ellipse 82% 82% at 50% 50%,
+    black 42%,
+    rgba(0, 0, 0, 0.85) 65%,
+    rgba(0, 0, 0, 0.35) 82%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 82% 82% at 50% 50%,
+    black 42%,
+    rgba(0, 0, 0, 0.85) 65%,
+    rgba(0, 0, 0, 0.35) 82%,
+    transparent 100%
+  );
 }
 
 .image {
   object-fit: cover;
   filter: contrast(1.03) brightness(0.98);
   transition:
-    transform 480ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    filter var(--duration-normal) var(--ease-mechanical);
-  transform: scale(1) rotate(0deg);
+    transform 650ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 450ms ease;
+  transform: scale(1.01);
+  animation: subtleImagePulse 14s ease-in-out infinite alternate;
 }
 
-.containerActive .image {
-  transform: scale(1.04) rotate(-0.4deg);
-  filter: contrast(1.05) brightness(1.01);
+@keyframes subtleImagePulse {
+  0% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1.035);
+  }
+}
+
+.containerActive .image,
+.interactiveContainer:hover .image,
+.figure:hover .image {
+  transform: scale(1.07) translateY(-2px);
+  filter: contrast(1.06) brightness(1.02);
 }
 
 .imageOverlay {
@@ -145,10 +312,27 @@
   background: linear-gradient(
     to bottom,
     transparent 65%,
-    rgba(20, 19, 18, 0.25) 100%
+    rgba(20, 19, 18, 0.22) 100%
   );
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.6;
+}
+
+/* Inset vignette that seamlessly dissolves borders into canvas */
+.perimeterBlendOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse 82% 82% at 50% 50%,
+    transparent 45%,
+    var(--bg-canvas) 96%
+  );
+  box-shadow: 
+    inset 0 0 36px 12px var(--bg-canvas),
+    inset 0 0 72px 28px var(--bg-canvas);
+  transition: opacity 350ms ease;
 }
 
 .monochrome {
@@ -172,7 +356,9 @@
   transition: z-index 0ms 350ms;
 }
 
-.containerActive .iconsOrbitLayer {
+.containerActive .iconsOrbitLayer,
+.interactiveContainer:hover .iconsOrbitLayer,
+.figure:hover .iconsOrbitLayer {
   z-index: 15; /* in front on hover */
   pointer-events: auto;
   transition: z-index 0ms 0ms;
@@ -217,6 +403,8 @@
 }
 
 .containerActive .popIconBtn,
+.interactiveContainer:hover .popIconBtn,
+.figure:hover .popIconBtn,
 .iconBtnActive {
   opacity: 1;
   visibility: visible;
@@ -240,57 +428,65 @@
 
 /* 1. LinkedIn (Top-Right outside) */
 .iconLinkedIn {
-  top: 14%;
-  right: 16px;
-  transform: translate(0, 0) scale(0.3);
+  top: 18%;
+  right: -24px;
+  transform: translate(-24px, 0) scale(0.3);
   transition-delay: 0ms;
 }
 
 .containerActive .iconLinkedIn,
+.interactiveContainer:hover .iconLinkedIn,
+.figure:hover .iconLinkedIn,
 .iconLinkedIn.iconBtnActive {
-  transform: translate(64px, -10px) scale(1);
+  transform: translate(32px, 0) scale(1);
   animation: hopAnim1 2.6s ease-in-out infinite 0.1s;
 }
 
 /* 2. Direct Email (Bottom-Right outside) */
 .iconEmail {
-  bottom: 18%;
-  right: 16px;
-  transform: translate(0, 0) scale(0.3);
+  bottom: 24%;
+  right: -24px;
+  transform: translate(-24px, 0) scale(0.3);
   transition-delay: 60ms;
 }
 
 .containerActive .iconEmail,
+.interactiveContainer:hover .iconEmail,
+.figure:hover .iconEmail,
 .iconEmail.iconBtnActive {
-  transform: translate(66px, 12px) scale(1);
+  transform: translate(32px, 0) scale(1);
   animation: hopAnim2 2.8s ease-in-out infinite 0.5s;
 }
 
 /* 3. Résumé (Top-Left outside) */
 .iconResume {
-  top: 14%;
-  left: 16px;
-  transform: translate(0, 0) scale(0.3);
+  top: 18%;
+  left: -24px;
+  transform: translate(24px, 0) scale(0.3);
   transition-delay: 40ms;
 }
 
 .containerActive .iconResume,
+.interactiveContainer:hover .iconResume,
+.figure:hover .iconResume,
 .iconResume.iconBtnActive {
-  transform: translate(-64px, -10px) scale(1);
+  transform: translate(-32px, 0) scale(1);
   animation: hopAnim3 2.7s ease-in-out infinite 0.3s;
 }
 
 /* 4. Direct Connect / Chat (Bottom-Left outside) */
 .iconContact {
-  bottom: 18%;
-  left: 16px;
-  transform: translate(0, 0) scale(0.3);
+  bottom: 24%;
+  left: -24px;
+  transform: translate(24px, 0) scale(0.3);
   transition-delay: 100ms;
 }
 
 .containerActive .iconContact,
+.interactiveContainer:hover .iconContact,
+.figure:hover .iconContact,
 .iconContact.iconBtnActive {
-  transform: translate(-66px, 12px) scale(1);
+  transform: translate(-32px, 0) scale(1);
   animation: hopAnim4 2.5s ease-in-out infinite 0.7s;
 }
 
@@ -300,37 +496,37 @@
    ────────────────────────────────────────────────────────────────────────── */
 @keyframes hopAnim1 {
   0%, 100% {
-    transform: translate(64px, -10px) scale(1);
+    transform: translate(32px, 0) scale(1);
   }
   50% {
-    transform: translate(64px, -19px) scale(1.05);
+    transform: translate(32px, -9px) scale(1.05);
   }
 }
 
 @keyframes hopAnim2 {
   0%, 100% {
-    transform: translate(66px, 12px) scale(1);
+    transform: translate(32px, 0) scale(1);
   }
   50% {
-    transform: translate(66px, 3px) scale(1.05);
+    transform: translate(32px, -8px) scale(1.05);
   }
 }
 
 @keyframes hopAnim3 {
   0%, 100% {
-    transform: translate(-64px, -10px) scale(1);
+    transform: translate(-32px, 0) scale(1);
   }
   50% {
-    transform: translate(-64px, -19px) scale(1.05);
+    transform: translate(-32px, -9px) scale(1.05);
   }
 }
 
 @keyframes hopAnim4 {
   0%, 100% {
-    transform: translate(-66px, 12px) scale(1);
+    transform: translate(-32px, 0) scale(1);
   }
   50% {
-    transform: translate(-66px, 3px) scale(1.05);
+    transform: translate(-32px, -8px) scale(1.05);
   }
 }
 

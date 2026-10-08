@@ -78,16 +78,62 @@ export function PersonalPortrait({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={`${styles.interactiveContainer} ${isActive ? styles.containerActive : ""}`}>
+      <div
+        className={`${styles.interactiveContainer} ${isActive ? styles.containerActive : ""}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Soft ambient backlight halo that blends image into the canvas */}
+        <div className={styles.ambientBacklight} aria-hidden="true" />
+
         {/* ================================================================
             PRIMARY LAYER: TRANSFORMING IMAGE FRAME
             ================================================================ */}
         <div
           className={`${styles.frame} ${isActive ? styles.frameActive : ""}`}
+          onClick={() => setIsActive((prev) => !prev)}
+          onMouseEnter={handleMouseEnter}
           tabIndex={0}
           role="region"
-          aria-label="Keshav Sandhu portrait. Hover to reveal contact icons."
+          aria-label="Keshav Sandhu portrait. Hover or tap to reveal contact icons."
         >
+          {/* Running animated beam around image border */}
+          <svg
+            className={styles.borderRunningSvg}
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="portraitBeamGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="1" />
+                <stop offset="50%" stopColor="#FF7A50" stopOpacity="0.95" />
+                <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0.15" />
+              </linearGradient>
+            </defs>
+            <rect
+              className={styles.borderTrack}
+              x="0.75"
+              y="0.75"
+              width="98.5"
+              height="98.5"
+              rx="7.5"
+              ry="6"
+              vectorEffect="non-scaling-stroke"
+            />
+            <rect
+              className={styles.borderBeam}
+              x="0.75"
+              y="0.75"
+              width="98.5"
+              height="98.5"
+              rx="7.5"
+              ry="6"
+              vectorEffect="non-scaling-stroke"
+              pathLength="100"
+            />
+          </svg>
+
           {/* Corner registration crosshairs */}
           <span className={`${styles.crosshair} ${styles.tl}`}>+</span>
           <span className={`${styles.crosshair} ${styles.tr}`}>+</span>
@@ -114,6 +160,8 @@ export function PersonalPortrait({
                 priority={priority}
               />
               <div className={styles.imageOverlay} />
+              {/* Perimeter vignette overlay to blend edges seamlessly into background */}
+              <div className={styles.perimeterBlendOverlay} />
             </div>
           ) : (
             <div className={styles.placeholderCanvas}>
