@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./page.module.css";
 import { StudioHeader } from "@/components/layout/StudioHeader";
 import { StudioFooter } from "@/components/layout/StudioFooter";
-import { DatumLabel } from "@/components/ui/DatumLabel";
 import { StudioButton } from "@/components/ui/StudioButton";
 import { PersonalPortrait } from "@/components/ui/PersonalPortrait";
 import { PersonalIntro } from "@/components/ui/PersonalIntro";
@@ -28,43 +27,21 @@ export default function HomePage() {
         <section
           id="overview"
           className={styles.heroSection}
-          aria-label="Keshav Sandhu — Hero Overview"
+          aria-label="Keshav Sandhu - Hero Overview"
         >
           <div className="container">
             <div className={styles.heroGrid}>
               {/* Left Column: Personal Narrative, Proof & Actions */}
               <div className={styles.heroNarrativeCol}>
-                {/* 1. Identity & Availability Metadata */}
-                <div className={`${styles.heroDatumRow} ${styles.animateFadeIn}`}>
-                  <DatumLabel
-                    prefix="BUILDER //"
-                    label="KESHAV SANDHU"
-                    variant="standard"
-                  />
-                  <span className={styles.datumDivider}>{"//"}</span>
-                  <DatumLabel
-                    label="FULL-STACK PRODUCT ENGINEER"
-                    variant="bordered"
-                  />
-                  <span className={styles.datumDivider}>{"//"}</span>
-                  <span className={styles.availabilityMetadata}>
-                    AVAILABLE FOR SELECT ENGAGEMENTS
-                  </span>
-                </div>
-
-                {/* 2. Core Brand Thesis Headline */}
-                <h1 className={`${styles.heroStatement} ${styles.animateFadeIn} ${styles.delay1}`}>
-                  From idea to <span className="font-serif-italic">working product.</span>
+                <h1 className={`${styles.heroStatement} ${styles.animateFadeIn}`}>
+                  Product systems that <span className="font-serif-italic">perform in practice.</span>
                 </h1>
 
-                {/* 3. Human-Readable Supporting Statement */}
-                <p className={`${styles.heroDescriptor} ${styles.animateFadeIn} ${styles.delay2}`}>
-                  I build multi-tenant SaaS and applied-AI products—from the workflows people
-                  use to the data, permissions, and APIs that keep them dependable.
+                <p className={`${styles.heroDescriptor} ${styles.animateFadeIn} ${styles.delay1}`}>
+                  I design and build multi-tenant SaaS and applied AI products, from critical workflows to dependable systems.
                 </p>
 
-                {/* 4. Primary Actions (Ordered for mobile & desktop) */}
-                <div className={`${styles.heroActionRow} ${styles.animateFadeIn} ${styles.delay3}`}>
+                <div className={`${styles.heroActionRow} ${styles.animateFadeIn} ${styles.delay2}`}>
                   <StudioButton href="#work" variant="primary" size="md">
                     Explore Selected Work
                   </StudioButton>
@@ -78,39 +55,11 @@ export default function HomePage() {
                   </StudioButton>
                 </div>
 
-                {/* 5. Proof Strip (Evidence of real production systems) */}
-                <div className={`${styles.heroMetricsGrid} ${styles.animateFadeIn} ${styles.delay4}`}>
-                  <div className={styles.heroMetricItem}>
-                    <span className={styles.heroMetricNumber}>50+</span>
-                    <span className={styles.heroMetricLabel}>
-                      Organizations supported in production
-                    </span>
-                  </div>
-                  <div className={styles.heroMetricItem}>
-                    <span className={styles.heroMetricNumber}>100K+</span>
-                    <span className={styles.heroMetricLabel}>
-                      Compliance records managed
-                    </span>
-                  </div>
-                  <div className={styles.heroMetricItem}>
-                    <span className={styles.heroMetricNumber}>~60%</span>
-                    <span className={styles.heroMetricLabel}>
-                      Manual follow-up reduction
-                    </span>
-                  </div>
-                  <div className={styles.heroMetricItem}>
-                    <span className={styles.heroMetricNumber}>~40%</span>
-                    <span className={styles.heroMetricLabel}>
-                      API response latency improvement
-                    </span>
-                  </div>
-                </div>
               </div>
 
-              <div className={`${styles.heroPortraitCol} ${styles.animateFadeIn} ${styles.delay5}`}>
+              <div className={`${styles.heroPortraitCol} ${styles.animateFadeIn} ${styles.delay3}`}>
                 <PersonalPortrait
                   src="/images/keshav-sandhu-editorial-portrait.png"
-                  caption="KESHAV SANDHU // EDITORIAL PORTRAIT [PRODUCT ENGINEERING PRACTICE]"
                   objectPosition="center center"
                   priority
                 />
@@ -138,7 +87,7 @@ export default function HomePage() {
               </div>
               <h2 className={styles.sectionTitle}>Selected systems, built in production.</h2>
               <p className={styles.sectionSubtitle}>
-              Product context first, followed by the implementation decisions behind the result.
+              Product context, implementation decisions, and measurable outcomes.
               </p>
             </div>
 
@@ -165,7 +114,7 @@ export default function HomePage() {
                 Useful systems, examined at the seams.
               </h2>
               <p className={styles.sectionSubtitle}>
-                The practice combines product interface work with the systems behind it—where
+                The practice combines product interface work with the systems behind it - where
                 context, permissions, performance, and operational workflows need to hold up.
               </p>
             </div>
@@ -213,7 +162,7 @@ export default function HomePage() {
               </div>
               <div className={styles.contactAction}>
                 <p>
-                  I work across product interfaces, backend systems, and applied AI—from the
+                  I work across product interfaces, backend systems, and applied AI - from the
                   first useful version through the operational details that make it dependable.
                 </p>
                 <StudioButton href="mailto:keshavsandhu.me@gmail.com" variant="primary" size="md">

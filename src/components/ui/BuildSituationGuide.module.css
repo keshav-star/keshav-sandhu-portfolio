@@ -171,6 +171,12 @@
   margin-top: var(--space-10);
 }
 
+.contributionBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .thoughtsList {
   display: flex;
   flex-direction: column;
@@ -198,11 +204,14 @@
 .areaList {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px var(--space-3);
+  gap: 8px var(--space-4);
   margin-top: var(--space-4);
 }
 
 .area {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.25rem;
   font-family: var(--font-mono);
   font-size: var(--type-mono-xs-size);
   letter-spacing: 0.04em;

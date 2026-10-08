@@ -14,8 +14,8 @@ interface PersonalPortraitProps {
 
 export function PersonalPortrait({
   src,
-  alt = "Keshav Sandhu — Product Engineer & Builder",
-  caption = "KESHAV SANDHU // ENVIRONMENTAL PORTRAIT [STUDIO / NOIDA]",
+  alt = "Keshav Sandhu - Product Engineer & Builder",
+  caption,
   monochrome = false,
   objectPosition = "center center",
   priority = false,
@@ -24,7 +24,7 @@ export function PersonalPortrait({
   return (
     <figure
       className={`${styles.figure} ${className}`}
-      aria-label="Keshav Sandhu — Portrait Plate"
+      aria-label="Keshav Sandhu - Portrait Plate"
     >
       <div className={styles.frame}>
         {/* Corner registration crosshairs */}
@@ -84,11 +84,12 @@ export function PersonalPortrait({
         )}
       </div>
 
-      {/* Editorial Caption Bar */}
-      <figcaption className={styles.caption}>
-        <span className={styles.captionPip}>●</span>
-        <span className={styles.captionText}>{caption}</span>
-      </figcaption>
+      {caption && (
+        <figcaption className={styles.caption}>
+          <span className={styles.captionPip}>●</span>
+          <span className={styles.captionText}>{caption}</span>
+        </figcaption>
+      )}
     </figure>
   );
 }

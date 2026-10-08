@@ -11,7 +11,7 @@ export function Logo({ variant = "full", size = "md", className = "" }: LogoProp
   return (
     <div
       className={`${styles.logoContainer} ${styles[size]} ${className}`}
-      aria-label="Keshav Sandhu — Product Engineer / Builder"
+      aria-label="Keshav Sandhu - Product Engineer / Builder"
     >
       {(variant === "full" || variant === "monogram") && (
         <span className={styles.monogram} aria-hidden="true">

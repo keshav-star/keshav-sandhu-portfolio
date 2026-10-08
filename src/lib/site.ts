@@ -7,4 +7,4 @@ export const metadataBase = siteUrl ?? new URL(
   vercelUrl ? `https://${vercelUrl}` : "http://localhost:3000",
 );
 
-export const siteName = "Keshav Sandhu — Product Engineer";
+export const siteName = "Keshav Sandhu - Product Engineer";

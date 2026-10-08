@@ -28,7 +28,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase,
   applicationName: siteName,
-  title: "Keshav Sandhu — Full-Stack Product Engineer",
+  title: "Keshav Sandhu - Full-Stack Product Engineer",
   description:
     "Personal engineering practice of Keshav Sandhu. Full-Stack Engineer specializing in AI integrations, multi-tenant architectures, and high-performance web systems. From idea to working product.",
   keywords: [

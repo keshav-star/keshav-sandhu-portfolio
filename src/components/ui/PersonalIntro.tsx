@@ -18,23 +18,15 @@ export function PersonalIntro({ className = "" }: PersonalIntroProps) {
 
       {/* Human-Centered Statement */}
       <h2 className={styles.statement}>
-        I turn ideas into resilient software—bridging product vision,
-        interface craft, and backend architecture.
+        I build resilient software across product, interface, and systems.
       </h2>
 
       {/* Editorial Narrative */}
       <div className={styles.narrativeBody}>
         <p className={styles.paragraph}>
-          Most engineering drag happens at handoff boundaries: where product thinking meets interface design,
-          or where UI components hit complex database and API constraints. I work across that entire seam.
-          As an engineer with the breadth of a small studio, I can take a product from raw specification
-          to an operational system.
-        </p>
-
-        <p className={styles.paragraph}>
-          In production, this means building multi-tenant business platforms supporting 50+ organizations,
-          scaling compliance engines handling 100K+ records, and integrating contextual AI pipelines that
-          reduce operational overhead by ~60%. I care about software that is fast, legible, and dependable.
+          I take products from specification to operation, connecting interface decisions with the data,
+          APIs, and workflows behind them. Recent systems support 50+ organizations, 100K+ records, and
+          AI workflows that cut manual effort by ~60%.
         </p>
       </div>
 

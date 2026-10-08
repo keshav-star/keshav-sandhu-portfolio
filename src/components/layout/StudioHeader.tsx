@@ -36,7 +36,7 @@ export function StudioHeader() {
       <div className={`container ${styles.headerInner}`}>
         {/* Left: Identity Lockup */}
         <div className={styles.identityCol}>
-          <a href="#overview" aria-label="Keshav Sandhu — Home">
+          <a href="#overview" aria-label="Keshav Sandhu - Home">
             <Logo variant="full" size="md" />
           </a>
         </div>

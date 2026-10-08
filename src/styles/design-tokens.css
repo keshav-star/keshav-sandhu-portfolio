@@ -1,11 +1,11 @@
 /**
- * KESHAV SANDHU — EDITORIAL ENGINEERING STUDIO
+ * KESHAV SANDHU - EDITORIAL ENGINEERING STUDIO
  * Design System Tokens (12-Pillar Foundation)
  */
 
 :root {
   /* ==========================================================================
-     1. COLOR SYSTEM — WARM NEUTRAL FOUNDATION + RESTRAINED ACCENT
+     1. COLOR SYSTEM - WARM NEUTRAL FOUNDATION + RESTRAINED ACCENT
      ========================================================================== */
 
   /* Light Canvas (Warm Archival Alabaster / Unbleached Paper) */
@@ -14,19 +14,19 @@
   --color-surface-plate-light: #FFFFFF;
   --color-surface-elevated-light: #FBF9F5;
 
-  /* Dark Canvas (Deep Umber Charcoal — Warm, not cold/sterile blue) */
+  /* Dark Canvas (Deep Umber Charcoal - Warm, not cold/sterile blue) */
   --color-canvas-dark: #131211;
   --color-canvas-subtle-dark: #1A1918;
   --color-surface-plate-dark: #1F1D1C;
   --color-surface-elevated-dark: #262422;
 
-  /* Ink / Text — Light Foundation */
+  /* Ink / Text - Light Foundation */
   --color-ink-primary-light: #141312;
   --color-ink-secondary-light: #5A5650;
   --color-ink-tertiary-light: #756F67;
   --color-ink-muted-light: #908A81;
 
-  /* Ink / Text — Dark Foundation */
+  /* Ink / Text - Dark Foundation */
   --color-ink-primary-dark: #F4F2ED;
   --color-ink-secondary-dark: #9C9890;
   --color-ink-tertiary-dark: #AAA69E;

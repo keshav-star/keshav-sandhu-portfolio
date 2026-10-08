@@ -28,14 +28,13 @@ export const buildSituations: BuildSituation[] = [
     index: "01",
     title: "I have an idea",
     recognition:
-      "You have a real problem to solve and need to turn the first useful version into working software.",
+      "You have a real problem and need a focused first version.",
     firstThoughts: ["Users", "Core workflow", "Constraints", "Fastest path to validation"],
     contributionAreas: ["Interface", "Application", "API", "Data"],
-    contribution:
-      "Shape the first useful version, then build the interface and systems it needs to become real.",
+    contribution: "Define the core flow, then build the interface and system around it.",
     evidence: {
       label: "EARLY-STAGE PRODUCT // FIRST USEFUL VERSION",
-      detail: "Clarify the users, core workflow, and constraints before turning the first version into working software.",
+      detail: "Clarify users, workflow, and constraints before building.",
       kind: "placeholder",
     },
   },
@@ -44,7 +43,7 @@ export const buildSituations: BuildSituation[] = [
     index: "02",
     title: "I have a product that needs work",
     recognition:
-      "Your product is already in use, but the experience or the system behind it needs attention.",
+      "Your product is in use, but its experience or system needs attention.",
     firstThoughts: [
       "The workflow slowing people down",
       "Where the interface stops helping",
@@ -52,8 +51,7 @@ export const buildSituations: BuildSituation[] = [
       "Existing system constraints",
     ],
     contributionAreas: ["Interface", "Application", "API", "Data"],
-    contribution:
-      "Add useful features, improve the experience, and untangle the system constraints holding the product back.",
+    contribution: "Prioritize useful improvements and resolve the constraints behind them.",
     evidence: {
       label: "TRYSTYLE // RETAILER ADMIN PLATFORM",
       detail: "Multi-tenant product operations, RBAC, configuration, and real-time analytics.",
@@ -66,7 +64,7 @@ export const buildSituations: BuildSituation[] = [
     index: "03",
     title: "I want to add AI",
     recognition:
-      "You want AI to make the product more useful—not simply add a model for its own sake.",
+      "You want AI to make the product more useful, not simply add a model.",
     firstThoughts: [
       "The moment where context helps",
       "Source information and retrieval",
@@ -74,8 +72,7 @@ export const buildSituations: BuildSituation[] = [
       "The human workflow around it",
     ],
     contributionAreas: ["Interface", "Application", "Data", "AI"],
-    contribution:
-      "Define useful AI moments, connect the right context, and make the experience understandable for the people using it.",
+    contribution: "Identify useful AI moments, connect the right context, and make them clear to use.",
     evidence: {
       label: "TWIN PROTOCOL // AI CHATBOT PLATFORM",
       detail: "Document conversations, LangChain services, vector context, and contextual PDF responses.",
@@ -88,7 +85,7 @@ export const buildSituations: BuildSituation[] = [
     index: "04",
     title: "I need the system to scale",
     recognition:
-      "More people, data, and workflows are making the application harder to keep fast and dependable.",
+      "Growth is making the application harder to keep fast and dependable.",
     firstThoughts: [
       "Load-bearing workflows",
       "Data boundaries and query paths",
@@ -96,8 +93,7 @@ export const buildSituations: BuildSituation[] = [
       "Deployment and operational needs",
     ],
     contributionAreas: ["Application", "API", "Data", "Infrastructure"],
-    contribution:
-      "Strengthen the paths carrying the most load—from queries and APIs to data boundaries and deployment.",
+    contribution: "Strengthen load-bearing paths across queries, APIs, data, and deployment.",
     evidence: {
       label: "SOKRATE PMO // SCALE & PERFORMANCE",
       detail: "50+ organizations, 100K+ records, and a reported ~40% API latency reduction.",

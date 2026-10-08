@@ -8,9 +8,9 @@ export const featuredProjects: ProjectDossierProps[] = [
     title: "SOKRATE PMO",
     role: "Lead Architecture & Full-Stack Systems",
     outcomeHeadline:
-      "Multi-tenant operations platform supporting 50+ organizations and 100K+ compliance records with ~60% reduction in manual follow-ups.",
+      "Multi-tenant operations platform for 50+ organizations and 100K+ compliance records, cutting manual follow-ups by ~60%.",
     summary:
-      "Architected a multi-tenant platform with strict data isolation, granular RBAC across 5 user personas, and automated quotation-to-invoice workflows. Refactored queries and caching to cut latency by ~40%.",
+      "Built tenant isolation, 5-persona RBAC, and automated quotation-to-invoice workflows. Query and cache improvements cut latency by ~40%.",
     metrics: [
       { value: "50+", label: "Organizations" },
       { value: "100K+", label: "Records Managed" },
@@ -20,13 +20,13 @@ export const featuredProjects: ProjectDossierProps[] = [
     techStack: ["Next.js", "PostgreSQL", "Prisma", "Node.js", "AWS", "Vitest"],
     humanStory: {
       problem:
-        "Managing compliance across dozens of client organizations required constant manual follow-ups, fragmented spreadsheets, and error-prone quotation-to-invoice handoffs.",
+        "Compliance work across client organizations relied on manual follow-ups, spreadsheets, and error-prone handoffs.",
       product:
-        "Built a unified, multi-tenant compliance and operations platform where organizations self-manage renewal cycles, audits, medical visits, and invoicing in real time.",
+        "Built a unified platform for self-managed renewals, audits, visits, and invoicing.",
       contribution:
-        "Engineered the multi-tenant architecture, designed the 5-persona RBAC model, built automated reminders and renewal workflows, and optimized all database queries.",
+        "Engineered tenant isolation, 5-persona RBAC, automated renewals, and database performance.",
       outcome:
-        "Now running across 50+ organizations managing 100K+ active records, achieving a ~60% drop in manual operational follow-ups and ~40% faster response times.",
+        "Supports 50+ organizations and 100K+ records, with ~60% fewer manual follow-ups and ~40% faster responses.",
     },
     engineeringLayers: {
       architecture:
@@ -54,9 +54,9 @@ export const featuredProjects: ProjectDossierProps[] = [
     title: "Twin Protocol",
     role: "Full-Stack Product Engineering",
     outcomeHeadline:
-      "Document conversations with contextual PDF responses, backed by a payment flow that reduced transaction delays by 30% and platform optimizations that reduced response time by 40%.",
+      "Contextual document conversations with payment and platform improvements that cut transaction delays by 30% and response time by 40%.",
     summary:
-      "Built an AI-powered document interaction platform with responsive dashboards, conversational interfaces, secure authentication, and a Stripe-based payment system.",
+      "Built an AI document platform with responsive dashboards, secure authentication, and Stripe payments.",
     metrics: [
       { value: "30%", label: "Transaction Delay Reduction" },
       { value: "40%", label: "Response Time Reduction" },
@@ -90,7 +90,7 @@ export const featuredProjects: ProjectDossierProps[] = [
     title: "TryStyle",
     role: "Multi-Tenant Systems & AI Integration",
     outcomeHeadline:
-      "Retailer-facing virtual try-on administration with tenant-aware configuration, analytics, and backend improvements that reduced response latency by ~35% under peak traffic.",
+      "Retailer administration for virtual try-on, with tenant-aware configuration and ~35% lower peak response latency.",
     summary:
       "Built the systems retailers use to manage virtual try-on configurations, monitor real-time interactions, and operate AI-integrated workflows.",
     metrics: [{ value: "~35%", label: "Peak-Traffic Latency Reduction" }],
