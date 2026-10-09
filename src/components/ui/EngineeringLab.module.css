@@ -509,6 +509,38 @@
   }
 }
 
+@media (max-width: 430px) {
+  .labHeader h2 {
+    font-size: 2.45rem;
+  }
+
+  .labTabs {
+    grid-template-columns: repeat(3, minmax(185px, 1fr));
+  }
+
+  .labTab {
+    min-height: 112px;
+    padding: var(--space-4);
+  }
+
+  .systemPanel {
+    grid-template-rows: minmax(250px, 1fr) auto;
+  }
+
+  .signalCanvas,
+  .signalGraphic {
+    min-height: 250px;
+  }
+
+  .metricReadout strong {
+    font-size: 1.35rem;
+  }
+
+  .systemBrief {
+    padding: var(--space-4);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .consoleTopbar i,
   .flowLine,

@@ -1,0 +1,119 @@
+.cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.cursor[data-visible="true"] {
+  opacity: 1;
+}
+
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate3d(var(--cursor-x, -40px), var(--cursor-y, -40px), 0) translate(-50%, -50%);
+  will-change: transform;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+  transition: width 160ms var(--ease-mechanical), height 160ms var(--ease-mechanical),
+    background 160ms ease;
+}
+
+.ring {
+  width: 28px;
+  height: 28px;
+  border: 1px solid color-mix(in srgb, var(--text-primary) 48%, transparent);
+  background: color-mix(in srgb, var(--bg-canvas) 6%, transparent);
+  transition: transform 90ms ease-out, width 210ms var(--ease-mechanical),
+    height 210ms var(--ease-mechanical), border-color 160ms ease, background 160ms ease;
+}
+
+.ring::before,
+.ring::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--color-accent);
+  opacity: 0.72;
+  transform: translate(-50%, -50%);
+  transition: width 180ms var(--ease-mechanical), height 180ms var(--ease-mechanical),
+    opacity 160ms ease;
+}
+
+.ring::before {
+  width: 7px;
+  height: 1px;
+}
+
+.ring::after {
+  width: 1px;
+  height: 7px;
+}
+
+.cursor[data-interactive="true"] .ring {
+  width: 46px;
+  height: 46px;
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 11%, transparent);
+}
+
+.cursor[data-interactive="true"] .ring::before {
+  width: 13px;
+}
+
+.cursor[data-interactive="true"] .ring::after {
+  height: 13px;
+}
+
+.cursor[data-interactive="true"] .dot {
+  width: 4px;
+  height: 4px;
+}
+
+.cursor[data-pressed="true"] .ring {
+  width: 22px;
+  height: 22px;
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+}
+
+[data-theme="dark"] .ring {
+  border-color: rgba(244, 242, 237, 0.52);
+  background: rgba(244, 242, 237, 0.025);
+}
+
+[data-theme="dark"] .cursor[data-interactive="true"] .ring {
+  border-color: var(--color-accent-hover);
+  background: rgba(211, 78, 38, 0.13);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :global(html.studio-cursor-enabled),
+  :global(html.studio-cursor-enabled *) {
+    cursor: none !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring {
+    transition: width 80ms linear, height 80ms linear, border-color 80ms linear,
+      background 80ms linear;
+  }
+}

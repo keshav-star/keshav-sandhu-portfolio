@@ -450,6 +450,33 @@
   }
 }
 
+@media (max-width: 430px) {
+  .gatewayTitleRow h2 {
+    font-size: 3rem;
+  }
+
+  .gatewayCopy {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .gatewayCopy h3 {
+    font-size: 2.25rem;
+  }
+
+  .orbitTopbar span:last-child {
+    display: none;
+  }
+
+  .orbitPanel {
+    min-height: 330px;
+  }
+
+  .orbitGraphic {
+    height: 330px;
+    min-height: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gatewayCopy,
   .orbitPanel,

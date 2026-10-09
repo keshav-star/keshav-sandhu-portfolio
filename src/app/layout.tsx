@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { metadataBase, siteName, siteUrl } from "@/lib/site";
+import { StudioCursor } from "@/components/ui/StudioCursor";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -78,6 +79,7 @@ export default function RootLayout({
       className={`${instrumentSerif.variable} ${plusJakartaSans.variable} ${geistMono.variable}`}
     >
       <body>
+        <StudioCursor />
         {children}
         <script
           type="application/ld+json"

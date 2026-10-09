@@ -32,6 +32,26 @@ body {
   overflow-x: hidden;
 }
 
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Subtle physical paper texture watermark grid (pure SVG, 0 heavy assets) */
 body::before {
   content: "";
@@ -145,6 +165,18 @@ hr {
   margin-right: auto;
   padding-left: var(--container-gutter);
   padding-right: var(--container-gutter);
+}
+
+@media (max-width: 430px) {
+  :root {
+    --container-gutter: 16px;
+    --type-display-2xl-size: clamp(2.65rem, 13vw, 3.4rem);
+  }
+
+  section[id],
+  article[id] {
+    scroll-margin-top: 62px;
+  }
 }
 
 /* Asymmetric 12-Column Editorial Grid */

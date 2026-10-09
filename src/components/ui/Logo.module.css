@@ -110,3 +110,23 @@
     display: none;
   }
 }
+
+@media (max-width: 390px) {
+  .logoContainer {
+    gap: 8px;
+  }
+
+  .md .monogramSvg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .primaryName {
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+  }
+
+  .roleSubtitle {
+    display: none;
+  }
+}

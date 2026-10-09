@@ -465,6 +465,37 @@
   }
 }
 
+@media (max-width: 430px) {
+  .technologySection,
+  .capabilitySection {
+    padding-block: var(--space-10);
+  }
+
+  .stripHeader h2,
+  .capabilityHeader h2 {
+    font-size: 2.15rem;
+  }
+
+  .techItem {
+    min-width: 190px;
+  }
+
+  .capabilityHeader {
+    grid-template-columns: 36px 1fr;
+    gap: var(--space-3);
+  }
+
+  .capabilityHeaderIndex {
+    width: 34px;
+    height: 34px;
+  }
+
+  .capabilityItem {
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .techTrack,
   .capabilityTrack,

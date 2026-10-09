@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./BlueprintConcepts.module.css";
-import { buildSituations, type BuildSituation } from "@/content/buildSituations";
+import { buildSituations } from "@/content/buildSituations";
 import { StudioButton } from "../StudioButton";
 import { renderStepIcon } from "../BuildSituationIcons";
 
@@ -53,7 +53,7 @@ export function Concept1ScrubberCapsule() {
         <div className={styles.capsuleMetaRow}>
           <div className={styles.capsuleBadge}>
             <span>{current.badge}</span>
-            <span style={{ color: "var(--text-muted)" }}>//</span>
+            <span style={{ color: "var(--text-muted)" }}>{"//"}</span>
             <span>{current.shortTag}</span>
           </div>
           <span className={styles.capsuleSprintPill}>
