@@ -44,6 +44,21 @@
   border-bottom: 1px solid var(--border-hairline);
   background-color: var(--bg-canvas);
   position: relative;
+  isolation: isolate;
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background-image:
+    linear-gradient(var(--border-hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-hairline) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+  pointer-events: none;
 }
 
 .heroGrid {
@@ -202,6 +217,15 @@
    RESPONSIVE BREAKPOINTS (1440, 1280, 1024, 768, 430, 390)
    ========================================================================== */
 @media (max-width: 1024px) {
+  .heroSection {
+    padding: clamp(var(--space-10), 7vw, var(--space-16)) 0;
+    overflow: clip;
+  }
+
+  .heroSection::before {
+    opacity: 0.42;
+  }
+
   .heroGrid {
     grid-template-columns: 1fr;
     gap: var(--space-10);
@@ -213,7 +237,44 @@
   }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .heroGrid {
+    max-width: none;
+    grid-template-columns: minmax(0, 1.18fr) minmax(250px, 0.82fr);
+    gap: clamp(var(--space-6), 4vw, var(--space-10));
+    align-items: start;
+  }
+
+  .heroStatement {
+    font-size: clamp(3.1rem, 6.2vw, 4.25rem);
+  }
+
+  .heroDescriptor {
+    font-size: 1rem;
+  }
+
+  .heroActionRow {
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .heroPortraitCol {
+    position: sticky;
+    top: 100px;
+    justify-content: center;
+    padding-top: var(--space-12);
+  }
+}
+
 @media (max-width: 768px) {
+  .heroGrid {
+    gap: var(--space-10);
+  }
+
+  .heroDatumRow {
+    margin-bottom: var(--space-5);
+  }
+
   .heroMetricsGrid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
@@ -230,7 +291,10 @@
   }
 
   .heroPortraitCol {
+    width: 100%;
     max-width: 400px;
+    margin-inline: auto;
+    justify-content: center;
   }
 
 }

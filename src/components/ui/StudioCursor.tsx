@@ -17,8 +17,8 @@ const INTERACTIVE_SELECTOR = [
 
 export function StudioCursor() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const dotRef = useRef<HTMLSpanElement>(null);
-  const ringRef = useRef<HTMLSpanElement>(null);
+  const pointerRef = useRef<HTMLSpanElement>(null);
+  const locatorRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -26,10 +26,10 @@ export function StudioCursor() {
     if (!finePointer.matches) return;
 
     const cursor = rootRef.current;
-    const dot = dotRef.current;
-    const ring = ringRef.current;
+    const pointer = pointerRef.current;
+    const locator = locatorRef.current;
 
-    if (!cursor || !dot || !ring) return;
+    if (!cursor || !pointer || !locator) return;
 
     const pageRoot = document.documentElement;
     pageRoot.classList.add("studio-cursor-enabled");
@@ -48,10 +48,12 @@ export function StudioCursor() {
 
       const x = `${event.clientX}px`;
       const y = `${event.clientY}px`;
-      dot.style.setProperty("--cursor-x", x);
-      dot.style.setProperty("--cursor-y", y);
-      ring.style.setProperty("--cursor-x", x);
-      ring.style.setProperty("--cursor-y", y);
+      cursor.style.setProperty("--cursor-x", x);
+      cursor.style.setProperty("--cursor-y", y);
+      pointer.style.setProperty("--cursor-x", x);
+      pointer.style.setProperty("--cursor-y", y);
+      locator.style.setProperty("--cursor-x", x);
+      locator.style.setProperty("--cursor-y", y);
       setInteractive(event.target);
       setVisibility(true);
     };
@@ -84,8 +86,13 @@ export function StudioCursor() {
 
   return (
     <div ref={rootRef} className={styles.cursor} data-visible="false" aria-hidden="true">
-      <span ref={ringRef} className={styles.ring} />
-      <span ref={dotRef} className={styles.dot} />
+      <span className={styles.focusField} />
+      <span ref={locatorRef} className={styles.locator} />
+      <span ref={pointerRef} className={styles.pointer}>
+        <svg viewBox="0 0 22 26" aria-hidden="true">
+          <path d="M2 2.2v19.2l5.15-4.45 3.65 7.1 3.55-1.8-3.55-6.82h7.16L2 2.2Z" />
+        </svg>
+      </span>
     </div>
   );
 }

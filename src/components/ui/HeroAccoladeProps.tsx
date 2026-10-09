@@ -11,6 +11,7 @@ import styles from "./HeroAccoladeProps.module.css";
 interface PropData {
   id: string;
   icon: React.ReactNode;
+  shortLabel: string;
   title: string;
   subtitle: string;
   detail: string;
@@ -20,6 +21,7 @@ interface PropData {
 const PROPS: PropData[] = [
   {
     id: "rating",
+    shortLabel: "Rating",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M12 2l2.9 6.26L22 9.27l-5 5.14L18.18 22 12 18.56 5.82 22 7 14.41 2 9.27l7.1-1.01L12 2z" />
@@ -31,6 +33,7 @@ const PROPS: PropData[] = [
   },
   {
     id: "award",
+    shortLabel: "Award",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="8" r="6" />
@@ -43,6 +46,7 @@ const PROPS: PropData[] = [
   },
   {
     id: "releases",
+    shortLabel: "Releases",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
@@ -54,6 +58,7 @@ const PROPS: PropData[] = [
   },
   {
     id: "react",
+    shortLabel: "React",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
         <ellipse cx="12" cy="12" rx="10" ry="4.5" />
@@ -68,6 +73,7 @@ const PROPS: PropData[] = [
   },
   {
     id: "fuel",
+    shortLabel: "Fuel",
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M17 8h1a4 4 0 1 1 0 8h-1" />
@@ -125,6 +131,13 @@ function PropDot({
       onMouseLeave={() => setIsOpen(false)}
       onFocus={() => { updateCardPosition(); setIsOpen(true); }}
       onBlur={() => setIsOpen(false)}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") setIsOpen(false);
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setIsOpen((current) => !current);
+        }
+      }}
       tabIndex={0}
       role="button"
       aria-label={`${data.title}: ${data.subtitle}`}
@@ -165,15 +178,72 @@ function PropDot({
 }
 
 export function HeroScatteredProps() {
+  const [activeMobileId, setActiveMobileId] = useState<string | null>(null);
+  const activeMobileProp = PROPS.find((item) => item.id === activeMobileId);
+  const activeMobileIndex = activeMobileProp ? PROPS.indexOf(activeMobileProp) + 1 : null;
+
   return (
-    <div className={styles.scatteredContainer} aria-label="Professional highlights scattered across hero">
-      {PROPS.map((prop, i) => (
-        <PropDot
-          key={prop.id}
-          data={prop}
-          className={styles[`pos${i + 1}` as keyof typeof styles] as string}
-        />
-      ))}
-    </div>
+    <>
+      <div className={styles.scatteredContainer} aria-label="Professional highlights scattered across hero">
+        {PROPS.map((prop, i) => (
+          <PropDot
+            key={prop.id}
+            data={prop}
+            className={styles[`pos${i + 1}` as keyof typeof styles] as string}
+          />
+        ))}
+      </div>
+
+      <div className={styles.mobileProofDock} aria-label="Professional highlights">
+        <div className={styles.dockLabel}>
+          <span>PROOF SIGNALS</span>
+          <span>
+            {activeMobileIndex ? `SELECTED / ${String(activeMobileIndex).padStart(2, "0")}` : "TAP TO INSPECT"}
+          </span>
+        </div>
+        <div className={styles.dockRail}>
+          {PROPS.map((prop) => {
+            const isActive = prop.id === activeMobileId;
+            return (
+              <button
+                key={prop.id}
+                type="button"
+                className={`${styles.dockButton} ${isActive ? styles.dockButtonActive : ""}`}
+                aria-expanded={isActive}
+                aria-controls="mobile-proof-detail"
+                onClick={() => setActiveMobileId(isActive ? null : prop.id)}
+              >
+                <span className={styles.dockIcon}>{prop.icon}</span>
+                <span>{prop.shortLabel}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {activeMobileProp && (
+          <div
+            id="mobile-proof-detail"
+            key={activeMobileProp.id}
+            className={styles.dockDetail}
+            aria-live="polite"
+          >
+            <div className={styles.dockDetailIcon}>{activeMobileProp.icon}</div>
+            <div>
+              <span>{activeMobileProp.subtitle}</span>
+              <h3>{activeMobileProp.title}</h3>
+              <p>{activeMobileProp.detail}</p>
+            </div>
+            <button
+              type="button"
+              className={styles.dockClose}
+              onClick={() => setActiveMobileId(null)}
+              aria-label="Close professional highlight"
+            >
+              ×
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

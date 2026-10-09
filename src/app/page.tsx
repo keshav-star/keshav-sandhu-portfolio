@@ -33,9 +33,6 @@ export default function HomePage() {
           className={styles.heroSection}
           aria-label="Keshav Sandhu - Hero Overview"
         >
-          {/* Tiny icon dots scattered in hero free spaces */}
-          <HeroScatteredProps />
-
           <div className="container">
             <div className={styles.heroGrid}>
               {/* Left Column: Personal Narrative & Actions */}
@@ -68,6 +65,9 @@ export default function HomePage() {
                     Download résumé
                   </StudioButton>
                 </div>
+
+                {/* Desktop: scattered signals. Tablet/mobile: an inline proof dock. */}
+                <HeroScatteredProps />
               </div>
 
               {/* Right Column: Portrait */}
