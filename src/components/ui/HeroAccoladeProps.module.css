@@ -249,37 +249,68 @@
   .scatteredContainer {
     position: relative;
     display: flex;
+    width: 100%;
+    max-width: var(--container-max-width);
     flex-wrap: wrap;
     gap: 10px;
-    padding: var(--space-4) 0 0;
+    margin-inline: auto;
+    padding: var(--space-4) var(--container-gutter) 0;
     justify-content: flex-start;
   }
 
   .propDot {
-    position: static;
+    /* Keep the pulse ring contained by its own dot on compact layouts. */
+    position: relative;
+    flex: 0 0 34px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .propDot:hover,
+  .propDot:focus-visible,
+  .dotOpen {
+    /* A transformed ancestor would trap the fixed detail card inside the dot. */
+    transform: none;
   }
 
   /* Cards appear below the dot on mobile */
   .hoverCard {
     position: fixed;
     top: auto;
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    width: auto;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    left: 50%;
+    right: auto;
+    width: calc(100% - 32px);
     max-width: 360px;
-    transform: translateY(8px) scale(0.96);
-    z-index: 999;
+    transform: translate(-50%, 8px) scale(0.96);
+    z-index: 1200;
   }
 
   .cardLeft,
   .cardRight {
-    left: 16px;
-    right: 16px;
+    left: 50%;
+    right: auto;
   }
 
   .cardVisible {
-    transform: translateY(0) scale(1);
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@media (max-width: 430px) {
+  .scatteredContainer {
+    gap: 8px;
+    padding-top: var(--space-3);
+  }
+
+  .propDot {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  .cardBody {
+    padding: 14px 16px 16px;
   }
 }
 
@@ -294,5 +325,11 @@
   }
   .propDot {
     transition: none !important;
+  }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .hoverCard {
+    transform: translate(-50%, 0) scale(1) !important;
   }
 }

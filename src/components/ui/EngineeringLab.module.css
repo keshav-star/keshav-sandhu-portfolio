@@ -448,12 +448,20 @@
     grid-template-columns: repeat(3, minmax(220px, 1fr));
     grid-template-rows: none;
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-inline: contain;
     border-right: 0;
     border-bottom: 1px solid var(--border-hairline);
   }
 
+  .labTabs::-webkit-scrollbar {
+    display: none;
+  }
+
   .labTab {
     min-height: 130px;
+    scroll-snap-align: start;
     border-right: 1px solid var(--border-hairline);
     border-bottom: 0;
   }

@@ -64,6 +64,22 @@
   }
 }
 
+@media (max-width: 430px) {
+  .introHeader {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 6px var(--space-2);
+  }
+
+  .statement {
+    font-size: 1.75rem;
+  }
+
+  .matrixCard {
+    padding: var(--space-5);
+  }
+}
+
 .matrixCard {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-hairline);

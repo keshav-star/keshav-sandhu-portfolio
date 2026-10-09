@@ -708,3 +708,52 @@
   color: var(--text-tertiary);
   letter-spacing: 0.04em;
 }
+
+@media (max-width: 430px) {
+  .guideIntro {
+    font-size: 1rem;
+  }
+
+  .stepperNav,
+  .workbenchPanel {
+    padding: var(--space-4);
+  }
+
+  .stepperKeyHint,
+  .windowLiveTag {
+    display: none;
+  }
+
+  .stepperList {
+    grid-template-columns: 1fr;
+  }
+
+  .windowBar,
+  .windowFooter {
+    padding-inline: var(--space-3);
+  }
+
+  .windowTitle {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .windowBody {
+    padding: var(--space-4);
+  }
+
+  .metricsGroup {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .demoTriggerBtn {
+    width: 100%;
+    justify-content: center;
+    min-height: 40px;
+  }
+}

@@ -72,3 +72,19 @@
   color: var(--color-accent);
   text-decoration-color: currentColor;
 }
+
+@media (max-width: 430px) {
+  .footer {
+    padding: var(--space-12) 0 var(--space-8);
+    margin-top: var(--space-12);
+  }
+
+  .metadataGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metaValue,
+  .metaLink {
+    overflow-wrap: anywhere;
+  }
+}
