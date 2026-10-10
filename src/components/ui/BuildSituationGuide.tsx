@@ -47,6 +47,13 @@ export function BuildSituationGuide() {
   // Interactive Sandbox 04: Systems Scale Benchmark state
   const [isCached, setIsCached] = useState<boolean>(true);
 
+  const handleSelect = useCallback((id: BuildSituation["id"]) => {
+    setActiveId(id);
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", `#situation-${id}`);
+    }
+  }, []);
+
   // Read URL hash on initial mount or change
   useEffect(() => {
     const checkHash = () => {
@@ -78,14 +85,7 @@ export function BuildSituationGuide() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  const handleSelect = useCallback((id: BuildSituation["id"]) => {
-    setActiveId(id);
-    if (typeof window !== "undefined") {
-      window.history.replaceState(null, "", `#situation-${id}`);
-    }
-  }, []);
+  }, [handleSelect]);
 
   const currentIndex = buildSituations.findIndex((s) => s.id === activeId);
   const safeIndex = currentIndex >= 0 ? currentIndex : 0;

@@ -1,0 +1,490 @@
+.gatewaySection {
+  position: relative;
+  padding: clamp(var(--space-20), 11vw, var(--space-32)) 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-hairline);
+  background: var(--bg-canvas-subtle);
+}
+
+.gatewayGrid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.65;
+  background-image: linear-gradient(var(--border-hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-hairline) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+  pointer-events: none;
+}
+
+.gatewayHeader,
+.gatewayShell {
+  position: relative;
+  z-index: 1;
+}
+
+.gatewayHeader {
+  margin-bottom: var(--space-10);
+}
+
+.gatewayTitleRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.5fr);
+  gap: clamp(var(--space-8), 8vw, var(--space-24));
+  align-items: end;
+  margin-top: var(--space-3);
+}
+
+.gatewayTitleRow h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 7vw, 6.8rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+
+.gatewayTitleRow p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.gatewayShell {
+  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-elevated);
+}
+
+.pathSelector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--border-medium);
+}
+
+.pathButton {
+  display: grid;
+  position: relative;
+  grid-template-columns: 35px 1fr 10px;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+  border: 0;
+  border-right: 1px solid var(--border-hairline);
+  background: transparent;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: background 220ms, color 220ms;
+}
+
+.pathButton:last-child {
+  border-right: 0;
+}
+
+.pathButton::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 3px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transition: transform 260ms var(--ease-mechanical);
+}
+
+.pathButton:hover,
+.pathButtonActive {
+  background: var(--bg-canvas-subtle);
+}
+
+.pathButtonActive::after {
+  transform: scaleX(1);
+}
+
+.pathButton > span {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+}
+
+.pathButton strong {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.pathButton i {
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--text-muted);
+  border-radius: 50%;
+  transition: background 200ms, border-color 200ms, box-shadow 200ms;
+}
+
+.pathButtonActive i {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  box-shadow: 0 0 9px var(--color-accent-glow);
+}
+
+.gatewayPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.9fr);
+  min-height: 590px;
+}
+
+.gatewayCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(var(--space-6), 5vw, var(--space-16));
+  animation: copyReveal 480ms var(--ease-mechanical) both;
+}
+
+.engagementKicker {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.61rem;
+  letter-spacing: 0.11em;
+}
+
+.gatewayCopy h3 {
+  max-width: 650px;
+  margin-top: var(--space-4);
+  font-family: var(--font-serif);
+  font-size: clamp(2.3rem, 4.5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.gatewayCopy > p {
+  max-width: 610px;
+  margin-top: var(--space-5);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.engagementFacts {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--border-hairline);
+}
+
+.engagementFacts div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.engagementFacts dt {
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+}
+
+.engagementFacts dd {
+  color: var(--text-primary);
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+}
+
+.gatewayActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-7, 28px);
+}
+
+.orbitPanel {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border-left: 1px solid var(--border-hairline);
+  background: #11100f;
+  color: #f2673d;
+  animation: orbitReveal 580ms var(--ease-mechanical) both;
+}
+
+.orbitPanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.orbitTopbar {
+  display: flex;
+  position: relative;
+  z-index: 2;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+}
+
+.orbitTopbar span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.orbitTopbar i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #56d18b;
+  box-shadow: 0 0 8px #56d18b;
+  animation: statusPulse 1.8s ease-in-out infinite;
+}
+
+.orbitGraphic {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: calc(100% - 49px);
+  min-height: 500px;
+}
+
+.radarRing,
+.radarAxis,
+.orbitGhostPath {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.14);
+  stroke-width: 1;
+}
+
+.radarRing {
+  stroke-dasharray: 4 8;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: radarRotate 25s linear infinite;
+}
+
+.radarRing:nth-of-type(2) {
+  animation-direction: reverse;
+  animation-duration: 19s;
+}
+
+.glowField {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.stageMarkers circle:first-child {
+  fill: #11100f;
+  stroke: rgba(255, 255, 255, 0.42);
+  stroke-width: 1;
+}
+
+.stageMarkers circle:nth-child(2) {
+  fill: #f2673d;
+}
+
+.stageMarkers text,
+.orbitReadout text {
+  fill: rgba(255, 255, 255, 0.58);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.orbitGhostPath {
+  stroke-dasharray: 6 9;
+}
+
+.orbitProgressPath {
+  fill: none;
+  stroke: #f2673d;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 720;
+  animation: pathDraw 1.25s var(--ease-mechanical) both;
+}
+
+.orbitArrow {
+  fill: #f2673d;
+}
+
+.activeNode {
+  fill: #f2673d;
+  stroke: rgba(242, 103, 61, 0.35);
+  stroke-width: 12;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: activePulse 1.7s ease-in-out infinite;
+}
+
+.orbitReadout rect {
+  fill: rgba(255, 255, 255, 0.045);
+  stroke: rgba(255, 255, 255, 0.16);
+}
+
+.orbitReadout text:last-child {
+  fill: #f2673d;
+}
+
+@keyframes copyReveal {
+  from { opacity: 0; transform: translateX(-16px); }
+}
+
+@keyframes orbitReveal {
+  from { opacity: 0; clip-path: inset(0 0 0 100%); }
+}
+
+@keyframes pathDraw {
+  from { stroke-dashoffset: 720; }
+}
+
+@keyframes radarRotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes activePulse {
+  50% { opacity: 0.55; transform: scale(1.45); }
+}
+
+@keyframes glowPulse {
+  50% { opacity: 0.5; }
+}
+
+@keyframes statusPulse {
+  50% { opacity: 0.3; transform: scale(0.7); }
+}
+
+@media (max-width: 980px) {
+  .gatewayTitleRow {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .gatewayTitleRow p {
+    max-width: 600px;
+  }
+
+  .gatewayPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .orbitPanel {
+    min-height: 470px;
+    border-top: 1px solid var(--border-hairline);
+    border-left: 0;
+  }
+
+  .orbitGraphic {
+    height: 470px;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .gatewayTitleRow h2 {
+    font-size: 3.6rem;
+  }
+
+  .pathSelector {
+    grid-template-columns: 1fr;
+  }
+
+  .pathButton {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .pathButton:last-child {
+    border-bottom: 0;
+  }
+
+  .pathButton::after {
+    inset: 0 auto 0 -1px;
+    width: 3px;
+    height: auto;
+    transform: scaleY(0);
+  }
+
+  .pathButtonActive::after {
+    transform: scaleY(1);
+  }
+
+  .gatewayCopy {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .gatewayCopy h3 {
+    font-size: 2.6rem;
+  }
+
+  .engagementFacts {
+    grid-template-columns: 1fr;
+  }
+
+  .gatewayActions,
+  .gatewayActions a,
+  .gatewayActions button {
+    width: 100%;
+  }
+
+  .orbitPanel {
+    min-height: 380px;
+  }
+
+  .orbitGraphic {
+    width: 125%;
+    height: 380px;
+    margin-left: -12.5%;
+  }
+}
+
+@media (max-width: 430px) {
+  .gatewayTitleRow h2 {
+    font-size: 3rem;
+  }
+
+  .gatewayCopy {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .gatewayCopy h3 {
+    font-size: 2.25rem;
+  }
+
+  .orbitTopbar span:last-child {
+    display: none;
+  }
+
+  .orbitPanel {
+    min-height: 330px;
+  }
+
+  .orbitGraphic {
+    height: 330px;
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gatewayCopy,
+  .orbitPanel,
+  .radarRing,
+  .glowField,
+  .orbitProgressPath,
+  .activeNode,
+  .orbitTopbar i {
+    animation: none;
+  }
+}

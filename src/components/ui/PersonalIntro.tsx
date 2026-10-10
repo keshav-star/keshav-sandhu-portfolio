@@ -1,71 +1,163 @@
 import React from "react";
 import styles from "./PersonalIntro.module.css";
-import { DatumLabel } from "./DatumLabel";
 
 interface PersonalIntroProps {
   className?: string;
 }
 
+type CapabilityKind = "interface" | "backend" | "ai" | "performance";
+
+const CAPABILITIES: Array<{
+  index: string;
+  label: string;
+  title: string;
+  description: string;
+  technology: string;
+  kind: CapabilityKind;
+}> = [
+  {
+    index: "01",
+    label: "INTERFACE",
+    title: "Interfaces people can read at a glance.",
+    description: "Responsive product flows, accessible systems, and a durable component language.",
+    technology: "React · Next.js · TypeScript",
+    kind: "interface",
+  },
+  {
+    index: "02",
+    label: "BACKEND",
+    title: "Rules that stay correct at scale.",
+    description: "Tenant boundaries, RBAC, transactional workflows, and observable APIs.",
+    technology: "Node.js · Prisma · PostgreSQL · Redis",
+    kind: "backend",
+  },
+  {
+    index: "03",
+    label: "APPLIED AI",
+    title: "AI grounded in product context.",
+    description: "Source-aware retrieval, streaming answers, guardrails, and model routing.",
+    technology: "LangChain · Gemini · Vector search",
+    kind: "ai",
+  },
+  {
+    index: "04",
+    label: "PERFORMANCE",
+    title: "Fast paths that survive traffic.",
+    description: "Query plans, caching, indexes, deployment telemetry, and reliable delivery.",
+    technology: "SQL · Docker · AWS · CI/CD",
+    kind: "performance",
+  },
+];
+
+function CapabilityGlyph({ kind }: { kind: CapabilityKind }) {
+  if (kind === "interface") {
+    return (
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="7" y="9" width="34" height="28" rx="2" />
+        <path d="M7 16h34M14 22h12M14 27h20M14 32h8" />
+        <path className={styles.glyphAccent} d="m31 26 7 3-4 2 2 5-2 1-2-5-3 2z" />
+      </svg>
+    );
+  }
+
+  if (kind === "backend") {
+    return (
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <rect x="16" y="16" width="16" height="16" rx="2" />
+        <circle cx="8" cy="10" r="3" />
+        <circle cx="40" cy="10" r="3" />
+        <circle cx="8" cy="39" r="3" />
+        <circle cx="40" cy="39" r="3" />
+        <path d="m10 12 8 7M38 12l-8 7M10 37l8-7M38 37l-8-7" />
+        <circle className={styles.glyphAccent} cx="24" cy="24" r="3" />
+      </svg>
+    );
+  }
+
+  if (kind === "ai") {
+    return (
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="13" cy="24" r="4" />
+        <circle cx="25" cy="12" r="3" />
+        <circle cx="36" cy="24" r="5" />
+        <circle cx="24" cy="37" r="3" />
+        <path d="m16 21 7-7M28 14l5 6M32 27l-6 8M21 35l-6-8M17 24h14" />
+        <circle className={styles.glyphAccent} cx="36" cy="24" r="2" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M7 38V10M7 38h35" />
+      <path className={styles.glyphSignal} d="m9 34 9-8 7 3 8-12 8-6" />
+      <circle className={styles.glyphAccent} cx="41" cy="11" r="3" />
+      <path d="M14 38v-5M23 38v-7M32 38v-11M41 38V16" />
+    </svg>
+  );
+}
+
 export function PersonalIntro({ className = "" }: PersonalIntroProps) {
   return (
-    <div className={`${styles.introContainer} ${className}`} aria-label="About Keshav Sandhu">
-      {/* Editorial Datum Header */}
+    <div className={`${styles.introContainer} ${className}`} aria-label="Product engineering practice">
       <div className={styles.introHeader}>
-        <DatumLabel prefix="AUTHOR //" label="KESHAV SANDHU" variant="standard" />
-        <span className={styles.divider}>{"//"}</span>
-        <span className={styles.headerRole}>PRODUCT ENGINEER & BUILDER</span>
+        <span><i /> PRODUCT ENGINEER & BUILDER</span>
+        <span>ONE SYSTEM / END TO END</span>
       </div>
 
-      {/* Human-Centered Statement */}
-      <h2 className={styles.statement}>
-        I build resilient software across product, interface, and systems.
-      </h2>
-
-      {/* Editorial Narrative */}
-      <div className={styles.narrativeBody}>
-        <p className={styles.paragraph}>
-          I take products from specification to operation, connecting interface decisions with the data,
-          APIs, and workflows behind them. Recent systems support 50+ organizations, 100K+ records, and
-          AI workflows that cut manual effort by ~60%.
-        </p>
-      </div>
-
-      {/* Engineering Breadth Matrix (Layered reading: Human title + Technical evidence) */}
-      <div className={styles.breadthMatrix}>
-        <div className={styles.matrixCard}>
-          <div className={styles.matrixIndex}>01 // INTERFACE</div>
-          <h3 className={styles.matrixTitle}>Product & Interaction</h3>
-          <p className={styles.matrixDesc}>
-            High-craft user interfaces, design systems, responsive layouts, and WCAG accessibility standards.
+      <div className={styles.introLayout}>
+        <div className={styles.introLead}>
+          <span className={styles.eyebrow}>PRODUCT PRACTICE // 04 LAYERS</span>
+          <h2 className={styles.statement}>
+            One product surface. <em>Four systems working together.</em>
+          </h2>
+          <p className={styles.paragraph}>
+            I work through the entire product path—from interaction model to data boundaries,
+            AI context, and production performance.
           </p>
-          <div className={styles.techNote}>React · Next.js · TypeScript · CSS Architecture</div>
+
+          <dl className={styles.proofRail} aria-label="Selected engineering outcomes">
+            <div>
+              <dt>50+</dt>
+              <dd>organizations</dd>
+            </div>
+            <div>
+              <dt>100K+</dt>
+              <dd>records managed</dd>
+            </div>
+            <div>
+              <dt>−60%</dt>
+              <dd>manual effort</dd>
+            </div>
+          </dl>
         </div>
 
-        <div className={styles.matrixCard}>
-          <div className={styles.matrixIndex}>02 // BACKEND</div>
-          <h3 className={styles.matrixTitle}>Systems & Multi-Tenancy</h3>
-          <p className={styles.matrixDesc}>
-            Granular RBAC governance, tenant isolation, quotation-to-invoice workflows, and clean REST APIs.
-          </p>
-          <div className={styles.techNote}>Node.js · Express · Prisma · PostgreSQL · Redis</div>
-        </div>
-
-        <div className={styles.matrixCard}>
-          <div className={styles.matrixIndex}>03 // AI INTEGRATION</div>
-          <h3 className={styles.matrixTitle}>Applied AI & RAG</h3>
-          <p className={styles.matrixDesc}>
-            Contextual document querying, vector embeddings, LangChain services, and model switching pipelines.
-          </p>
-          <div className={styles.techNote}>LangChain · Gemini · Vector DBs · Retrieval-Augmented Gen</div>
-        </div>
-
-        <div className={styles.matrixCard}>
-          <div className={styles.matrixIndex}>04 // PERFORMANCE</div>
-          <h3 className={styles.matrixTitle}>Optimization & Scale</h3>
-          <p className={styles.matrixDesc}>
-            Query refactoring, Redis caching layers, ~40% latency reduction, and predictable cloud deployments.
-          </p>
-          <div className={styles.techNote}>SQL Indexing · Docker · AWS (EC2/S3/CloudFront) · CI/CD</div>
+        <div className={styles.systemsMap}>
+          <div className={styles.mapTopbar}>
+            <span><i /> SYSTEM THREAD / ACTIVE</span>
+            <span>FOCUS A LAYER TO INSPECT</span>
+          </div>
+          <div className={styles.capabilityGrid}>
+            {CAPABILITIES.map((capability) => (
+              <article
+                key={capability.index}
+                className={styles.capabilityCard}
+                tabIndex={0}
+                data-cursor="interactive"
+              >
+                <div className={styles.cardTopline}>
+                  <span>{capability.index} / {capability.label}</span>
+                  <div className={styles.glyphPlate}>
+                    <CapabilityGlyph kind={capability.kind} />
+                  </div>
+                </div>
+                <h3>{capability.title}</h3>
+                <p>{capability.description}</p>
+                <div className={styles.technologyLine}>{capability.technology}</div>
+                <div className={styles.signalTrack} aria-hidden="true"><i /></div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </div>

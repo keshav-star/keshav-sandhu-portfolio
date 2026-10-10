@@ -8,7 +8,8 @@ import { PersonalIntro } from "@/components/ui/PersonalIntro";
 import { ProjectDeckSection } from "@/components/ui/ProjectDeckSection";
 import { BuildSituationGuide } from "@/components/ui/BuildSituationGuide";
 import { CapabilityStrip, TechnologyStrip } from "@/components/ui/TechCrossStrips";
-import { CalBookingButton } from "@/components/ui/CalBookingButton";
+import { EngineeringLab } from "@/components/ui/EngineeringLab";
+import { EngagementGateway } from "@/components/ui/EngagementGateway";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { HeroScatteredProps } from "@/components/ui/HeroAccoladeProps";
 import { featuredProjects } from "@/content/projects";
@@ -32,9 +33,6 @@ export default function HomePage() {
           className={styles.heroSection}
           aria-label="Keshav Sandhu - Hero Overview"
         >
-          {/* Tiny icon dots scattered in hero free spaces */}
-          <HeroScatteredProps />
-
           <div className="container">
             <div className={styles.heroGrid}>
               {/* Left Column: Personal Narrative & Actions */}
@@ -67,6 +65,9 @@ export default function HomePage() {
                     Download résumé
                   </StudioButton>
                 </div>
+
+                {/* Desktop: scattered signals. Tablet/mobile: an inline proof dock. */}
+                <HeroScatteredProps />
               </div>
 
               {/* Right Column: Portrait */}
@@ -117,76 +118,9 @@ export default function HomePage() {
         {/* Capability transition: personal practice → engineering lab. */}
         <CapabilityStrip />
 
-        <section id="lab" className={styles.labSection} aria-labelledby="lab-title">
-          <div className="container">
-            <div className={styles.sectionHeader}>
-              <div className="datum-bar">
-                <span className="datum-crosshair">+</span>
-                <span>ENGINEERING LAB // PRACTICE AREAS</span>
-              </div>
-              <h2 id="lab-title" className={styles.sectionTitle}>
-                Useful systems, examined at the seams.
-              </h2>
-              <p className={styles.sectionSubtitle}>
-                The practice combines product interface work with the systems behind it - where
-                context, permissions, performance, and operational workflows need to hold up.
-              </p>
-            </div>
+        <EngineeringLab />
 
-            <div className={styles.labGrid}>
-              <article className={styles.labItem}>
-                <span className={styles.labIndex}>01 // AI & CONTEXT</span>
-                <h3 className={styles.labTitle}>Document-aware conversations</h3>
-                <p>
-                  Conversational interfaces, contextual PDF responses, LangChain services, and
-                  vector-backed retrieval shaped through Twin Protocol work.
-                </p>
-              </article>
-              <article className={styles.labItem}>
-                <span className={styles.labIndex}>02 // OPERATIONS</span>
-                <h3 className={styles.labTitle}>Multi-tenant systems</h3>
-                <p>
-                  Tenant isolation, RBAC, configuration workflows, and operational dashboards
-                  developed across compliance and retailer administration platforms.
-                </p>
-              </article>
-              <article className={styles.labItem}>
-                <span className={styles.labIndex}>03 // PERFORMANCE</span>
-                <h3 className={styles.labTitle}>Clearer paths under load</h3>
-                <p>
-                  Query refactoring, caching, indexing, and API optimization applied where
-                  responsiveness depends on the whole system rather than a single screen.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className={styles.contactSection} aria-labelledby="contact-title">
-          <div className="container">
-            <div className={styles.contactLayout}>
-              <div>
-                <div className="datum-bar">
-                  <span className="datum-crosshair">+</span>
-                  <span>SELECT ENGAGEMENTS</span>
-                </div>
-                <h2 id="contact-title" className={styles.contactTitle}>
-                  Have a product or system that needs a clearer path forward?
-                </h2>
-              </div>
-              <div className={styles.contactAction}>
-                <p>
-                  I work across product interfaces, backend systems, and applied AI - from the
-                  first useful version through the operational details that make it dependable.
-                </p>
-                <StudioButton href="mailto:keshavsandhu.me@gmail.com" variant="primary" size="md">
-                  Start a conversation
-                </StudioButton>
-                <CalBookingButton />
-              </div>
-            </div>
-          </div>
-        </section>
+        <EngagementGateway />
       </main>
 
       <StudioFooter />

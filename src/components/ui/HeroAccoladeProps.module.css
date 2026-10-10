@@ -12,6 +12,10 @@
   z-index: 8;
 }
 
+.mobileProofDock {
+  display: none;
+}
+
 /* ── The Dot: 18×18 icon glyph ── */
 .propDot {
   position: absolute;
@@ -244,42 +248,183 @@
 .pos4 .dotPulse { animation-delay: 1.8s; }
 .pos5 .dotPulse { animation-delay: 2.4s; }
 
-/* ── RESPONSIVE: Mobile/Tablet ── */
-@media (max-width: 768px) {
+/* ── RESPONSIVE: Tablet/Mobile proof dock ── */
+@media (max-width: 1024px) {
   .scatteredContainer {
+    display: none;
+  }
+
+  .mobileProofDock {
     position: relative;
+    display: block;
+    width: 100%;
+    max-width: 660px;
+    margin-top: var(--space-2);
+    border: 1px solid var(--border-medium);
+    background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+    box-shadow: var(--shadow-subtle);
+    overflow: hidden;
+  }
+
+  .dockLabel {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: 9px var(--space-3);
+    border-bottom: 1px solid var(--border-hairline);
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+  }
+
+  .dockLabel span:first-child {
+    color: var(--color-accent);
+  }
+
+  .dockRail {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .dockButton {
+    display: flex;
+    min-width: 0;
+    min-height: 72px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 5px;
+    border: 0;
+    border-right: 1px solid var(--border-hairline);
+    background: transparent;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease;
+  }
+
+  .dockButton:last-child {
+    border-right: 0;
+  }
+
+  .dockButtonActive {
+    background: var(--text-primary);
+    color: var(--bg-canvas);
+  }
+
+  .dockIcon {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 1px solid var(--border-medium);
+    border-radius: 50%;
+    color: var(--text-primary);
+    transition: transform 220ms var(--ease-mechanical), border-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .dockButtonActive .dockIcon {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .dockDetail {
+    display: grid;
+    position: relative;
+    grid-template-columns: 38px minmax(0, 1fr) 24px;
+    gap: var(--space-3);
+    align-items: start;
+    padding: var(--space-4);
+    border-top: 1px solid var(--color-accent);
+    background: var(--bg-canvas-subtle);
+    animation: dockReveal 280ms var(--ease-mechanical) both;
+  }
+
+  .dockDetailIcon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .dockDetail span {
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .dockDetail h3 {
+    margin-top: 4px;
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.05;
+  }
+
+  .dockDetail p {
+    margin-top: 6px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .dockClose {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--border-hairline);
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 430px) {
+  .mobileProofDock {
+    margin-top: 0;
+  }
+
+  .dockLabel span:last-child {
+    display: none;
+  }
+
+  .dockButton {
+    min-height: 64px;
+    font-size: 0.5rem;
+  }
+
+  .dockIcon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .dockDetail {
+    grid-template-columns: 32px minmax(0, 1fr) 22px;
     gap: 10px;
-    padding: var(--space-4) 0 0;
-    justify-content: flex-start;
+    padding: var(--space-3);
   }
 
-  .propDot {
-    position: static;
+  .dockDetailIcon {
+    width: 32px;
+    height: 32px;
   }
+}
 
-  /* Cards appear below the dot on mobile */
-  .hoverCard {
-    position: fixed;
-    top: auto;
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    width: auto;
-    max-width: 360px;
-    transform: translateY(8px) scale(0.96);
-    z-index: 999;
-  }
-
-  .cardLeft,
-  .cardRight {
-    left: 16px;
-    right: 16px;
-  }
-
-  .cardVisible {
-    transform: translateY(0) scale(1);
+@keyframes dockReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
   }
 }
 
@@ -294,5 +439,11 @@
   }
   .propDot {
     transition: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dockDetail {
+    animation: none;
   }
 }

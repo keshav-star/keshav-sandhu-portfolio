@@ -44,6 +44,21 @@
   border-bottom: 1px solid var(--border-hairline);
   background-color: var(--bg-canvas);
   position: relative;
+  isolation: isolate;
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background-image:
+    linear-gradient(var(--border-hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-hairline) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+  pointer-events: none;
 }
 
 .heroGrid {
@@ -177,87 +192,6 @@
   background-color: var(--bg-canvas-subtle);
 }
 
-/* ==========================================================================
-   ENGINEERING LAB & CONTACT
-   ========================================================================== */
-.labSection,
-.contactSection {
-  padding: clamp(var(--space-16), 8vw, var(--space-24)) 0;
-  border-bottom: 1px solid var(--border-hairline);
-}
-
-.labSection {
-  background-color: var(--bg-canvas);
-}
-
-.labGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--border-hairline);
-  border-left: 1px solid var(--border-hairline);
-}
-
-.labItem {
-  padding: var(--space-6);
-  border-right: 1px solid var(--border-hairline);
-  border-bottom: 1px solid var(--border-hairline);
-}
-
-.labIndex {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: var(--type-mono-xs-size);
-  letter-spacing: var(--type-mono-xs-ls);
-  color: var(--color-accent);
-}
-
-.labTitle {
-  margin-top: var(--space-4);
-  font-family: var(--font-serif);
-  font-size: var(--type-heading-1-size);
-  font-weight: 400;
-  line-height: 1.2;
-}
-
-.labItem p,
-.contactAction p {
-  margin-top: var(--space-3);
-  font-size: var(--type-body-reg-size);
-  line-height: var(--type-body-reg-lh);
-}
-
-.contactSection {
-  background-color: var(--bg-canvas-subtle);
-}
-
-.contactLayout {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr);
-  gap: clamp(var(--space-8), 7vw, var(--space-20));
-  align-items: end;
-}
-
-.contactTitle {
-  max-width: 720px;
-  margin-top: var(--space-3);
-  font-family: var(--font-serif);
-  font-size: var(--type-display-xl-size);
-  font-weight: 400;
-  line-height: var(--type-display-xl-lh);
-  letter-spacing: var(--type-display-xl-ls);
-}
-
-.contactAction {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-6);
-}
-
-.contactAction p {
-  margin-top: 0;
-}
-
 .sectionHeader {
   margin-bottom: var(--space-10);
   max-width: 720px;
@@ -283,6 +217,15 @@
    RESPONSIVE BREAKPOINTS (1440, 1280, 1024, 768, 430, 390)
    ========================================================================== */
 @media (max-width: 1024px) {
+  .heroSection {
+    padding: clamp(var(--space-10), 7vw, var(--space-16)) 0;
+    overflow: clip;
+  }
+
+  .heroSection::before {
+    opacity: 0.42;
+  }
+
   .heroGrid {
     grid-template-columns: 1fr;
     gap: var(--space-10);
@@ -294,7 +237,44 @@
   }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .heroGrid {
+    max-width: none;
+    grid-template-columns: minmax(0, 1.18fr) minmax(250px, 0.82fr);
+    gap: clamp(var(--space-6), 4vw, var(--space-10));
+    align-items: start;
+  }
+
+  .heroStatement {
+    font-size: clamp(3.1rem, 6.2vw, 4.25rem);
+  }
+
+  .heroDescriptor {
+    font-size: 1rem;
+  }
+
+  .heroActionRow {
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .heroPortraitCol {
+    position: sticky;
+    top: 100px;
+    justify-content: center;
+    padding-top: var(--space-12);
+  }
+}
+
 @media (max-width: 768px) {
+  .heroGrid {
+    gap: var(--space-10);
+  }
+
+  .heroDatumRow {
+    margin-bottom: var(--space-5);
+  }
+
   .heroMetricsGrid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
@@ -311,21 +291,38 @@
   }
 
   .heroPortraitCol {
+    width: 100%;
     max-width: 400px;
+    margin-inline: auto;
+    justify-content: center;
   }
 
-  .labGrid,
-  .contactLayout {
-    grid-template-columns: 1fr;
-  }
-
-  .labItem {
-    padding: var(--space-5);
-  }
 }
 
 @media (max-width: 480px) {
   .availabilityMetadata {
     display: none;
+  }
+
+  .heroSection {
+    padding: var(--space-10) 0 var(--space-16);
+  }
+
+  .heroGrid {
+    gap: var(--space-8);
+  }
+
+  .heroStatement {
+    font-size: clamp(2.65rem, 13vw, 3.35rem);
+  }
+
+  .heroDescriptor {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .heroPortraitCol {
+    width: 100%;
+    justify-content: center;
   }
 }

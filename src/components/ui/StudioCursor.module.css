@@ -1,0 +1,156 @@
+.cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.cursor[data-visible="true"] {
+  opacity: 1;
+}
+
+.focusField {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.72;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--text-primary) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--text-primary) 10%, transparent) 1px, transparent 1px),
+    radial-gradient(
+      circle 112px at var(--cursor-x, -200px) var(--cursor-y, -200px),
+      color-mix(in srgb, var(--color-accent) 10%, transparent),
+      transparent 72%
+    );
+  background-size: 24px 24px, 24px 24px, auto;
+  mask-image: radial-gradient(
+    circle 155px at var(--cursor-x, -200px) var(--cursor-y, -200px),
+    black 0%,
+    rgba(0, 0, 0, 0.86) 42%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle 155px at var(--cursor-x, -200px) var(--cursor-y, -200px),
+    black 0%,
+    rgba(0, 0, 0, 0.86) 42%,
+    transparent 100%
+  );
+  transition: opacity 180ms ease;
+}
+
+.pointer,
+.locator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  will-change: transform;
+}
+
+.pointer {
+  width: 18px;
+  height: 22px;
+  color: var(--text-primary);
+  filter: drop-shadow(0 1px 1px color-mix(in srgb, var(--bg-canvas) 90%, transparent));
+  transform: translate3d(var(--cursor-x, -40px), var(--cursor-y, -40px), 0) translate(-2px, -2px);
+}
+
+.pointer svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: var(--bg-surface);
+  stroke: currentColor;
+  stroke-width: 1.45;
+  stroke-linejoin: round;
+  transition: fill 160ms ease, stroke 160ms ease, transform 180ms var(--ease-mechanical);
+}
+
+.locator {
+  width: 28px;
+  height: 28px;
+  background:
+    linear-gradient(var(--color-accent), var(--color-accent)) top left / 7px 1px no-repeat,
+    linear-gradient(var(--color-accent), var(--color-accent)) top left / 1px 7px no-repeat,
+    linear-gradient(var(--color-accent), var(--color-accent)) right bottom / 7px 1px no-repeat,
+    linear-gradient(var(--color-accent), var(--color-accent)) right bottom / 1px 7px no-repeat;
+  opacity: 0.72;
+  transform: translate3d(var(--cursor-x, -40px), var(--cursor-y, -40px), 0) translate(-50%, -50%);
+  transition: transform 95ms ease-out, width 200ms var(--ease-mechanical),
+    height 200ms var(--ease-mechanical), opacity 160ms ease;
+}
+
+.locator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 9px var(--color-accent-glow);
+  transform: translate(-50%, -50%);
+}
+
+.cursor[data-interactive="true"] .locator {
+  width: 44px;
+  height: 44px;
+  opacity: 1;
+}
+
+.cursor[data-interactive="true"] .pointer svg {
+  fill: var(--color-accent);
+  stroke: #fff;
+  transform: translate(1px, 1px);
+}
+
+.cursor[data-interactive="true"] .focusField {
+  opacity: 1;
+}
+
+.cursor[data-pressed="true"] .locator {
+  width: 20px;
+  height: 20px;
+}
+
+.cursor[data-pressed="true"] .pointer svg {
+  transform: translate(1px, 1px) scale(0.88);
+}
+
+[data-theme="dark"] .focusField {
+  background-image:
+    linear-gradient(rgba(244, 242, 237, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 242, 237, 0.09) 1px, transparent 1px),
+    radial-gradient(
+      circle 112px at var(--cursor-x, -200px) var(--cursor-y, -200px),
+      rgba(211, 78, 38, 0.1),
+      transparent 72%
+    );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :global(html.studio-cursor-enabled),
+  :global(html.studio-cursor-enabled *) {
+    cursor: none !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .locator {
+    transition: width 80ms linear, height 80ms linear, opacity 80ms linear;
+  }
+
+  .focusField {
+    transition: none;
+  }
+}

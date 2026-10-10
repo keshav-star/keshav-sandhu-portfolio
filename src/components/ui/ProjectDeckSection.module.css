@@ -277,15 +277,29 @@
 
 @media (max-width: 430px) {
   .deckShell {
-    min-height: 680px;
+    min-height: 650px;
+    padding: var(--space-4);
   }
 
   .deck {
-    min-height: 390px;
+    min-height: 380px;
   }
 
   .deckCard {
-    grid-template-rows: 1fr 175px;
+    width: 86%;
+    grid-template-rows: 1fr 190px;
+  }
+
+  .deckIntro h3 {
+    font-size: 2.55rem;
+  }
+
+  .deckCaption {
+    padding: var(--space-4);
+  }
+
+  .deckCaption h4 {
+    font-size: 1.65rem;
   }
 }
 
